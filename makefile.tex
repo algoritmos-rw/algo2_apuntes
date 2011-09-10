@@ -1,0 +1,256 @@
+% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               Margarita Manterola <marga@marga.com.ar>
+
+% Esta obra está licenciada de forma dual, bajo las licencias Creative
+% Commons:
+%  * Atribución-Compartir Obras Derivadas Igual 2.5 Argentina
+%    http://creativecommons.org/licenses/by-sa/2.5/ar/
+%  * Atribución-Compartir Obras Derivadas Igual 3.0 Unported
+%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
+%
+% A su criterio, puede utilizar una u otra licencia, o las dos.
+% Para ver una copia de las licencias, puede visitar los sitios
+% mencionados, o enviar una carta a Creative Commons,
+% 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\thesection}{\arabic{section}}
+\chapter*{Compilación de varios archivos en C}
+
+En todo programa es importante modularizar el código de forma que se facilite
+la reutilización y se minimice la repetición de código.
+En particular, cuando se trata de tipos abstractos de datos, es importante
+tener un módulo correspondiente a cada tipo abstracto.
+
+Por otro lado, para que un tipo abstracto de datos sea realmente
+\textit{abstracto} es recomendable que la implementación de las operaciones
+correspondientes al tipo estén separadas de los prototipos de estas
+operaciones, de modo que quien las utiliza se concentre únicamente en cuáles
+son las operaciones y no en cómo se llevan a cabo.  
+
+\section{Encabezado, implementación y código objeto}
+
+En C, esto se logra mediante la separación de cada módulo en un archivo
+\verb!.h!, que contiene las declaraciones de estructuras, constantes y
+prototipos de las funciones, que es llamado el \textit{encabezado} del módulo,
+y un archivo \verb!.c! que contiene las implementaciones correspondientes.
+
+Cada uno de los archivos \verb!.c! se utiliza para generar un archivo
+\verb!.o! que contiene el \textit{código objeto}, es decir el código de
+máquina, correspondiente a cada módulo.
+
+Cuando se compila un programa completo, todos los \verb!.o! que se hayan
+generado a partir de los módulos programados deben combinarse en un sólo
+ejecutable.
+
+\subsection{Inclusión de otros encabezados}
+
+Cuando un módulo requiere de funciones definidas en otros módulos, debe
+incluir los encabezados (los archivos \verb!.h!) en los que esas funciones
+están definidas.  Esta inclusión se realiza normalmente dentro del encabezado 
+correspondiente al módulo en cuestión.
+
+Es posible que al momento de construir un programa de tamaño considerable
+suceda que hay varios módulos que dependen de otro. De modo que podría suceder
+que este otro se incluya varias veces, lo cual es problemático y debe ser
+evitado.
+
+Para solucionar este problema, se utilizan las construcciones condicionales
+del preprocesador, haciendo que el código definido dentro de un encabezado se
+incluya en el programa un única vez. Por ejemplo:
+
+\begin{codigo-c-plano}
+#ifndef __ENUM_H
+    #define __ENUM_H
+    typedef enum {OK, ERROR} estado;
+    typedef enum {HUMANO, COMPUTADORA} jugador_t;
+#endif
+\end{codigo-c-plano}
+
+En este caso, el preprocesador verifica si está definida la variable
+\lstinline!__ENUM_H!. De no estar definida, la define y luego define los tipos
+enumerados correspondientes a este encabezado.  
+
+En cambio, si la variable ya estaba definida, significa que este encabezado ya
+fue procesado, con lo cual no se hace nada.
+
+
+\section{Compilación con \texttt{make}}
+
+Cuando los módulos que componen un programa son muchos, los pasos necesarios
+para compilarlo pueden ser muchos y tener que regenerarlos manualmente cada
+vez que se los modificque sería una tarea demasiado tediosa.  Es por ello que
+existe una herramienta llamada \verb!make!, encargada de realizar todos los
+pasos de compilación y necesarios y de hacerlos sólo cuando haga falta.
+
+Esta herramienta utiliza, a modo de configuración, los archivos
+\verb!Makefile! en donde se indican los pasos a realizar para la compilación
+tanto de los módulos como del programa principal.
+
+En estos archivos, básicamente, se pueden definir variables y reglas para
+compilar los distintos módulos.  
+
+\subsection{Un \texttt{Makefile} sencillo}
+
+A continuación un ejemplo de cómo puede verse un posible archivo
+\verb!Makefile!.
+
+\begin{lstlisting}[language=make, numbers=none]
+CFLAGS=-g -Wall
+EXEC=miprog
+OBJ=lista.o pila.o
+CC=gcc
+
+all: $(EXEC)
+
+lista.o: lista.c lista.h
+	$(CC) $(CFLAGS) -c lista.c
+
+pila.o: pila.c pila.h
+	$(CC) $(CFLAGS) -c pila.c
+
+$(EXEC): $(OBJ) miprog.c
+	$(CC) $(CFLAGS) $(OBJ) miprog.c -o $(EXEC)
+\end{lstlisting}
+
+\subsection{Variables}
+
+En la primera parte se declaran 4 variables, \lstinline!CFLAGS! son los
+\textit{flags} (parámetros) de compilación utilizados, en este caso se trata
+del parámetro que incluye la información para depuración \lstinline!-g! y el
+parámetro para que advierta sobre todos los posibles problemas que el
+compilador encuentre, \lstinline!-Wall!.
+
+Luego se declara el nombre que tendrá el programa ejecutable.  En este caso no
+tiene extensión, puesto que es un programa para sistemas UNIX (Linux, BSD,
+Solaris, etc). Si se estuviera compilando para un sistema Windows, la variable
+\lstinline!EXEC! sería \lstinline!miprog.exe!.
+
+Luego se listan cuáles serán los módulos que deberán transformarse en código
+objeto, y finalmente se coloca el nombre del compilador.  Separar la
+información de esta manera permite que si es necesario hacer un cambio en la
+forma de compilar un programa, el trabajo para realizarlo sea mínimo.
+
+Es importante notar que en el \verb!Makefile!, las variables se definen
+simplemente con \lstinline!VARIABLE=VALOR!, pero luego para utilizarlas, se lo
+hace de la forma \lstinline!$(VARIABLE)!.
+
+\subsection{Reglas de compilación}
+
+Luego de las variables, se definen cada uno de los archivos a generar, los
+archivos de los cuales estos dependen, y las acciones a llevar a cabo para
+compilar los archivos correspondientes.
+
+Cuando se ejecuta el comando \verb!make! sin ningún parámetro, se ejecuta
+automáticamente la primera de todas las reglas, es por eso que esta regla
+normalmente se llama \lstinline!all! y simplemente indica cuál es el archivo a
+generar.
+
+Luego de esta regla especial, se encuentran las reglas de compilación de cada
+uno de los módulos del programa.  Las reglas tienen un formato específico que
+se debe cumplir para que funcione el \verb!Makefile!.
+
+\begin{lstlisting}[language=make, numbers=none]
+archivo: dependencias
+	acciones
+\end{lstlisting}
+
+Esto significa que \lstinline!archivo! debe generarse cada vez que
+cambie una de las \lstinline!dependencias!, ejecutando las
+\lstinline!acciones!.
+
+Es importante notar que para que el \verb!make! funcione correctamente, las
+acciones a realizar deben tener un tabulador de separación desde el comienzo
+de línea.  Puede haber más de una acción, de a una por línea, siempre que se
+mantenga un tabulador de separación. \\
+
+En particular, la regla que se encarga de generar el programa principal es
+diferente a las otras, ya que incluye una mayor cantidad de dependencias y de
+variables.
+
+\begin{lstlisting}[language=make, numbers=none]
+$(EXEC): $(OBJ) miprog.c
+	$(CC) $(CFLAGS) $(OBJ) miprog.c -o $(EXEC)
+\end{lstlisting}
+
+Esta regla indica que el archivo indicado mediante la variable
+\lstinline!$(EXEC)! definida previamente debe generarse cuando cambie cualquiera
+de los archivos objeto, ya que si estos cambian, también debe cambiar el
+ejecutable final, o bien si cambia el código principal del programa. \\
+
+Es importante notar que mediante estas reglas, \verb!make! no sólo es capaz de
+compilar los archivos de forma correcta, sino que también es capaz de
+realizarlo sólo cuando sea necesario.  Para ello, verifica que la fecha de
+modificación de los archivos listados como dependencias sea anterior al
+archivo a generar.  De no ser así, vuelve a generarlo, ya que algo ha
+cambiado.
+
+\subsection{Reglas genéricas}
+
+Cuando la gran mayoría de los archivos del programa se compilan de una misma
+forma, es posible simplificar el archivo \verb!Makefile!, mediante el uso de reglas
+genéricas.
+
+Por ejemplo, para el caso del \verb!Makefile! visto anteriormente, las dos
+líneas que generan los archivos \verb!.o! podrían simplificarse en una sola de
+la siguiente forma:
+
+\begin{lstlisting}[language=make, numbers=none]
+%.o: %.c %.h
+	$(CC) $(CFLAGS) -c $<
+\end{lstlisting}
+
+Esta regla significa que para generar un archivo \verb!.o! es necesario contar
+con un archivo del mismo nombre \verb!.c! y otro del mismo nombre \verb!.h!.
+En la regla de compilación se utiliza la variable especial \lstinline!$<!, que
+toma el valor de la primera de las dependencias listadas (el archivo
+\verb!.c!.).  Existe también \lstinline!$@!, que toma el nombre del archivo
+que está siendo generado en esa regla.
+
+\subsection{Acciones comunes}
+
+Además de compilar, es común querer eliminar los archivos generados, de modo
+que queden únicamente los archivos fuente del programa.  Esta acción
+normalmente se realiza mediante una regla especial llamada \lstinline!clean!.
+
+Si bien puede llevar cualquier nombre, lo más usual es ponerle este nombre ya
+que tanta gente la llama así que cualquier programador que se encuentre con un
+\verb!Makefile! esperará encontrar una regla con este nombre que realice esta
+acción.
+
+\begin{lstlisting}[language=make, numbers=none]
+clean:
+	rm $(OBJ) $(EXEC)
+\end{lstlisting}
+
+Para utilizar esta regla (o cualquier otra que no sea la predeterminada), debe
+invocarse el comando \verb!make! con el nombre de la regla como parámetro. Es
+decir, \verb!make clean!.
+
+Al igual que con \lstinline!clean!, existen otras acciones comunes que se
+suelen incluir en la mayoría de los programas.  Las más conocidas:
+
+\begin{description}
+\item[build] Para compilar el código (equivalente a la regla
+\lstinline!all! del ejemplo mostrado).
+\item[install] Para instalar el código compilado en el sistema.
+\item[uninstall] Para desinstalar el programa que haya sido
+instalado.
+\end{description}
+
+\subsection{Variables comunes}
+
+Así como existen reglas comunes, que la mayoría de los programadores están
+acostumbrados a encontrar en los archivos \verb!Makefile!, también existen
+variables que suelen estar presentes.
+
+\begin{description}
+\item[CFLAGS] Que estaba en el ejemplo mostrado, son los
+parámetros pasados al compilador.
+\item[LDFLAGS] Son los parámetros pasados al enlazador.
+\item[PREFIX] Utilizado cuando hay una regla de instalación, es el
+directorio a partir del cual se instalarán los archivos.
+\end{description}
+
+%Reglas PHONY
+

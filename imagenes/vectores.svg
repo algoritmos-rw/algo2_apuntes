@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="vectores-pila.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path4730"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective3679"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3760"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3851"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3851-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3945"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3970"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3995"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4020"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4081"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4106"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4106-7"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4142"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4175"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4200"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4222"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4289"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4356"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4437"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4437-0"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4473"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4498"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4523"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.95891141"
+     inkscape:cx="337.855"
+     inkscape:cy="499.21584"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1179"
+     inkscape:window-height="785"
+     inkscape:window-x="399"
+     inkscape:window-y="132"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.97668052;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 188.61999,130.86604 -0.6146,249.17442 189.29318,0 -0.6146,-252.85227"
+       id="path2816"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="282.94785"
+       y="342.44901"
+       id="text3590"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3592"
+         x="285.17636"
+         y="342.44901">Variables y llamadas </tspan><tspan
+         sodipodi:role="line"
+         x="285.17636"
+         y="356.44901"
+         id="tspan3594">apiladas previamente a </tspan><tspan
+         sodipodi:role="line"
+         x="282.94785"
+         y="370.44901"
+         id="tspan3657">llamar a la función actual</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.56074345;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.12148687, 1.56074344;stroke-dashoffset:0"
+       d="m 188.90023,316.6479 187.91383,0"
+       id="path3598"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874" />
+    <text
+       xml:space="preserve"
+       style="font-size:13.74843407px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="291.71942"
+       y="284.92889"
+       id="text3600"
+       sodipodi:linespacing="100%"
+       transform="scale(0.982031,1.0182978)"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3602"
+         x="293.9079"
+         y="284.92889">Parámetros y variables </tspan><tspan
+         sodipodi:role="line"
+         x="291.71942"
+         y="298.67734"
+         id="tspan3651">de la función actual</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="390"
+       y="240.11205"
+       id="text3621"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3623"
+         x="390"
+         y="240.11205">a</tspan></text>
+    <g
+       id="g3706"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874">
+      <g
+         transform="translate(132.85714,170)"
+         id="g3614">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:1.0822953;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3604"
+           width="125.20341"
+           height="27.346273"
+           x="100.61257"
+           y="52.617615" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 125,53.076467 0,26.785714"
+           id="path3606" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 150.35714,52.719324 0,26.428571"
+           id="path3608" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 175,53.43361 0,26.071428"
+           id="path3610" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 200,52.719324 0,26.785714"
+           id="path3612" />
+      </g>
+      <text
+         sodipodi:linespacing="100%"
+         id="text3625"
+         y="240.22617"
+         x="240"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="240.22617"
+           x="240"
+           id="tspan3627"
+           sodipodi:role="line">1</tspan></text>
+      <text
+         sodipodi:linespacing="100%"
+         id="text3629"
+         y="240.31845"
+         x="265.26233"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="240.31845"
+           x="265.26233"
+           id="tspan3631"
+           sodipodi:role="line">2</tspan></text>
+      <text
+         sodipodi:linespacing="100%"
+         id="text3633"
+         y="240.21933"
+         x="290.05298"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="240.21933"
+           x="290.05298"
+           id="tspan3635"
+           sodipodi:role="line">3</tspan></text>
+      <text
+         sodipodi:linespacing="100%"
+         id="text3637"
+         y="240.22617"
+         x="315.0282"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="240.22617"
+           x="315.0282"
+           id="tspan3639"
+           sodipodi:role="line">4</tspan></text>
+      <text
+         sodipodi:linespacing="100%"
+         id="text3641"
+         y="240.12704"
+         x="340"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="240.12704"
+           x="340"
+           id="tspan3643"
+           sodipodi:role="line">5</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="389.28571"
+       y="185.89796"
+       id="text3645"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3647"
+         x="389.28571"
+         y="185.89796">p</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="122.84348"
+       y="296.86218"
+       id="text3659"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3661"
+         x="122.84348"
+         y="296.86218">Oxb580</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="122.7717"
+       y="241.38695"
+       id="text3663"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3665"
+         x="122.7717"
+         y="241.38695">Oxb55c</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="122.85715"
+       y="188.65285"
+       id="text3667"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3669"
+         x="122.85715"
+         y="188.65285">Oxb558</tspan></text>
+    <g
+       id="g3724"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874">
+      <rect
+         y="170.62643"
+         x="298.97855"
+         height="25.614353"
+         width="59.900063"
+         id="rect3649"
+         style="fill:none;stroke:#000000;stroke-width:1.38564765;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         sodipodi:linespacing="100%"
+         id="text3663-4"
+         y="188.17267"
+         x="301.09436"
+         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+         xml:space="preserve"><tspan
+           y="188.17267"
+           x="301.09436"
+           id="tspan3665-5"
+           sodipodi:role="line">Oxb55c</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="216.42857"
+       y="403.07648"
+       id="text3696"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3698"
+         x="216.42857"
+         y="403.07648">Pila de ejecución</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="119.30821"
+       y="138.79076"
+       id="text3700"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-pila.png"
+       inkscape:export-xdpi="599.89874"
+       inkscape:export-ydpi="599.89874"><tspan
+         sodipodi:role="line"
+         id="tspan3702"
+         x="119.30821"
+         y="138.79076">Direcciones</tspan><tspan
+         sodipodi:role="line"
+         x="119.30821"
+         y="148.79076"
+         id="tspan3704">de memoria</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.9688468;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7"
+       width="99.916405"
+       height="27.459723"
+       x="68.067383"
+       y="514.00336"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 92.511543,514.34033 0,26.78571"
+       id="path3606-0"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 117.86868,514.5189 0,26.42857"
+       id="path3608-6"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 142.51154,514.69747 0,26.07143"
+       id="path3610-1"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="74.654388"
+       y="533.02765"
+       id="text3625-2"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3627-4"
+         x="74.654388"
+         y="533.02765">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="100.11569"
+       y="533.02765"
+       id="text3629-8"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3631-6"
+         x="100.11569"
+         y="533.02765">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="125.10532"
+       y="532.82941"
+       id="text3633-8"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3635-0"
+         x="125.10532"
+         y="532.82941">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="150.27948"
+       y="533.02765"
+       id="text3637-5"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3639-6"
+         x="150.27948"
+         y="533.02765">4</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.9688468;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7-6"
+       width="99.916405"
+       height="27.459723"
+       x="168.02457"
+       y="514.00336"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 192.46874,514.34033 0,26.78571"
+       id="path3606-0-7"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 217.82588,514.5189 0,26.42857"
+       id="path3608-6-6"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 242.46874,514.69747 0,26.07143"
+       id="path3610-1-9"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="175.45026"
+       y="532.82941"
+       id="text3625-2-2"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3627-4-5"
+         x="175.45026"
+         y="532.82941">5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="200.4809"
+       y="532.82941"
+       id="text3629-8-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3631-6-0"
+         x="200.4809"
+         y="532.82941">6</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="225.70294"
+       y="533.02765"
+       id="text3633-8-5"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3635-0-8"
+         x="225.70294"
+         y="533.02765">7</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="250.8327"
+       y="532.82941"
+       id="text3637-5-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3639-6-3"
+         x="250.8327"
+         y="532.82941">8</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.9688468;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7-1"
+       width="99.916405"
+       height="27.459723"
+       x="267.76779"
+       y="514.00336"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 292.21197,514.34033 0,26.78571"
+       id="path3606-0-9"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 317.56911,514.5189 0,26.42857"
+       id="path3608-6-4"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 342.21197,514.69747 0,26.07143"
+       id="path3610-1-4"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="276.03079"
+       y="532.82941"
+       id="text3625-2-1"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3627-4-8"
+         x="276.03079"
+         y="532.82941">9</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="296.36856"
+       y="532.82941"
+       id="text3629-8-6"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3631-6-3"
+         x="296.36856"
+         y="532.82941">10</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="321.69998"
+       y="533.02765"
+       id="text3633-8-1"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3635-0-4"
+         x="321.69998"
+         y="533.02765">11</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="346.90494"
+       y="533.02765"
+       id="text3637-5-9"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3639-6-0"
+         x="346.90494"
+         y="533.02765">12</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="25.315353"
+       y="532.93671"
+       id="text3929"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3931"
+         x="25.315353"
+         y="532.93671">v</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="115.65021"
+       y="554.38007"
+       id="text3933"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935"
+         x="115.65021"
+         y="554.38007">v[0][2]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="190.88397"
+       y="554.38007"
+       id="text3933-0"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935-1"
+         x="190.88397"
+         y="554.38007">v[1][1]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="266.11774"
+       y="554.38007"
+       id="text3933-0-6"
+       sodipodi:linespacing="100%"
+       inkscape:transform-center-x="-3.9426211"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935-1-8"
+         x="266.11774"
+         y="554.38007">v[2][0]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="341.3515"
+       y="554.38007"
+       id="text3933-0-6-9"
+       sodipodi:linespacing="100%"
+       inkscape:transform-center-x="-3.9426211"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935-1-8-3"
+         x="341.3515"
+         y="554.38007">v[2][3]</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7-7"
+       width="243.63287"
+       height="26.847279"
+       x="68.086479"
+       y="595.00214"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 147.62028,595.39188 0,26.06767"
+       id="path3606-0-90"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 229.91066,595.56568 0,25.72008"
+       id="path3608-6-8"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="71.501007"
+       y="508.60187"
+       id="text3933-1"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935-6"
+         x="71.501007"
+         y="508.60187">v[0]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="171.80728"
+       y="508.60187"
+       id="text3933-1-9"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935-6-2"
+         x="171.80728"
+         y="508.60187">v[1]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.99115044;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="272.11359"
+       y="508.60187"
+       id="text3933-1-2"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3935-6-5"
+         x="272.11359"
+         y="508.60187">v[2]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="23.732834"
+       y="611.9884"
+       id="text3929-4"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3931-8"
+         x="23.732834"
+         y="611.9884">w</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:1.77839143;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1.77839143,3.55678286;stroke-dashoffset:0"
+       id="path4159"
+       sodipodi:cx="593.14545"
+       sodipodi:cy="594.14203"
+       sodipodi:rx="95.499046"
+       sodipodi:ry="114.77408"
+       d="m 688.64449,594.14203 a 95.499046,114.77408 0 1 1 -190.99809,0 95.499046,114.77408 0 1 1 190.99809,0 z"
+       transform="matrix(1.2654201,0,0,0.99947169,-217.88624,-0.56224443)"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.75;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="45.044285"
+       y="485.80591"
+       id="text4163"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4165"
+         x="45.044285"
+         y="485.80591"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans Bold">Pila de ejecución</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.75;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="435.05173"
+       y="482.70435"
+       id="text4163-9"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4165-4"
+         x="435.05173"
+         y="482.70435"
+         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans Bold">Heap</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 47.686614,503.28693 -1.143183,148.86185 352.093649,0 -1.14317,-151.05907"
+       id="path2816-1"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.9688468;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7-2"
+       width="99.916405"
+       height="27.459723"
+       x="495.87576"
+       y="516.96027"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 520.31994,517.2973 0,26.78571"
+       id="path3606-0-1"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 545.67708,517.47587 0,26.42857"
+       id="path3608-6-3"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 570.31994,517.65444 0,26.07143"
+       id="path3610-1-7"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="502.46277"
+       y="535.98456"
+       id="text3625-2-6"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3627-4-9"
+         x="502.46277"
+         y="535.98456">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="527.92413"
+       y="535.98456"
+       id="text3629-8-8"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3631-6-2"
+         x="527.92413"
+         y="535.98456">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="552.9137"
+       y="535.78632"
+       id="text3633-8-50"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3635-0-7"
+         x="552.9137"
+         y="535.78632">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="578.08789"
+       y="535.98456"
+       id="text3637-5-77"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3639-6-7"
+         x="578.08789"
+         y="535.98456">4</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.9688468;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7-6-1"
+       width="99.916405"
+       height="27.459723"
+       x="444.18362"
+       y="580.04224"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 468.6278,580.37923 0,26.78571"
+       id="path3606-0-7-3"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 493.98494,580.5578 0,26.42857"
+       id="path3608-6-6-0"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 518.6278,580.73637 0,26.07143"
+       id="path3610-1-9-7"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="451.60931"
+       y="598.86829"
+       id="text3625-2-2-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3627-4-5-0"
+         x="451.60931"
+         y="598.86829">5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="476.63995"
+       y="598.86829"
+       id="text3629-8-7-0"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3631-6-0-0"
+         x="476.63995"
+         y="598.86829">6</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="501.86197"
+       y="599.06653"
+       id="text3633-8-5-9"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3635-0-8-8"
+         x="501.86197"
+         y="599.06653">7</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="526.9917"
+       y="598.86829"
+       id="text3637-5-7-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3639-6-3-7"
+         x="526.9917"
+         y="598.86829">8</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.9688468;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3604-7-1-1"
+       width="99.916405"
+       height="27.459723"
+       x="486.70197"
+       y="648.38098"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 511.1461,648.71801 0,26.78571"
+       id="path3606-0-9-6"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 536.50324,648.89658 0,26.42857"
+       id="path3608-6-4-8"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 561.1461,649.07515 0,26.07143"
+       id="path3610-1-4-8"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="494.96497"
+       y="667.20703"
+       id="text3625-2-1-5"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3627-4-8-6"
+         x="494.96497"
+         y="667.20703">9</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="515.30267"
+       y="667.20703"
+       id="text3629-8-6-0"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3631-6-3-7"
+         x="515.30267"
+         y="667.20703">10</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="540.63409"
+       y="667.40527"
+       id="text3633-8-1-2"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3635-0-4-0"
+         x="540.63409"
+         y="667.40527">11</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="565.83899"
+       y="667.40527"
+       id="text3637-5-9-3"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan3639-6-0-9"
+         x="565.83899"
+         y="667.40527">12</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="75.34787"
+       y="612.2146"
+       id="text4425"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4427"
+         x="75.34787"
+         y="612.2146">Ox88f30008</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="157.60025"
+       y="612.2146"
+       id="text4425-7"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4427-0"
+         x="157.60025"
+         y="612.2146">Ox88f30020</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="239.85263"
+       y="612.2146"
+       id="text4425-9"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4427-2"
+         x="239.85263"
+         y="612.2146">Ox88f30038</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="472.90533"
+       y="508.50394"
+       id="text4425-3"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4427-29"
+         x="472.90533"
+         y="508.50394">Ox88f30008</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="424.70798"
+       y="570.70972"
+       id="text4425-7-1"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4427-0-5"
+         x="424.70798"
+         y="570.70972">Ox88f30020</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="454.50644"
+       y="639.92462"
+       id="text4425-9-3"
+       sodipodi:linespacing="100%"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074"><tspan
+         sodipodi:role="line"
+         id="tspan4427-2-5"
+         x="454.50644"
+         y="639.92462">Ox88f30038</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 114.63536,594.74067 c 65.01882,-19.69997 129.37588,-19.945 199.2053,-22.24831 34.02398,-1.79009 58.55252,-6.12592 84.61731,-15.39001 34.20736,-15.20884 61.60924,-25.03359 96.56001,-26.04243"
+       id="path5172"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 191.87422,594.97065 c 22.69937,-4.05614 45.94031,-5.61997 68.89493,-5.97185 32.98172,1.49991 66.00351,-0.1712 98.96017,1.96044 17.41463,0.93593 34.76638,3.84712 52.30553,3.21742 10.16409,0.01 20.48557,-0.3636 30.41485,0.84148"
+       id="path5377"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 272.47892,621.99594 c 17.82019,15.18531 41.08929,23.01348 60.92359,34.57475 17.82459,8.93254 39.27091,11.12305 59.37597,9.53138 22.86547,-0.4966 45.74479,-0.56499 68.55534,-2.59923 8.29777,-0.4527 16.62226,-0.64684 24.92278,-0.14593"
+       id="path5567"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/users/marga/fiuba-algo/7541/apuntes/vectores-matrices.png"
+       inkscape:export-xdpi="299.95074"
+       inkscape:export-ydpi="299.95074" />
+  </g>
+</svg>

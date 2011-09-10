@@ -1,0 +1,238 @@
+% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               Margarita Manterola <marga@marga.com.ar>
+
+% Esta obra está licenciada de forma dual, bajo las licencias Creative
+% Commons:
+%  * Atribución-Compartir Obras Derivadas Igual 2.5 Argentina 
+%    http://creativecommons.org/licenses/by-sa/2.5/ar/ 
+%  * Atribución-Compartir Obras Derivadas Igual 3.0 Unported
+%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR. 
+%
+% A su criterio, puede utilizar una u otra licencia, o las dos.
+% Para ver una copia de las licencias, puede visitar los sitios
+% mencionados, o enviar una carta a Creative Commons, 
+% 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
+\documentclass[11pt,spanish,a4paper]{report}
+\tolerance=5000
+%\renewcommand{\baselinestretch}{1.3}
+
+% Entrada de texto
+\usepackage[spanish]{babel}   % Traduce los textos a castellano
+\usepackage[utf8]{inputenc}   % Permite escribir directamente áéíóúñ
+\usepackage{t1enc}            % Agrega caracteres extendidos al font
+
+% Cuestiones de estilo
+\usepackage{palatino}         % Cambia el font por omision a Palatino
+\usepackage{graphicx}         % Permite insertar imagenes.
+\usepackage{listings}         % Permite mostrar codigo de forma mas linda
+\usepackage{verbatim}         % Permite incluir archivos de texto verbatim
+
+% Opcionales
+\usepackage{longtable}         % tablas largas y flexibles
+\usepackage{nonfloat}         % Hace que las figuras no floten
+%\usepackage{fancyvrb}         % Agrega más entornos verbatim
+%\usepackage{stmaryrd}         % Agrega más símbolos matemáticos
+%\usepackage{enumerate}        % Agrega flexibilidad a las enumeraciones
+%\usepackage{ifthen}           % Permite usar condicionales en comandos
+%\usepackage{subfigure}        % Permite subfiguras dentro de las figuras
+
+% Paquetes matematicos.  Hacen falta?
+\usepackage{amsmath, amsthm, amssymb} % Se usan para theoremstyle
+
+% Margenes y largo del texto
+%
+% medidas horizontales
+% 1in(fijo) + \hoffset + \(odd|even)sidemargin + \textwidth + \marginparsep +
+% \marginparwidth + \marginparpush
+%
+% medidas verticales
+% 1in(fijo) + \voffset + \topmargin + \headheight + \headsep + \textheight +
+% \footskip
+
+\setlength\oddsidemargin{-0.04cm}
+\setlength\evensidemargin{-0.04cm}
+\setlength\topmargin{0cm}
+\setlength\headheight{0.5cm}
+\setlength\headsep{0.3cm}
+\setlength\footskip{0.8cm}
+\setlength\textwidth{16cm}  % ancho para apunte
+\setlength\textheight{23cm} % largo para apunte
+%\leftmargin 2.5cm
+%\rightmargin 2.5cm
+
+\usepackage{fancyhdr}         %
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyhead[RO]{\slshape \rightmark \hspace{1cm} \normalfont \bfseries \thepage}
+\fancyhead[LE]{\bfseries \thepage \hspace{1cm} \normalfont \leftmark}
+%\fancyfoot{} % clear all footer fields
+%\fancyfoot[RO]{\bfseries \thepage}
+%\fancyfoot[LE]{\bfseries \thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[RO]{\bfseries \thepage}
+\fancyfoot[LE]{\bfseries \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+% Encabezado en la parte superior de las hojas
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+
+% Cuadros de observación
+\newcommand{\Observacion}[1]{
+\begin{center}
+\begin{tabular}[c]{|c|}\hline
+#1\\ \hline
+\end{tabular}
+\end{center}
+}
+
+\usepackage{color}            % Permite definir colores
+\definecolor{celeste}{rgb}{0.90,0.90,0.95}
+\definecolor{verde}{rgb}{0.85,1.00,0.85}
+\definecolor{amarillo}{rgb}{1.00,1.00,0.85}
+
+% Caja temporal para guardar el texto - Que se usa en las cajas de texto
+\newsavebox{\temporalbox}
+
+% Cuadros de Sabias qué - Icono: lamparita
+\newenvironment{sabias_que}
+ {\begin{lrbox}{\temporalbox}\begin{minipage}{0.95\textwidth}
+  \begin{minipage}{0.05\textwidth}\includegraphics[height=4ex]{graficos/lamparita}\end{minipage}
+  \begin{minipage}{0.80\textwidth}\bf Sabías que \ldots\end{minipage}\\
+  \begin{small}}
+ {\end{small}\end{minipage}\end{lrbox}
+  \begin{figure*}[ht]
+  \centering
+  \fboxsep 0.5em
+  \fcolorbox{black}{celeste}{
+  \usebox{\temporalbox}}
+  \end{figure*}}
+
+% Cuadros de Atención - Icono: Triángulo con !
+\newenvironment{atencion}
+ {\begin{lrbox}{\temporalbox}\begin{minipage}{0.95\textwidth}
+  \begin{minipage}{0.05\textwidth}\includegraphics[height=3ex]{graficos/atencion}\end{minipage}
+  \begin{minipage}{0.80\textwidth}\bf Atención \end{minipage}\vspace{0.8ex}\\
+  \begin{small}}
+ {\end{small}\end{minipage}\end{lrbox}
+  \begin{figure*}[ht]
+  \centering
+  \fboxsep 0.5em
+  \fcolorbox{black}{amarillo}{
+  \usebox{\temporalbox}}
+  \end{figure*}}
+
+\usepackage{framed}           % Cuadros multihoja con color de fondo
+
+% Cuadros de referencia del lenguaje. - Icono: logo python
+\newenvironment{referencia_python}
+ {\definecolor{shadecolor}{rgb}{0.85,1.00,0.85}%
+  \begin{shaded}%
+  \begin{minipage}{0.80\textwidth}\hspace{-1em}\bf Referencia del lenguaje Python\end{minipage}%
+  \hfill%
+  \begin{minipage}{0.05\textwidth}\includegraphics[height=4ex]{graficos/logo-python}\end{minipage}\\
+  \rule[1.00ex]{1.0\textwidth}{0.01ex}\\
+  \vspace{-2ex}%
+  \begin{small}}
+ {\end{small}\end{shaded}}
+
+\newenvironment{sintaxis}[1]
+  {\hspace{-1em}\textbf{#1}%
+   \vspace{1ex}\\
+   \begin{minipage}{0.05\textwidth}\end{minipage}\hfill\begin{minipage}{0.90\textwidth}}
+  {\end{minipage}\hfill\begin{minipage}{0.05\textwidth}\end{minipage}\\}
+
+% Parametros para los listings de python
+\lstset{language=C,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    showstringspaces=false,
+    basicstyle=\ttfamily}
+%    basicstyle=\ttfamily\normalsize,
+%    keywordstyle=\ttfamily\bfseries,
+%    identifierstyle=\ttfamily,
+%    commentstyle=\ttfamily\itshape,
+%    stringstyle=\ttfamily,
+
+\usepackage{float}            % Agrega estilos a los floats
+
+\floatstyle{ruled}
+\newfloat{codigo-float}{thp}{lop}
+\floatname{codigo-float}{Código}
+
+\newenvironment{codigo}[2]{\begin{codigo-float}
+    \caption{{\small\texttt{#1}}\textbf{:}\ \small #2}
+    }{\end{codigo-float}}
+
+\lstnewenvironment{codigo-c}{\lstset{xleftmargin=10pt,tabsize=4}}{}
+\lstnewenvironment{codigo-c-plano}{\lstset{xleftmargin=10pt,tabsize=4,numbers=none}}{}
+
+% Numeracion para secciones y subsecciones - Hace falta?
+%\renewcommand{\thesection}{\thechapter.\arabic{section}}
+%\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% Estilos usados en el texto
+\theoremstyle{definition}
+\newtheorem{definicion}{Definici\'on}[section]
+\newtheorem{ejemplo}{Ejemplo}[section]
+\newtheorem{problema}{Problema}[section]
+\newtheorem{ejercicio}{Ejercicio}[section]
+\newtheorem{ejerciciof}{}[section]
+\newtheorem{problemac}{Problema}[chapter]
+\newtheorem{ejercicioc}{Ejercicio}[chapter]
+\renewcommand{\qedsymbol}{} % El proof inserta dos qed al final
+\newenvironment{solucion}[1][Solución]{\begin{proof}[#1]}{\end{proof}}
+
+\theoremstyle{remark}
+\newtheorem{observacion}{Observaci\'on}[section]
+\newtheorem{nota}{Nota}[section]
+
+% Traducciones propias
+\addto\captionsspanish{
+\renewcommand{\chaptername}{Unidad}
+\renewcommand{\contentsname }{Contenidos }
+}
+
+% Definiciones varias - En uso
+\def\esp{\hspace{0.5ex}}
+\def\ra{\rightarrow}
+\def\qq{\textquoteright}
+
+\begin{document}
+
+% Carat no esta.
+%\include{carat}
+%\title{Algoritmos y Programación II \\ Con lenguaje C}
+%\maketitle
+
+%\tableofcontents  %Comentar  para no imprimir la toc
+
+% Comando para configurar el número de capítulo
+%\setcounter{chapter}{11}
+
+%\include{lenguaje_c}
+%\include{memoria_dinamica}
+%\include{vectores}
+%\include{merge_sort}
+%\include{quick_sort}
+%\include{makefile}
+\include{parametros}
+%\include{archivos}
+%\include{apendice}
+%\include{referenc}
+%\include{copyright}
+%\typeout{Bibliography}
+
+%\addcontentsline{toc}{chapter}{Referencias}
+
+%\bibliography{referenc}
+%\bibliographystyle{alpha}
+
+\end{document}

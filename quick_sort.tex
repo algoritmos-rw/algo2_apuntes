@@ -1,0 +1,276 @@
+% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               Margarita Manterola <marga@marga.com.ar>
+
+% Esta obra está licenciada de forma dual, bajo las licencias Creative
+% Commons:
+%  * Atribución-Compartir Obras Derivadas Igual 2.5 Argentina 
+%    http://creativecommons.org/licenses/by-sa/2.5/ar/ 
+%  * Atribución-Compartir Obras Derivadas Igual 3.0 Unported
+%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR. 
+%
+% A su criterio, puede utilizar una u otra licencia, o las dos.
+% Para ver una copia de las licencias, puede visitar los sitios
+% mencionados, o enviar una carta a Creative Commons, 
+% 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\thesection}{\arabic{section}}
+\chapter*{Ordenamiento rápido, \textit{quick sort}}
+
+El método de ordenamiento \textit{quick sort} es el más famoso de los
+métodos de ordenamiento recursivos, su fama se basa en que puede ser
+implementado de forma muy eficiente y en la gran mayoría de los casos tiene
+el mismo orden de complejidad que \textit{merge sort}.
+Al igual que este último, está basado en la técnica de dividir y conquistar.\\
+
+Los pasos de este método de ordenamiento son:
+\begin{enumerate}
+\item Cuando la longitud del vector sea 0 o 1, se considera que ya se
+encuentra ordenado. De no ser así:
+\item Se elige un elemento del vector como \textit{pivote}.  Generalmente
+será el primero o el último.
+\item Se reordenan los elementos del vector de modo que quede dividido en
+tres partes (\textbf{partición}): los elementos menores al pivote, el pivote y los elementos
+mayores al pivote. Al terminar este paso, el pivote
+queda en su lugar definitivo.
+\item Se repite el mismo proceso para cada una de las partes que no
+contienen al pivote (los menores y los mayores).
+\end{enumerate}
+
+Por ejemplo, si el vector original es \verb+[6, 7, -1, 0, 5, 2, 3, 8]+ y se
+elige el primer elemento como pivote (\verb!6!), la partición del vector
+será: \verb![-1, 0, 5, 2, 3]!, \verb!6!, \verb![7, 8]!. Se procederá a
+ordenar recursivamente \verb![-1, 0, 5, 2, 3]! y \verb![7, 8]!, de modo que
+el vector final será \verb![-1, 0, 2, 3, 5, 6, 7, 8]!.
+
+\section{Implementación básica}
+
+En este caso se implementará una función \lstinline!quick_sort!, que se
+encargará tanto de realizar la partición, como de llamarse recursivamente
+hasta que no haya más elementos que ordenar.
+
+La elección del pivote depende de cada implementación de \textit{quick
+sort}, en este caso se elige el primer elemento del vector como pivote.
+
+\begin{codigo-c}
+void quick_sort(int vector[], int inicio, int fin)
+{
+    int pivote = inicio;
+    int ult_menor = inicio;
+
+    if ( (fin - inicio) < 2 ) {
+        return;
+    }
+
+    int i;
+    for (i = pivote + 1; i < fin; i++) {
+        if ( vector[i] < vector[pivote] ) {
+            ult_menor++;
+            swap(vector, i, ult_menor);
+        }
+    }
+
+    // Coloca el pivote al final de los menores y el último
+    // menor en el primer lugar.
+    swap(vector, pivote, ult_menor);
+    // Ordena cada una de las mitades
+    quick_sort(vector, inicio, ult_menor);
+    quick_sort(vector, ult_menor+1, fin);
+
+}
+\end{codigo-c}
+
+El bucle principal de la función recorre los elementos del vector una única
+vez, cambiando de lugar aquellos que son menores al pivote para que queden
+en la primera parte y que los mayores queden en la segunda.
+
+Una vez terminado este bucle, se coloca el pivote en el medio de ambas
+partes, de modo que quede ubicado en su posición final.
+
+La función \lstinline!swap! utilizada en esta porción de código, recibe un
+vector y dos posiciones dentro del vector, e intercambia los valores que se
+encuentran en esas dos posiciones:
+
+\begin{codigo-c}
+void swap(int vector[], int pos_1, int pos_2)
+{
+    int aux = vector[pos_1];
+    vector[pos_1] = vector[pos_2];
+    vector[pos_2] = aux;
+}
+\end{codigo-c}
+
+Esta función puede utilizarse siempre que se necesite intercambiar dos
+elementos de un vector.
+
+\section{Análisis de complejidad}
+
+A simple vista, el algoritmo de \textit{quick sort} puede parecer muy
+similar al de \textit{merge sort}, ya que en ambos casos se divide a la
+lista en dos, y se opera sobre partes cada vez más pequeñas.
+
+Sin embargo, algo importante a tener en cuenta es que en el caso del
+\textit{quick sort} el orden que tenga el algoritmo dependerá en una gran
+parte de la elección del pivote, ya que no es lo mismo elegir un valor que
+se encuentre aproximadamente en el medio, de forma que las dos partes sean
+aproximadamente del mismo tamaño, que elegir un valor que se encuentre en
+uno de los extremos, de modo que una de las partes mida mucho más que la
+otra.
+
+Asumiendo que el valor elegido se encuentra aproximadamente en el medio,
+se puede ver que el tiempo requerido para ejecutar el algoritmo es:
+
+\begin{eqnarray}
+T(N) &=& A * N + 2*T(N/2) \\
+T(1) &=& B
+\end{eqnarray}
+
+Donde $B$ es el tiempo requerido por el caso base, y $A$ es el valor asociado
+a recorrer el vector y cambiar los elementos de lugar en el bucle
+principal.  Puede verse que estas ecuaciones son las mismas que para
+\textit{merge sort}. \\
+
+Sin embargo, cuando el pivote elegido no divide ambas partes al medio, el
+comportamiento no es tan bueno.  En el peor caso (cuando una parte queda
+con todos los elementos menos el pivote y la otra vacía), será:
+
+\begin{eqnarray}
+T(N) &=& A * N + T(N-1) \\
+T(1) &=& B
+\end{eqnarray}
+
+De modo que aplicando el método telescópico, similar al utilizado
+anteriormente:
+
+\begin{eqnarray}
+T(N) &=& A * N + T(N-1) \\
+&=& A * N + A * (N-1) + T(N-2) \\
+&=& A * (N + N - 1 + N - 2) + T(N-3) \\
+&\vdots&\\
+&=&A * (N + N - 1 + N - 2 + \hdots + 2) + B\\
+&=&A * \sum_{i=2}^N{i} + B\\
+&=&A * \frac{N^2+N}{2} - 1 + B
+\end{eqnarray}
+
+Se puede ver que en el peor caso, el orden será $O(N^2)$, mucho peor que el
+$O(Nlog_2N)$ visto anteriormente.  Sin embargo, se pueden tomar recaudos
+especiales para que este peor caso sea extremadamente improbable, y que en
+la práctica se pueda considerar que el algoritmo se comporta como
+$O(Nlog_2N)$.
+
+\section{Implementaciones más eficientes}
+
+\subsection{Elección del pivote}
+
+Si se elige el primer elemento (o el último), el algoritmo resulta muy
+inconveniente para el caso de una lista que ya se encuentra ordenada, y
+este es un caso que en ciertas situaciones es esperable que suceda.
+
+Es por eso que una optimización sencilla es intercambiar el elemento del
+medio con el que se vaya a utilizar de pivote antes de comenzar el bucle
+principal.
+
+\begin{codigo-c}
+    int medio = (fin + inicio) / 2;
+    swap(vector, pivote, medio);
+\end{codigo-c}
+
+Otras técnicas de elección del pivote incluyen:
+\begin{itemize}
+\item Elegir un elemento aleatoriamente, esto hace que en promedio sea
+mucho más probable tener un buen caso que uno malo, pero no elimina la
+posibilidad del peor caso.
+\item Recorrer la lista y buscar el elemento que ocupará la posición
+central de la lista.  Eso asegura que el orden sea siempre $O(Nlog_2N)$, pero
+decrementa mucho la eficiencia del caso base.
+\item Elegir tres elementos de la lista (por ejemplo, el primero, el del
+medio y el último), y quedarse con el del medio de los tres como pivote.
+\end{itemize}
+
+\subsection{Reducción de la cantidad de intercambios}
+
+En la implementación vista, puede suceder que se hagan numerosos
+intercambios innecesarios, cuando un elemento ya es menor que el pivote, y
+simplemente haría falta avanzar la variable que indica la posición del
+último menor.
+
+Una implementación alternativa de {\it quick sort} se basa en esta idea para
+tratar de minimizar la cantidad de intercambios.  Se cuenta con dos
+variables, que se utilizan para saltear los elementos que no hace falta
+cambiar de lugar, y sólo cambiar aquellos que es necesario.
+
+\begin{codigo-c}
+void quick_sort(int vector[], int inicio, int fin)
+{
+    if ( (fin - inicio) < 2 ) {
+        return;
+    }
+    int izq = inicio + 1;
+    int der = fin - 1;
+    int pivote = inicio;
+
+    // Cambia el del medio con el primero. 
+    // (optimización para vectores ordenados).
+    int medio = (izq + der) / 2;
+    swap(vector, pivote, medio);
+
+    while (izq <= der) {
+        while ( (izq <= der) && (vector[der] >= vector[pivote]) )
+            der--;
+        while ( (izq <= der) && (vector[izq] < vector[pivote]) )
+            izq++;
+        if ( izq < der )
+            swap(vector, izq, der);
+    }
+
+    // Coloca el pivote al final de los menores y el último
+    // menor en el primer lugar.
+    swap(vector, pivote, der);
+    // Ordena cada una de las mitades
+    quick_sort(vector, inicio, der);
+    quick_sort(vector, der+1, fin);
+}
+\end{codigo-c}
+
+Como se puede ver, se ha reemplazado el bucle principal, por otro que
+recorre el vector desde ambas puntas hacia el medio, buscando los elementos
+que necesitan ser intercambiados.
+
+\subsection{Utilización de otros algoritmos}
+
+En particular para los casos de las partes más pequeñas, al tener menos
+elementos, sin importar cuál se elija como pivote, es más probable que se
+asemejen al peor caso.
+
+Es por ello que una técnica de optimización puede incluir utilizar un
+algoritmo alternativo, como por ejemplo el de ordenamiento por inserción,
+para secuencias de pocos elementos. \\
+
+Por otro lado, puede también implementarse un contador que verifique la
+profundidad de la recursión y cuando esta exceda el nivel esperado por el
+algoritmo, pasar a utilizar otro algoritmo de ordenamiento, como {\it merge
+sort} o {\it heap sort}.
+
+\section{Quick sort en la biblioteca estándar de C}
+
+Entre las funciones que provee la biblioteca estándar de C, se incluye una
+implementación de quick sort. Dado que la biblioteca estándar está altamente
+probada y seguramente contenga optimizaciones avanzadas, es en general una
+buena idea usar las funciones que provistas antes que usar las propias.
+
+En el caso del \textit{quick sort}, la función se llama \lstinline!qsort! y se
+encuentra definida en el encabezado \lstinline!<stdlib.h>!, su prototipo es:
+
+\begin{codigo-c}
+void qsort(void *base, size_t nmemb, size_t size,
+           int(*compar)(const void *, const void *));
+\end{codigo-c}
+
+Que puede ser intimidante por la cantidad y complejidad de parámetros que
+recibe, en gran parte debido a la generalidad del código. \lstinline!base! se
+refiere al vector a ordenar, \lstinline!nmemb! es la cantidad de elementos
+del vector, \lstinline!size! es el tamaño en bytes de un elemento,
+\lstinline!compar! es la función que se debe usar para comparar.
+
+Este tipo de funciones se verán con más detalle más adelante.
+
