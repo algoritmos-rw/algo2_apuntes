@@ -1,5 +1,5 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
 % Esta obra está licenciada de forma dual, bajo las licencias Creative
 % Commons:
@@ -21,9 +21,9 @@ Se le llaman parámetros de línea de comandos a todo lo que se escriba después
 del nombre del programa en la invocación de un comando. Por ejemplo, hemos
 dicho que para compilar se usa una línea de la forma:
 
-\begin{verbatim} 
+\begin{verbatim}
 gcc hola.c -o hola
-\end{verbatim} 
+\end{verbatim}
 
 En este caso, estamos invocando al compilador \verb!gcc! para que compile
 \verb!hola.c! y genere el archivo ejecutable \verb!hola!. Esto es posible,
@@ -36,7 +36,7 @@ usuario al invocarlo, de forma que los parámetros que recibe gcc son:
 
 En nuestro código, para recibir estos parámetros se utiliza, tradicionalmente,
 la \textit{firma} de la función \lstinline!main! que recibe parámetros:
-  
+
 \begin{codigo-c-plano}
 int main(int argc, char *argv[]);
 \end{codigo-c-plano}
@@ -60,10 +60,10 @@ comando que se llamó.
 
 \section{Ejemplo de recibir parámetros por línea de comandos}
 
-En UNIX existe un comando llamado \textbf{echo} cuya única función es imprimir todos
-los parámetros que se reciben por línea de comandos. Cada parámetro se imprime
-con un espacio entre parámetro y parámetro. Este sencillo programa puede
-escribirse en C de la siguiente forma.
+En UNIX existe un comando llamado \textbf{echo} cuya única función es imprimir
+todos los parámetros que se reciben por línea de comandos. Cada parámetro se
+imprime con un espacio entre parámetro y parámetro. Este sencillo programa
+puede escribirse en C de la siguiente forma.
 
 \begin{codigo-c}
 #include <stdio.h>
@@ -83,15 +83,15 @@ int main(int argc, char *argv[])
 En este código imprimimos todos los parámetros recibidos, omitiendo el
 nombre del comando (\lstinline!argv[0]!).
 Una vez compilado se lo puede invocar de la siguiente forma:
-    
-\begin{verbatim} 
+
+\begin{verbatim}
 ./echo primer_parámetro  segundo_parámetro   etc
-\end{verbatim} 
+\end{verbatim}
 
 Y sin importar la cantidad de espacios entre un parámetro y otro el resultado
-será: 
+será:
 
-\begin{verbatim} 
+\begin{verbatim}
 primer_parámetro segundo_parámetro etc
 \end{verbatim}
 

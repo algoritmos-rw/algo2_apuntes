@@ -1,11 +1,11 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
-% Esta obra est· licenciada de forma dual, bajo las licencias Creative
+% Esta obra est√° licenciada de forma dual, bajo las licencias Creative
 % Commons:
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 2.5 Argentina
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 2.5 Argentina
 %    http://creativecommons.org/licenses/by-sa/2.5/ar/
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 3.0 Unported
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 3.0 Unported
 %    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
 %
 % A su criterio, puede utilizar una u otra licencia, o las dos.
@@ -17,30 +17,30 @@
 \renewcommand{\thesection}{\arabic{section}}
 \chapter*{Manejo de memoria en C}
 
-Todas las variables, en el lenguaje C, se definen dentro de alguna funciÛn,
-fuera de esa funciÛn no es posible acceder a ellas.  Al entrar a una funciÛn,
-a cada una de las variables definidas en esa funciÛn se le asigna el espacio
+Todas las variables, en el lenguaje C, se definen dentro de alguna funci√≥n,
+fuera de esa funci√≥n no es posible acceder a ellas.  Al entrar a una funci√≥n,
+a cada una de las variables definidas en esa funci√≥n se le asigna el espacio
 que sea necesario dentro de una pila interna de memoria (\textit{stack}) con
-la que cuenta el programa, y al terminar la funciÛn se desapila todo lo
-definido en ella. Es decir que la pila crece con cada llamado a una funciÛn y
-decrece con cada funciÛn que se termina.
+la que cuenta el programa, y al terminar la funci√≥n se desapila todo lo
+definido en ella. Es decir que la pila crece con cada llamado a una funci√≥n y
+decrece con cada funci√≥n que se termina.
 
 Por otro lado, todos los tipos que C define como parte del lenguaje son de un
-tamaÒo fijo, incluso los definidos por el usuario usando \lstinline!struct!.
+tama√±o fijo, incluso los definidos por el usuario usando \lstinline!struct!.
 Es por eso que el espacio que se reserva en la pila interna de memoria tiene
-un tamaÒo fijo.
+un tama√±o fijo.
 
-Existe, adem·s, otro espacio de memoria que se utiliza cuando el tamaÒo de los
-datos no es fijo.  A este espacio de memoria din·mica se lo llama
+Existe, adem√°s, otro espacio de memoria que se utiliza cuando el tama√±o de los
+datos no es fijo.  A este espacio de memoria din√°mica se lo llama
 \textit{heap}, contiene bloques de memoria, que el programador puede solicitar
-para utilizar seg˙n sea conveniente.
+para utilizar seg√∫n sea conveniente.
 
-\section{Obtener el tamaÒo de un tipo (\textit{sizeof()})}
+\section{Obtener el tama√±o de un tipo (\textit{sizeof()})}
 
-El operador \lstinline!sizeof()! devuelve el tamaÒo en bytes de un tipo de
+El operador \lstinline!sizeof()! devuelve el tama√±o en bytes de un tipo de
 datos (como \lstinline!int!). Por comodidad se le puede pasar tanto el nombre
-de una variable o el nombre de un tipo de datos, en ambos casos devolver· el
-tamaÒo del tipo de datos asociado.
+de una variable o el nombre de un tipo de datos, en ambos casos devolver√° el
+tama√±o del tipo de datos asociado.
 
 \begin{codigo-c-plano}
  int largo, a;
@@ -48,26 +48,26 @@ tamaÒo del tipo de datos asociado.
  largo = sizeof(a);    // Identico a lo anterior
 \end{codigo-c-plano}
 
-En este caso, ambas llamadas a \lstinline!sizeof! devuelven el tamaÒo que
-ocupa un entero en memoria en la arquitectura y compilador que se estÈ
+En este caso, ambas llamadas a \lstinline!sizeof! devuelven el tama√±o que
+ocupa un entero en memoria en la arquitectura y compilador que se est√©
 utilizando (por lo general son 4 bytes).
 
 \begin{codigo-c-plano}
  char c;
- largo = sizeof(c); // Cantidad de bytes de un char 
+ largo = sizeof(c); // Cantidad de bytes de un char
 \end{codigo-c-plano}
 
-En este caso, se devuelve cu·nto ocupa un caracter.  Los caracteres ocupan
+En este caso, se devuelve cu√°nto ocupa un caracter.  Los caracteres ocupan
 siempre 1 byte.
 
 \begin{codigo-c-plano}
  char *puntero;
- largo = sizeof(puntero); // Cantidad en bytes de un puntero.
+ largo = sizeof(puntero); // Cantidad de bytes usados por un puntero.
 \end{codigo-c-plano}
 
 En este caso, se devuelve la cantidad de bytes que ocupa un puntero. Todos los
-punteros tienen el mismo tamaÒo, y es tal que pueda contener cualquier
-direcciÛn de memoria, sea est·tica o din·mica.
+punteros tienen el mismo tama√±o, y es tal que pueda contener cualquier
+direcci√≥n de memoria, sea est√°tica o din√°mica.
 
 \begin{codigo-c-plano}
  int vector[100];
@@ -75,35 +75,44 @@ direcciÛn de memoria, sea est·tica o din·mica.
  largo = sizeof(vector) / sizeof(int);  // Largo del vector (100)
 \end{codigo-c-plano}
 
-En este caso, la primera llamada devuelve el tamaÒo total en bytes ocupado por
-el vector (usualmente serÌan 400 bytes), mientras que la segunda devuelve
+En este caso, la primera llamada devuelve el tama√±o total en bytes ocupado por
+el vector (usualmente ser√≠an 400 bytes), mientras que la segunda devuelve
 siempre 100 sin importar la plataforma, ya que divide el espacio total del
-vector por el tamaÒo de cada uno de los elementos.
+vector por el tama√±o de cada uno de los elementos.
 
-\section{Memoria din·mica en C}
+\begin{atencion}
+Los vectores no siempre se comportan como punteros. En el ejemplo anterior
+\lstinline!vector! no se refiere a la posici√≥n de memoria donde comienza el
+vector, sino a todo el vector. Este es el comportamiento esperado para los
+vectores est√°ticos definidos en el mismo entorno, esto quiere decir, que si el
+vector lo recibieramos en una funci√≥n y le hacemos \lstinline!sizeof(vector)!
+el resultado ser√≠a la cantidad de bytes usados por un puntero.
+\end{atencion}
 
-Mediante la utilizaciÛn de los punteros, es posible  acceder a cualquier
-porciÛn de memoria v·lida, tanto si se encuentra dentro de la pila interna
-como si se encuentra dentro del espacio de memoria din·mica.
+\section{Memoria din√°mica en C}
 
-Para obtener una porciÛn de memoria v·lida dentro del espacio de memoria
-din·mica, existen en la biblioteca est·ndar funciones (\lstinline!malloc! y
+Mediante la utilizaci√≥n de los punteros, es posible  acceder a cualquier
+porci√≥n de memoria v√°lida, tanto si se encuentra dentro de la pila interna
+como si se encuentra dentro del espacio de memoria din√°mica.
+
+Para obtener una porci√≥n de memoria v√°lida dentro del espacio de memoria
+din√°mica, existen en la biblioteca est√°ndar funciones (\lstinline!malloc! y
 \lstinline!realloc!) que reservan un bloque de memoria y devuelven su
-direcciÛn. Utilizando estas funciones es posible conseguir estructuras de
-datos din·micas, que pueden variar su tamaÒo seg˙n sea necesario, en lugar de
-tener un tamaÒo ya definido.
+direcci√≥n. Utilizando estas funciones es posible conseguir estructuras de
+datos din√°micas, que pueden variar su tama√±o seg√∫n sea necesario, en lugar de
+tener un tama√±o ya definido.
 
-Es importante notar que la memoria din·mica reservada mediante las funciones
-de la biblioteca est·ndar no es liberada autom·ticamente, quien haya hecho la
-reserva de memoria debe encargarse tambiÈn de liberarla (con la
-correspondiente funciÛn de biblioteca est·ndar, \lstinline!free!), de no ser
-asÌ, se dice que el programa \textit{pierde memoria}, ya que los bloques
-reservados no pueden volverse a utilizar a˙n cuando ya no estÈn en uso.
+Es importante notar que la memoria din√°mica reservada mediante las funciones
+de la biblioteca est√°ndar no es liberada autom√°ticamente, quien haya hecho la
+reserva de memoria debe encargarse tambi√©n de liberarla (con la
+correspondiente funci√≥n de biblioteca est√°ndar, \lstinline!free!), de no ser
+as√≠, se dice que el programa \textit{pierde memoria}, ya que los bloques
+reservados no pueden volverse a utilizar a√∫n cuando ya no est√©n en uso.
 
 \subsection{Pedir memoria al sistema (\textit{malloc()})}
 
-Para pedir memoria al sistema se utiliza la funciÛn
-\lstinline!malloc!\footnote{Para m·s informaciÛn: \texttt{man 3 malloc}.}, 
+Para pedir memoria al sistema se utiliza la funci√≥n
+\lstinline!malloc!\footnote{Para m√°s informaci√≥n: \texttt{man 3 malloc}.},
 definida en \lstinline!<stdlib.h>!, cuyo prototipo es el siguiente:
 
 \begin{codigo-c-plano}
@@ -111,84 +120,67 @@ void *malloc(size_t tamanio);
 \end{codigo-c-plano}
 
 Si el sistema tiene suficiente memoria disponible, \lstinline!malloc! devuelve
-un puntero a la primera posiciÛn de memoria de un bloque de memoria din·mica,
+un puntero a la primera posici√≥n de memoria de un bloque de memoria din√°mica,
 de \lstinline!tamanio! bytes.
 
-Si ocurriera alg˙n problema, porque el sistema no tuviera suficiente memoria
-disponible o similar, la llamada de \lstinline!malloc! devolverÌa
-\lstinline!NULL!.
-
-\subsection{ConversiÛn forzada de tipos (\textit{cast})}
-
-La conversiÛn forzada, o \textit{casteo}, se utiliza para convertir un valor
-de un tipo a otro, cuando el compilador no es capaz de hacerlo
-autom·ticamente.  Se lo logra anteponiendo un tipo entre parÈntesis delante de
-una expresiÛn. Por ejemplo:
-
-\begin{codigo-c-plano}
- int *datos = (int*) malloc( 128*sizeof(int) );
-\end{codigo-c-plano}
-
-En este caso se reserva un bloque de memoria para 128 enteros, y luego se lo
-asigna a un puntero de tipo \lstinline!int *!, pero para poder hacerlo es
-necesario convertir el puntero genÈrico \lstinline!void *! devuelto por
-\lstinline!malloc! a un puntero a enteros.
+Si ocurriera alg√∫n problema, porque el sistema no dispone de suficiente memoria
+o similar, la llamada de \lstinline!malloc! devolver√≠a \lstinline!NULL!.
 
 \section{Devolver memoria al sistema (\textit{free()})}
 
 Cuando un bloque de memoria ya no es necesario para un programa, se lo debe
 devolver al sistema, de forma que el sistema pueda tenerlo nuevamente entre los
-recursos a utilizar por otros procesos. La funciÛn
-\lstinline!free!\footnote{Para m·s informaciÛn: \texttt{man 3 free}.} de la
-biblioteca est·ndar hace exactamente esto, su prototipo es:
+recursos a utilizar por otros procesos. La funci√≥n
+\lstinline!free!\footnote{Para m√°s informaci√≥n: \texttt{man 3 free}.} de la
+biblioteca est√°ndar hace exactamente esto, su prototipo es:
 
 \begin{codigo-c-plano}
 void free(void *puntero);
 \end{codigo-c-plano}
 
-Recibe como ˙nico par·metro un puntero antes devuelto por \lstinline!malloc! o
+Recibe como √∫nico par√°metro un puntero antes devuelto por \lstinline!malloc! o
 \lstinline!realloc!, libera ese bloque de memoria y no devuelve nada. \\
- 
-Es importante notar que no es posible liberar una porciÛn de memoria que ya ha
-sido liberada.  Esta acciÛn puede provocar el mismo tipo de errores que los
-provocados por acceder a una porciÛn de memoria inv·lida. 
+
+Es importante notar que no es posible liberar una porci√≥n de memoria que ya ha
+sido liberada.  Esta acci√≥n puede provocar el mismo tipo de errores que los
+provocados por acceder a una porci√≥n de memoria inv√°lida. 
 
 \section{Agrandar/achicar un bloque de memoria (\textit{realloc()})}
 
-Cuando se necesita modificar el tamaÒo de un bloque memoria, se utiliza la
-funciÛn \lstinline!realloc!\footnote{Para m·s informaciÛn: \texttt{man 3
-realloc}.} de la biblioteca est·ndar. Su prototipo es el siguiente:
+Cuando se necesita modificar el tama√±o de un bloque memoria, se utiliza la
+funci√≥n \lstinline!realloc!\footnote{Para m√°s informaci√≥n: \texttt{man 3
+realloc}.} de la biblioteca est√°ndar. Su prototipo es el siguiente:
 
 \begin{codigo-c-plano}
 void *realloc(void *puntero_anterior, size_t nuevo_tamanio);
 \end{codigo-c-plano}
 
 Recibe un puntero antes obtenido mediante \lstinline!malloc! o
-\lstinline!realloc! y el nuevo tamaÒo del bloque de memoria. Si todo
+\lstinline!realloc! y el nuevo tama√±o del bloque de memoria. Si todo
 funciona bien, devuelve un nuevo puntero al nuevo bloque de memoria, copia el
-contenido del bloque viejo al nuevo (copia el largo mÌnimo entre los dos
+contenido del bloque viejo al nuevo (copia el largo m√≠nimo entre los dos
 bloques), y el bloque anterior es liberado.
 
 Si algo falla, devuelve \lstinline!NULL!, y el bloque anterior no se modifica.
 
 Teniendo en cuenta este comportamiento, normalmente \textbf{no} se utiliza una
-construcciÛn como la siguiente.
+construcci√≥n como la siguiente.
 
 \begin{codigo-c-plano}
 /* MAL */
 datos = (dato_t*) realloc( datos, sizeof(dato_t) * tamanio_nuevo);
 \end{codigo-c-plano}
 
-Ya que si \lstinline!realloc! devolviera \lstinline!NULL!, existir· en memoria
-un bloque de datos v·lido, con informaciÛn v·lida, al cual es imposible
-acceder, ya que se perdiÛ la direcciÛn de memoria que antes estaba en
+Ya que si \lstinline!realloc! devolviera \lstinline!NULL!, existir√° en memoria
+un bloque de datos v√°lido, con informaci√≥n v√°lida, al cual es imposible
+acceder, ya que se perdi√≥ la direcci√≥n de memoria que antes estaba en
 \lstinline!datos!.
 
 En cambio se debe utilizar:
 
 \begin{codigo-c-plano}
 void *aux = realloc( datos, sizeof(dato_t) * tamanio_nuevo );
-if ( aux == NULL ) { 
+if ( aux == NULL ) {
 	// realloc no pudo pedir el bloque nuevo, hacer algo al respecto.
 } else {
 	datos = (dato_t*) aux;
@@ -197,23 +189,23 @@ if ( aux == NULL ) {
 
 Otro posible problema a tener en cuenta es cuando se tienen punteros que
 apuntan a \textbf{partes} de un bloque de memoria y se llama a
-\lstinline!realloc! sobre ese bloque: los punteros pasar·n a ser inv·lidos, ya
-que apuntan a direcciones que ya no son las del bloque en cuestiÛn.
+\lstinline!realloc! sobre ese bloque: los punteros pasar√°n a ser inv√°lidos, ya
+que apuntan a direcciones que ya no son las del bloque en cuesti√≥n.
 
 De modo que hay que tener mucho cuidado de nunca guardar referencias a
 porciones de memoria que pueden ser movidas de lugar mediante
 \lstinline!realloc!.
 
-\section{Ejemplo: una pila de tamaÒo variable}
+\section{Ejemplo: una pila de tama√±o variable}
 
-Tener una pila de tamaÒo variable es un ejemplo sencillo de manejo de memoria
-din·mica. La pila contiene un arreglo de valores, donde se van apilando y
-desapilando los elementos; el problema se da cuando se quieren apilar m·s
+Tener una pila de tama√±o variable es un ejemplo sencillo de manejo de memoria
+din√°mica. La pila contiene un arreglo de valores, donde se van apilando y
+desapilando los elementos; el problema se da cuando se quieren apilar m√°s
 elementos que los que la pila puede almacenar, en ese caso se debe reservar un
-bloque de memoria de mayor tamaÒo para que siga siendo posible agregar
+bloque de memoria de mayor tama√±o para que siga siendo posible agregar
 elementos a la pila.
 
-En este caso, la estructura de la pila ser· de la forma:
+En este caso, la estructura de la pila ser√° de la forma:
 
 \begin{codigo-c-plano}
 typedef struct {
@@ -224,16 +216,16 @@ typedef struct {
 \end{codigo-c-plano}
 
 Donde \lstinline!cantidad! es la cantidad de elementos almacenada en la pila,
-mientras que \lstinline!tamanio! es el tamaÒo actual de la pila, es decir, la
-m·xima cantidad de elementos que puede almacenar antes de tener que reservar
-una porciÛn mayor de memoria.
+mientras que \lstinline!tamanio! es el tama√±o actual de la pila, es decir, la
+m√°xima cantidad de elementos que puede almacenar antes de tener que reservar
+una porci√≥n mayor de memoria.
 
-\subsection{CreaciÛn de la pila}
+\subsection{Creaci√≥n de la pila}
 
-Cuando se trabaja con memoria din·mica, las funciones de creaciÛn de una
-estructura, no sÛlo deben inicializar los atributos de la estructura, sino que
-tambiÈn deben hacer el primer pedido de memoria, para reservar el bloque
-inicial con el que se trabajar·.
+Cuando se trabaja con memoria din√°mica, las funciones de creaci√≥n de una
+estructura, no s√≥lo deben inicializar los atributos de la estructura, sino que
+tambi√©n deben hacer el primer pedido de memoria, para reservar el bloque
+inicial con el que se trabajar√°.
 
 \begin{codigo-c-plano}
 bool pila_crear(pila_dinamica *pila) 
@@ -246,28 +238,28 @@ bool pila_crear(pila_dinamica *pila)
 }
 \end{codigo-c-plano}
 
-La funciÛn \lstinline!malloc! es la encargada de reservar un bloque de memoria
-para los datos que contendr· la pila.  El tamaÒo de este bloque de memoria es
+La funci√≥n \lstinline!malloc! es la encargada de reservar un bloque de memoria
+para los datos que contendr√° la pila.  El tama√±o de este bloque de memoria es
 el argumento que se le da a \lstinline!malloc!.  En este caso es el resultado
-de multiplicar una constante \lstinline!TAM_INICIAL! por el tamaÒo del tipo de
-dato que contiene la pila, es decir que en primera instancia la pila podr·
+de multiplicar una constante \lstinline!TAM_INICIAL! por el tama√±o del tipo de
+dato que contiene la pila, es decir que en primera instancia la pila podr√°
 contener \lstinline!TAM_INICIAL! elementos.
 
-% %%% Ya est· explicado arriba, no hace falta volver a explicarlo %%%
-%La funciÛn \lstinline!malloc! devuelve un puntero del tipo \lstinline!void *!,
-%es decir un puntero genÈrico.  Es por eso que es necesario convertir ese
-%puntero al puntero de tipo especÌfico \lstiline!dato_t *!, para indicar que se
+% %%% Ya est√° explicado arriba, no hace falta volver a explicarlo %%%
+%La funci√≥n \lstinline!malloc! devuelve un puntero del tipo \lstinline!void *!,
+%es decir un puntero gen√©rico.  Es por eso que es necesario convertir ese
+%puntero al puntero de tipo espec√≠fico \lstiline!dato_t *!, para indicar que se
 %trata de un puntero a datos de tipo \lstinline!dato_t!.
 
-Si por alg˙n motivo el sistema operativo no pudiera reservar la memoria
-requerida, la funciÛn \lstinline!malloc! devuelve \lstinline!NULL!. En ese
-caso, la funciÛn de creaciÛn de la pila devuelve \lstinline!false! para
-indicar que no se ha podido crear la pila. 
+Si por alg√∫n motivo el sistema operativo no pudiera reservar la memoria
+requerida, la funci√≥n \lstinline!malloc! devuelve \lstinline!NULL!. En ese
+caso, la funci√≥n de creaci√≥n de la pila devuelve \lstinline!false! para
+indicar que no se ha podido crear la pila.
 
-\subsection{Incremento del tamaÒo de la pila}
+\subsection{Incremento del tama√±o de la pila}
 
-En el caso de agotarse el lugar, ser· necesario reservar una porciÛn mayor de
-memoria.  Es decir que la funciÛn \lstinline!apilar! deber· ser de la forma:
+En el caso de agotarse el lugar, ser√° necesario reservar una porci√≥n mayor de
+memoria.  Es decir que la funci√≥n \lstinline!apilar! deber√° ser de la forma:
 
 \begin{codigo-c-plano}
 bool pila_apilar(pila_dinamica *pila, dato_t valor)
@@ -280,11 +272,11 @@ bool pila_apilar(pila_dinamica *pila, dato_t valor)
 }
 \end{codigo-c-plano}
 
-En esta funciÛn, cuando la cantidad de elementos es igual o mayor al tamaÒo
-actual de la pila, se llama a la funciÛn \lstinline!pila_cambiar_tamanio!, que
-ser· la encargada de reservar un bloque de mayor tamaÒo, en este caso se le
-pide que el bloque sea del doble del tamaÒo original. La funciÛn
-\lstinline!pila_cambiar_tamanio! tendr· la siguiente forma:
+En esta funci√≥n, cuando la cantidad de elementos es igual o mayor al tama√±o
+actual de la pila, se llama a la funci√≥n \lstinline!pila_cambiar_tamanio!, que
+ser√° la encargada de reservar un bloque de mayor tama√±o, en este caso se le
+pide que el bloque sea del doble del tama√±o original. La funci√≥n
+\lstinline!pila_cambiar_tamanio! tendr√° la siguiente forma:
 
 \begin{codigo-c-plano}
 bool pila_cambiar_tamanio(pila_dinamica *pila, size_t tamanio)
@@ -297,27 +289,27 @@ bool pila_cambiar_tamanio(pila_dinamica *pila, size_t tamanio)
 }
 \end{codigo-c-plano}
 
-En este caso se utiliza la funciÛn \lstinline!realloc!, que recibe la
-direcciÛn actual donde se encuentran los datos, y el nuevo tamaÒo que se
+En este caso se utiliza la funci√≥n \lstinline!realloc!, que recibe la
+direcci√≥n actual donde se encuentran los datos, y el nuevo tama√±o que se
 quiere reservar.  \lstinline!realloc! se encarga de reservar el nuevo bloque,
-copiar toda la informaciÛn que estaba en el bloque viejo al nuevo y liberar el
+copiar toda la informaci√≥n que estaba en el bloque viejo al nuevo y liberar el
 viejo.
 
-Al igual que en el caso de la creaciÛn de la pila, si por alg˙n motivo no es
-posible reservar la memoria seg˙n se quiere, \lstinline!realloc! devuelve
+Al igual que en el caso de la creaci√≥n de la pila, si por alg√∫n motivo no es
+posible reservar la memoria seg√∫n se quiere, \lstinline!realloc! devuelve
 \lstinline!NULL!.  En este caso, los valores que ya estaban en la pila siguen
-estando ahÌ, simplemente significa que no se ha podido agrandar la porciÛn de
-memoria reservada seg˙n se habÌa pedido, es por ello que se utiliza un puntero
-auxiliar \lstinline!aux! y sÛlo se lo asigna al atributo \lstinline!datos! en
+estando ah√≠, simplemente significa que no se ha podido agrandar la porci√≥n de
+memoria reservada seg√∫n se hab√≠a pedido, es por ello que se utiliza un puntero
+auxiliar \lstinline!aux! y s√≥lo se lo asigna al atributo \lstinline!datos! en
 el caso en que la reserva de memoria haya sido exitosa.
 
-\subsection{DestrucciÛn de la pila}
+\subsection{Destrucci√≥n de la pila}
 
 Como ya se dijo, cuando se reserva memoria mediante estas funciones, es
 importante luego liberar la memoria reservada, porque de no hacerlo quedan
-bloques de memoria inutilizables.  Es por ello que ser· necesario contar con
-una funciÛn \lstinline!pila_destruir!, y quien utilice la pila deber· recordar
-llamar a esta funciÛn al terminar de utilizarla.
+bloques de memoria inutilizables.  Es por ello que ser√° necesario contar con
+una funci√≥n \lstinline!pila_destruir!, y quien utilice la pila deber√° recordar
+llamar a esta funci√≥n al terminar de utilizarla.
 
 \begin{codigo-c-plano}
 bool pila_destruir(pila_dinamica *pila)
@@ -326,17 +318,17 @@ bool pila_destruir(pila_dinamica *pila)
 }
 \end{codigo-c-plano}
 
-Una vez que se ha llamado a la funciÛn \lstinline!free!, la porciÛn de memoria
-din·mica deja de estar reservada, ya no es m·s una porciÛn de memoria v·lida y
+Una vez que se ha llamado a la funci√≥n \lstinline!free!, la porci√≥n de memoria
+din√°mica deja de estar reservada, ya no es m√°s una porci√≥n de memoria v√°lida y
 no puede ser accedida por el programa (a menos que se haga una nueva reserva).  
 
-\subsection{DisminuciÛn del tamaÒo de la pila}
+\subsection{Disminuci√≥n del tama√±o de la pila}
 
-Finalmente, si bien es posible tener una pila que sÛlo crezca y nunca se
-reduzca, en general es deseable liberar la memoria que no est· siendo
+Finalmente, si bien es posible tener una pila que s√≥lo crezca y nunca se
+reduzca, en general es deseable liberar la memoria que no est√° siendo
 utilizada, para que pueda ser usada por otras partes del programa.  De modo
-que serÌa deseable que la pila se reduzca al desapilar, cuando el espacio
-ocupado por los elementos en mucho menor que el tamaÒo de la pila.
+que ser√≠a deseable que la pila se reduzca al desapilar, cuando el espacio
+ocupado por los elementos en mucho menor que el tama√±o de la pila.
 
 \begin{codigo-c-plano}
 bool pila_desapilar(pila_dinamica *pila, dato_t *valor)
@@ -350,45 +342,45 @@ bool pila_desapilar(pila_dinamica *pila, dato_t *valor)
 }
 \end{codigo-c-plano}
 
-En este caso, luego de desapilar el elemento pedido, la funciÛn verifica si la
-cantidad de elementos ocupa menos de un cuarto del tamaÒo total de la pila, y
-de ser asÌ, reduce el tamaÒo a la mitad.
+En este caso, luego de desapilar el elemento pedido, la funci√≥n verifica si la
+cantidad de elementos ocupa menos de un cuarto del tama√±o total de la pila, y
+de ser as√≠, reduce el tama√±o a la mitad.
 
-\section{AritmÈtica de punteros}
+\section{Aritm√©tica de punteros}
 
 Las direcciones de memoria en C son valores enteros positivos, el valor
-\lstinline!NULL! es equivalente a \lstinline!0!, que es una posiciÛn de memoria
-inv·lida. 
+\lstinline!NULL! es equivalente a \lstinline!0!, que es una posici√≥n de memoria
+inv√°lida. 
 
 Los punteros contienen direcciones de memoria asociadas a un tipo en
-particular (a excepciÛn de el tipo \lstinline!void!). Como ya se vio, cada
-tipo tiene asociado un tamaÒo en bytes. El compilador de C utiliza esta
-informaciÛn para poder realizar operaciones aritmÈticas (sumas y restas de
+particular (a excepci√≥n de el tipo \lstinline!void!). Como ya se vio, cada
+tipo tiene asociado un tama√±o en bytes. El compilador de C utiliza esta
+informaci√≥n para poder realizar operaciones aritm√©ticas (sumas y restas de
 valores enteros) con punteros.
 
 Este es un tema que se presenta en principio complejo, pero que hace que se
 pueda operar de forma muy poderosa sobre las porciones de memoria utilizadas.
-En particular, es posible utilizar esta tÈcnica para recorrer un arreglo de
+En particular, es posible utilizar esta t√©cnica para recorrer un arreglo de
 valores, sin que necesariamente se los haya declarado como vector. Ejemplo:
 
 \begin{codigo-c-plano}
 float fs[MAX_LARGO];       
 float *pf = fs;           // pf apunta al comienzo del vector fs
 pf = pf + 1;              // pf apunta al segundo elemento de fs (&fs[1])
-pf = fs + MAX_LARGO - 1;  // pf apunta a el ˙ltimo elemento de fs
+pf = fs + MAX_LARGO - 1;  // pf apunta a el √∫ltimo elemento de fs
 \end{codigo-c-plano}
 
 En este caso se declara un vector de valores de tipo \lstinline!float! (que
 ocupan 4 bytes cada uno), luego se declara un puntero a valores de tipo
-\lstinline!float!, que se inicializa con la posiciÛn de memoria del primer
+\lstinline!float!, que se inicializa con la posici√≥n de memoria del primer
 elemento del vector.
 
-Al sumarle 1, sin embargo, la posiciÛn de memoria se incrementa 4 bytes, ya
+Al sumarle 1, sin embargo, la posici√≥n de memoria se incrementa 4 bytes, ya
 que se trata de un puntero y de esta manera avanza al siguiente
 \lstinline!float! del vector.
 
-De la misma manera, en la ˙ltima lÌnea, se obtiene un puntero a la direcciÛn
-de memoria del ˙ltimo elemento del arreglo. \\
+De la misma manera, en la √∫ltima l√≠nea, se obtiene un puntero a la direcci√≥n
+de memoria del √∫ltimo elemento del arreglo. \\
 
 Si no se declara el puntero del tipo correcto, en cambio, no es posible operar
 de esta manera con las direcciones de memoria.  Es decir que si se hiciera
@@ -399,40 +391,40 @@ void *pv = fs;  // pv apunta al comienzo del vector fs (sin tipo asociado)
 pv = pv+1;      // pv apunta al segundo byte de fs *ERROR*
 \end{codigo-c-plano}
 
-Se obtendrÌa un puntero a la direcciÛn de memoria del segundo \textbf{byte}
-del vector de \lstinline!float!, lo cual podrÌa dar lugar a diversos errores,
-ya que si se quiere acceder a la informaciÛn, se estarÌa accediendo a 3 bytes
+Se obtendr√≠a un puntero a la direcci√≥n de memoria del segundo \textbf{byte}
+del vector de \lstinline!float!, lo cual podr√≠a dar lugar a diversos errores,
+ya que si se quiere acceder a la informaci√≥n, se estar√≠a accediendo a 3 bytes
 de un valor y 1 byte del siguiente. \\
 
 Es por ello que es posible decir que el operador de acceso a un elemento
-\lstinline![]! en C es \textit{az˙car sint·ctico}\footnote{Un agregado a la
-sintaxis del lenguaje para hacerla m·s agradable, pero no imprescindible.},
-siendo \lstinline!a[10]! sint·cticamente equivalente a \lstinline!*(a+10)!,
-asÌ como a \lstinline!10[a]!. Claro que este ˙ltimo, si bien v·lido, hace que
-el cÛdigo sea extremadamente poco legible, por lo que no se lo debe utilizar.
+\lstinline![]! en C es \textit{az√∫car sint√°ctico}\footnote{Un agregado a la
+sintaxis del lenguaje para hacerla m√°s agradable, pero no imprescindible.},
+siendo \lstinline!a[10]! sint√°cticamente equivalente a \lstinline!*(a+10)!,
+as√≠ como a \lstinline!10[a]!. Claro que este √∫ltimo, si bien v√°lido, hace que
+el c√≥digo sea extremadamente poco legible, por lo que no se lo debe utilizar.
 
 \section{Uso directo de bloques de memoria}
 
-En la biblioteca est·ndar de C hay varias funciones ˙tiles que acceden
+En la biblioteca est√°ndar de C hay varias funciones √∫tiles que acceden
 directamente a la memoria, que permiten copiar o inicializar valores, que,
-por lo general, ser·n necesarias cuando se trabaje con bloques de memoria.
+por lo general, ser√°n necesarias cuando se trabaje con bloques de memoria.
 
 Estas funciones asumen que tanto el bloque de memoria origen y destino son
-porciones v·lidas de memoria, y que pueden ser escritas desde el programa.  De
-no ser asÌ, el sistema probablemente termine la ejecuciÛn del programa al
-encontrar un acceso a una porciÛn de memoria inv·lida, generalmente mediante
-el error \textit{ViolaciÛn de segmento} (\textit{Segmentation fault}).
+porciones v√°lidas de memoria, y que pueden ser escritas desde el programa.  De
+no ser as√≠, el sistema probablemente termine la ejecuci√≥n del programa al
+encontrar un acceso a una porci√≥n de memoria inv√°lida, generalmente mediante
+el error \textit{Violaci√≥n de segmento} (\textit{Segmentation fault}).
 
-Adem·s, es importante tener en cuenta que todas estas operaciones tienen un
-costo lineal con respecto al tamaÒo de memoria sobre el cual operan, es decir
-que el tiempo requerido para ejecutarlas depende del tamaÒo de los bloques de
+Adem√°s, es importante tener en cuenta que todas estas operaciones tienen un
+costo lineal con respecto al tama√±o de memoria sobre el cual operan, es decir
+que el tiempo requerido para ejecutarlas depende del tama√±o de los bloques de
 memoria.
 
 \subsection{Copiar contenidos de bloques de memoria (\textit{memcpy()} y
 \textit{memmove()})}
 
 Para copiar el contenido de un bloque memoria a otro se puede utilizar la
-funciÛn \lstinline!memcpy!\footnote{Para m·s informaciÛn: \texttt{man 3
+funci√≥n \lstinline!memcpy!\footnote{Para m√°s informaci√≥n: \texttt{man 3
 memcpy}.}, declarada en el encabezado \lstinline!<string.h>!, cuyo prototipo
 es:
 
@@ -440,28 +432,28 @@ es:
 void *memcpy(void *destino, const void *origen, size_t cantidad);
 \end{codigo-c-plano}
 
-La funciÛn copia \lstinline!cantidad! bytes desde la posiciÛn de memoria
-\lstinline!origen! hacia la posiciÛn \lstinline!destino! y devuelve un puntero
-a \lstinline!destino!. La funciÛn asume que origen y destino son bloques que
+La funci√≥n copia \lstinline!cantidad! bytes desde la posici√≥n de memoria
+\lstinline!origen! hacia la posici√≥n \lstinline!destino! y devuelve un puntero
+a \lstinline!destino!. La funci√≥n asume que origen y destino son bloques que
 no se solapan.
 
-Cuando origen y destino se solapan se debe utilizar la funciÛn
-\lstinline!memmove!\footnote{Para m·s informaciÛn: \texttt{man 3 memmove}.},
-tambiÈn declarada en el encabezado \lstinline!<string.h>!, cuyo prototipo es:
+Cuando origen y destino se solapan se debe utilizar la funci√≥n
+\lstinline!memmove!\footnote{Para m√°s informaci√≥n: \texttt{man 3 memmove}.},
+tambi√©n declarada en el encabezado \lstinline!<string.h>!, cuyo prototipo es:
 
 \begin{codigo-c-plano}
 void *memmove(void *destino, const void *origen, size_t cantidad);
 \end{codigo-c-plano}
 
-La funciÛn copia \lstinline!cantidad! bytes desde la posiciÛn de memoria
-\lstinline!origen! hacia la posiciÛn \lstinline!destino! y devuelve un puntero
+La funci√≥n copia \lstinline!cantidad! bytes desde la posici√≥n de memoria
+\lstinline!origen! hacia la posici√≥n \lstinline!destino! y devuelve un puntero
 a \lstinline!destino!. De haber solapamiento, se encarga de que no se pierdan
 los datos al momento de hacer la copia.
 
-\subsection{InicializaciÛn de un bloque de memoria (\textit{memset()})}
+\subsection{Inicializaci√≥n de un bloque de memoria (\textit{memset()})}
 
 Para inicializar un bloque de memoria con un valor se puede utilizar la
-funciÛn \lstinline!memset!\footnote{Para m·s informaciÛn: \texttt{man 3
+funci√≥n \lstinline!memset!\footnote{Para m√°s informaci√≥n: \texttt{man 3
 memset}.}, definida en el encabezado \lstinline!<string.h>!, cuyo prototipo
 es:
 

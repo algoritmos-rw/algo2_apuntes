@@ -1,11 +1,11 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
-% Esta obra est· licenciada de forma dual, bajo las licencias Creative
+% Esta obra est√° licenciada de forma dual, bajo las licencias Creative
 % Commons:
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 2.5 Argentina
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 2.5 Argentina
 %    http://creativecommons.org/licenses/by-sa/2.5/ar/
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 3.0 Unported
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 3.0 Unported
 %    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
 %
 % A su criterio, puede utilizar una u otra licencia, o las dos.
@@ -17,170 +17,171 @@
 \renewcommand{\thesection}{\arabic{section}}
 \chapter*{El lenguaje C}
 
-En este apunte se dar· una introducciÛn b·sica al lenguaje de programaciÛn C,
-asumiendo un conocimiento previo de tÈcnicas de programaciÛn en alg˙n otro
+En este apunte se dar√° una introducci√≥n b√°sica al lenguaje de programaci√≥n C,
+asumiendo un conocimiento previo de t√©cnicas de programaci√≥n en alg√∫n otro
 lenguaje.
 
-\section{CaracterÌsticas b·sicas del lenguaje}
+\section{Caracter√≠sticas b√°sicas del lenguaje}
 
-Se podrÌa decir que el lenguaje de programaciÛn C es un lenguaje
-\textit{sencillo}, f·cil de cubrir en poco tiempo, ya que tiene pocas palabras
-reservadas, y una biblioteca est·ndar m·s acotada que la de otros lenguajes.
+Se podr√≠a decir que el lenguaje de programaci√≥n C es un lenguaje
+\textit{sencillo}, f√°cil de cubrir en poco tiempo, ya que tiene pocas palabras
+reservadas, y una biblioteca est√°ndar m√°s acotada que la de otros lenguajes.
 
-Sin embargo, la especificaciÛn actual contiene 550 p·ginas
-\footnote{http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf} y es
-posible crear cÛdigo extremadamento \textit{ofuscado}
+Sin embargo, la especificaci√≥n actual contiene 701 p√°ginas
+\footnote{http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf} y es
+posible crear c√≥digo extremadamento \textit{ofuscado}
 \footnote{http://www.ioccc.org/}, de modo que no es realmente correcto decir
 que es sencillo. \\
 
-C es un lenguaje de programaciÛn estructurado, de medio nivel, y muy portable.
+C es un lenguaje de programaci√≥n estructurado, de medio nivel, y muy portable.
 Esto se debe a que el modelo de computadora que usa el lenguaje se puede
 ajustar a una gran variedad de equipos. A veces se lo considera como un
 lenguaje ensamblador de alto nivel, ya que el programador suele tener que
-tener en cuenta detalles sobre cÛmo se representan los elementos del programa en
-la m·quina, o manejar (pedir y liberar) los recursos del sistema desde el
-cÛdigo.
+tener en cuenta detalles sobre c√≥mo se representan los elementos del programa en
+la m√°quina, o manejar (pedir y liberar) los recursos del sistema desde el
+c√≥digo.
 
-\section{Est·ndares del lenguaje}
+\section{Est√°ndares del lenguaje}
 
-A lo largo de la historia se han desarrollado tres est·ndares principales.
+A lo largo de la historia se han desarrollado tres est√°ndares principales.
+\footnote{El √∫ltimo est√°ndar del lenguaje es C11, publicado en el 2011, sin
+embargo todav√≠a no tuvo un impacto notable, por lo que nos concentraremos en
+C99.}
 
 \begin{description}
-\item[K\&R] El est·ndar publicado en la primera ediciÛn del libro
-''El lenguaje de programaciÛn C'' de Kernighan y Ritchie.
-\item[C89] Publicado en la referencia est·ndar ANSI X3.159-1989 y luego en el 
-est·ndar ISO/IEC 9899:1990, asÌ como en la segunda ediciÛn del mismo libro.
-\item[C99] El ˙ltimo est·ndar ISO, publicado en 1999.
+\item[K\&R] El est√°ndar publicado en la primera edici√≥n del libro
+''El lenguaje de programaci√≥n C'' de Kernighan y Ritchie.
+\item[C89] Publicado en la referencia est√°ndar ANSI X3.159-1989 y luego en el
+est√°ndar ISO/IEC 9899:1990, as√≠ como en la segunda edici√≥n del mismo libro.
+\item[C99] El est√°ndar ISO, publicado en 1999.
 \end{description}
 
-Si bien a esta altura la mayorÌa de los compiladores de C soportan
-pr·cticamente el est·ndar completo de C99
-\footnote{http://gcc.gnu.org/c99status.html}, una gran parte de cÛdigo
-disponible utiliza todavÌa el est·ndar C89; es por eso que en este apunte se
-hace especial distinciÛn con aquellos detalles que pertencen al est·ndar C99.
+Si bien a esta altura la mayor√≠a de los compiladores de C soportan
+pr√°cticamente el est√°ndar completo de C99
+\footnote{http://gcc.gnu.org/c99status.html}, una gran parte de c√≥digo
+disponible utiliza todav√≠a el est√°ndar C89; es por eso que en este apunte se
+hace especial distinci√≥n con aquellos detalles que pertencen al est√°ndar C99.
 
-\section{Tipos b·sicos}
+\section{Tipos b√°sicos}
 
-C cuenta con una variedad de tipos numÈricos.  De estos, los tipos enteros
+C cuenta con una variedad de tipos num√©ricos.  De estos, los tipos enteros
 pueden tomar los modificadores \lstinline!signed! o \lstinline!unsigned! para
 indicar si son o no signados.
 
-A continuaciÛn una tabla con los distintos tipos de C, ordenados seg˙n el
+A continuaci√≥n una tabla con los distintos tipos de C, ordenados seg√∫n el
 espacio que ocupan en memoria.
 
 \begin{description}
 \item[bool]
- Se agregÛ en C99. Puede contener los valores 0 y 1. Incluyendo la biblioteca
+ Se agreg√≥ en C99. Puede contener los valores 0 y 1. Incluyendo la biblioteca
 \lstinline!<stdbool.h>!, se pueden utilizar los valores \lstinline!true! y
 \lstinline!false! (equivalentes a 1 y 0 respectivamente).
 
 \item[char]
- Tipo entero, por omisiÛn \lstinline!unsigned!, de tamaÒo de 1 byte.
+ Tipo entero, por omisi√≥n \lstinline!unsigned!, de tama√±o de 1 byte.
 
 \item[short]
- Tipo entero, por omisiÛn \lstinline!signed!, debe ocupar menos espacio o el
+ Tipo entero, por omisi√≥n \lstinline!signed!, debe ocupar menos espacio o el
 mismo que int. En el compilador gcc, arquitectura Intel 32 bits, mide 16 bits.
 
 \item[int]
- Tipo entero, por omisiÛn \lstinline!signed!, es el tipo \textit{natural} de la
+ Tipo entero, por omisi√≥n \lstinline!signed!, es el tipo \textit{natural} de la
  arquitectura. En el compilador gcc, arquitectura Intel 32 bits, mide 32 bits.
 
 \item[long]
- Tipo entero, por omisiÛn \lstinline!signed!, debe ocupar igual o m·s espacio
+ Tipo entero, por omisi√≥n \lstinline!signed!, debe ocupar igual o m√°s espacio
 que long. En el compilador gcc, arquitectura Intel 32 bits, mide 32 bits.
 
 \item[long long]
- Tipo entero, por omisiÛn signed, debe ocupar igual o m·s espacio
+ Tipo entero, por omisi√≥n signed, debe ocupar igual o m√°s espacio
  que long. En el compilador gcc, arquitectura Intel 32 bits, mide 64 bits.
 
 \item[float]
- Tipo real, cumple con el est·ndar IEEE 754 de simple precisiÛn (32 bits).
+ Tipo real, cumple con el est√°ndar IEEE 754 de simple precisi√≥n (32 bits).
 
 \item[double]
- Tipo real, cumple con el est·ndar IEEE 754 de doble precisiÛn (64 bits).
+ Tipo real, cumple con el est√°ndar IEEE 754 de doble precisi√≥n (64 bits).
 
 \item[long double]
- Tipo real, seg˙n la arquitectura y las opciones de compilaciÛn, puede cumplir
-con el est·ndar IEEE 754 de doble precisiÛn (64 bits) o de doble precisiÛn
-extendida (m·s de 79 bits, 80 bits en arquitecturas Intel 32 bits).
+ Tipo real, seg√∫n la arquitectura y las opciones de compilaci√≥n, puede cumplir
+con el est√°ndar IEEE 754 de doble precisi√≥n (64 bits) o de doble precisi√≥n
+extendida (m√°s de 79 bits, 80 bits en arquitecturas Intel 32 bits).
 
 \item[complex]
- Se agregÛ en C99, representa un n˙mero complejo.  Ocupa dos
+ Se agreg√≥ en C99, representa un n√∫mero complejo.  Ocupa dos
 \lstinline!doubles!, y requiere incluir \lstinline!<complex.h>!
 
 \item[float complex]
- Se agregÛ en C99, de menor tamaÒo que el complejo
-com˙n. Ocupa dos floats, tambiÈn requiere \lstinline!<complex.h>!.
+ Se agreg√≥ en C99, de menor tama√±o que el complejo
+com√∫n. Ocupa dos floats, tambi√©n requiere \lstinline!<complex.h>!.
 
 \item[long complex]
- Se agregÛ en C99, ocupa dos \lstinline!long doubles!, y tambiÈn requiere
+ Se agreg√≥ en C99, ocupa dos \lstinline!long doubles!, y tambi√©n requiere
 \lstinline!<complex.h>!.
 
 \item[void]
  No se puede usar como un tipo de una variable, se usa
- para seÒalar que una funciÛn no devuelve nada o no recibe nada.
+ para se√±alar que una funci√≥n no devuelve nada o no recibe nada.
 \end{description}
 
-Adem·s, se puede utilizar el modificador de \lstinline!const! para declarar
+Adem√°s, se puede utilizar el modificador de \lstinline!const! para declarar
 una variable que puede inicializarse pero una vez inicializada no puede
 modificarse.
 
-La inicializaciÛn de las variables se realiza cuando se definen. En el caso
-de las funciones, los valores que reciben los par·metros actuan como
-inicializadores. 
+La inicializaci√≥n de las variables se realiza cuando se definen. En el caso
+de las funciones, los valores que reciben los par√°metros actuan como
+inicializadores.
 
-%Los tipos en C tienen un tamaÒo fijo en memoria. 
+\section{Sint√°xis b√°sica}
 
-\section{Sint·xis b·sica}
-
-Asumiendo conocimientos previos de programaciÛn, se describe a continuaciÛn la
-sintaxis b·sica del lenguaje de programaciÛn C.
+Asumiendo conocimientos previos de programaci√≥n, se describe a continuaci√≥n la
+sintaxis b√°sica del lenguaje de programaci√≥n C.
 
 \subsection{Instrucciones}
 
-Las instrucciÛnes en C son lo que forman las secuencias que ejecutar·n los
+Las instrucci√≥nes en C son lo que forman las secuencias que ejecutar√°n los
 programas, las instrucciones terminan en \lstinline!;! y donde puede haber una
-instrucciÛn puede haber tambiÈn una serie de instrucciones entre llaves:
+instrucci√≥n puede haber tambi√©n una serie de instrucciones entre llaves:
 \lstinline!{! (para comenzar el bloque) y \lstinline!}! (para terminar el
 bloque).
 
 \subsection{Valores literales}
 
-Los valores literales son valores explÌcitamentes escritos en el cÛdigo.
+Los valores literales son valores expl√≠citamentes escritos en el c√≥digo.
 Y merecen un breve comentario en este resumen.
 
-Los valores n˙mericos se pueden escribir en decimal (\lstinline!4095!), en
-octal (\lstinline!07777!) o en hexadecimal (\lstinline!0xFFF!). Adem·s, se les
+Los valores n√∫mericos se pueden escribir en decimal (\lstinline!4095!), en
+octal (\lstinline!07777!) o en hexadecimal (\lstinline!0xFFF!). Adem√°s, se les
 puede agregar al final una \lstinline!L! para indicar que es un
 \lstinline!long! o una \lstinline!U! para indicar que es un valor
 \lstinline!unsigned!.
 
 En el caso de los valores reales, se los puede representar con punto como
-separador entre parte entera y decimal o en notaciÛn cientÌfica. Por omisiÛn,
-estos valores ser·n de tipo \lstinline!double!, pero se puede usar una letra
+separador entre parte entera y decimal o en notaci√≥n cient√≠fica. Por omisi√≥n,
+estos valores ser√°n de tipo \lstinline!double!, pero se puede usar una letra
 \lstinline!F! como sufijo del valor para que se los tome como
 \lstinline!float!.
 
-Los caracteres tambiÈn son valores numÈricos, pero se pueden escribir a travÈs
-del sÌmbolo que representan escribiÈndolos entre comillas simples. Asumiendo
-que se utiliza un sistema en ASCII, \lstinline!'A'! ser· lo mismo que escribir
-el valor 65.  Varios de los caracteres especiales (como el fin de lÌnea) se
-pueden representar en C como una secuencia de \lstinline!\!  seguida de alg˙n
-caracter, por ejemplo, el fin de lÌnea se representa como \lstinline!'\n'!.
+Los caracteres tambi√©n son valores num√©ricos, pero se pueden escribir a trav√©s
+del s√≠mbolo que representan escribi√©ndolos entre comillas simples. Asumiendo
+que se utiliza un sistema en ASCII, \lstinline!'A'! ser√° lo mismo que escribir
+el valor 65.  Varios de los caracteres especiales (como el fin de l√≠nea) se
+pueden representar en C como una secuencia de \lstinline!\!  seguida de alg√∫n
+caracter, por ejemplo, el fin de l√≠nea se representa como \lstinline!'\n'!.
 
-A continuaciÛn una tabla con las secuecias que representan caracteres
+A continuaci√≥n una tabla con las secuecias que representan caracteres
 especiales.
 
 \begin{tabular}{ccl}
-Secuencia & Nombre & DescripciÛn \\
+Secuencia & Nombre & Descripci√≥n \\
 \hline
-\lstinline!\n! &  NL & fin de lÌnea (enter) \\
-\lstinline!\t! &  HT & tabulaciÛn horizontal (tab) \\
-\lstinline!\v! &  VT & tabulaciÛn vertical \\
+\lstinline!\n! &  NL & fin de l√≠nea (enter) \\
+\lstinline!\t! &  HT & tabulaci√≥n horizontal (tab) \\
+\lstinline!\v! &  VT & tabulaci√≥n vertical \\
 \lstinline!\b! &  BS & retroceso (backspace) \\
 \lstinline!\r! &  CR & retorno de carro \\
 \lstinline!\f! &  FF & avance de hoja \\
-\lstinline!\a! &  BEL & seÒal audible (beep) \\
+\lstinline!\a! &  BEL & se√±al audible (beep) \\
 \lstinline!\\! &  \verb!\! & contra barra \\
 \lstinline!\'! &  \verb!'! & comillas simples \\
 \lstinline!\0! &  NUL & caracter nulo \\
@@ -189,117 +190,117 @@ Secuencia & Nombre & DescripciÛn \\
 \end{tabular}
 
 Una cadena literal en C se escribe dentro de comillas dobles, por ejemplo
-\lstinline!"ejemplo"! ser· un vector de 8 \lstinline!char!, el ˙ltimo de estos
-caracteres ser· \lstinline!'\0'! (un caracter con valor entero 0).  
+\lstinline!"ejemplo"! ser√° un vector de 8 \lstinline!char!, el √∫ltimo de estos
+caracteres ser√° \lstinline!'\0'! (un caracter con valor entero 0).
 
 \subsection{Estructuras Condicionales}
 
-La estructura condicional eval˙a la condiciÛn, si es verdadera ejecuta el
-bloque verdadero, sino ejecuta el bloque alternativo. 
+La estructura condicional eval√∫a la condici√≥n, si es verdadera ejecuta el
+bloque verdadero, sino ejecuta el bloque alternativo.
 
-En C, el condicional tiene dos formas b·sicas:
-
-\begin{codigo-c-plano}
- if (condiciÛn) {
- 	instrucciones;
- }
-\end{codigo-c-plano}
-
-En este caso, el bloque se ejecuta ˙nicamente si es verdadero y si no lo es,
-no se ejecuta nada.  La otra opciÛn es:
+En C, el condicional tiene dos formas b√°sicas:
 
 \begin{codigo-c-plano}
- if ( condiciÛn ) {
- 	instrucciones-verdadero;
- } else {
- 	instrucciones-falso;
- }
+if (condici√≥n) {
+    instrucciones;
+}
 \end{codigo-c-plano}
 
-En ambos casos, cuando se trate de una ˙nica instrucciÛn pueden omitirse las
+En este caso, el bloque se ejecuta √∫nicamente si es verdadero y si no lo es,
+no se ejecuta nada.  La otra opci√≥n es:
+
+\begin{codigo-c-plano}
+if ( condici√≥n ) {
+    instrucciones-verdadero;
+} else {
+    instrucciones-falso;
+}
+\end{codigo-c-plano}
+
+En ambos casos, cuando se trate de una √∫nica instrucci√≥n pueden omitirse las
 llaves, pero en general se recomienda utilizarlas de todas maneras para
-prevenir errores si luego se arreglan m·s instrucciones.
+prevenir errores si luego se arreglan m√°s instrucciones.
 
-Una forma alternativa de la estructura condicional es la de m˙ltiples
+Una forma alternativa de la estructura condicional es la de m√∫ltiples
 condiciones anidadas, que suele escribirse:
 
 \begin{codigo-c-plano}
- if ( condiciÛn_1 ) {
- 	cuerpo_1;
- } else if ( condiciÛn_2 ) {
- 	cuerpo_2;
- } else if ( condiciÛn_3 ) {
- 	cuerpo_3;
- } else if ( condiciÛn_4 ) {
- 	cuerpo_4;
- } else {
- 	cuerpo_else;
- }
+if ( condici√≥n_1 ) {
+    cuerpo_1;
+} else if ( condici√≥n_2 ) {
+    cuerpo_2;
+} else if ( condici√≥n_3 ) {
+    cuerpo_3;
+} else if ( condici√≥n_4 ) {
+    cuerpo_4;
+} else {
+    cuerpo_else;
+}
 \end{codigo-c-plano}
 
 Este tipo de estructura verifica las condiciones en cascada, hasta que una de
-ellas sea verdadera y en ese caso se ejecutar· el cuerpo correspondiente; de
-no ser asÌ, llegar· al \lstinline!else! final.  Se trata ˙nicamente de una
-forma de escribir cÛmodamente los condicionales anidados.
+ellas sea verdadera y en ese caso se ejecutar√° el cuerpo correspondiente; de
+no ser as√≠, llegar√° al \lstinline!else! final.  Se trata √∫nicamente de una
+forma de escribir c√≥modamente los condicionales anidados.
 
-Otra estructura de selecciÛn multiple es el \lstinline!switch!, que se muestra a
-continuaciÛn.
+Otra estructura de selecci√≥n multiple es el \lstinline!switch!, que se muestra a
+continuaci√≥n.
 
 \begin{codigo-c-plano}
- switch ( expresiÛn_entera ) {
- case valor_entero_1:
+switch ( expresi√≥n_entera ) {
+case valor_entero_1:
     instrucciones;
     break;
- case valor_entero_2:
+case valor_entero_2:
     instrucciones;
     break;
- ...
- default:
+...
+default:
     instrucciones;
     break;
- }
+}
 \end{codigo-c-plano}
 
 En este caso, se compara la \lstinline!expresion_entera! con los distintos
 valores enteros, y cuando coincide, se ejecutan las correspondientes
-instrucciones.  De omitirse la instrucciÛn \lstinline!break!, se contin˙a
+instrucciones.  De omitirse la instrucci√≥n \lstinline!break!, se contin√∫a
 ejecutando el siguiente bloque, sin importar que corresponda a otro valor.  En
-el caso en que no coincida con ninguno de los valores, se ejecutar· el bloque
+el caso en que no coincida con ninguno de los valores, se ejecutar√° el bloque
 \lstinline!default!.
 
-Es importante notar que este tipo de selecciÛn multiple sÛlo puede operar con
-enteros, de manera que tanto la expresiÛn usada con la instrucciÛn
+Es importante notar que este tipo de selecci√≥n multiple s√≥lo puede operar con
+enteros, de manera que tanto la expresi√≥n usada con la instrucci√≥n
 \lstinline!switch! como cada uno de los posibles valores usados con
 \lstinline!case! son tomados como enteros para compararlos.
 
 \subsubsection{Concepto de verdadero}
 
 El concepto de verdadero de C es \textit{todo lo que es 0 es falso, todo lo
-dem·s en verdadero}.
+dem√°s en verdadero}.
 
 En C99 existe el tipo \lstinline!bool! que es 0 en el caso de falso, y 1 en
 caso de verdadero, pero no es necesario utilizar este tipo para las
-condiciones, cualquier variable que valga 0 se considerar· falsa, y cualquier
-variable con un valor distinto de 0 se considerar· verdadera.
+condiciones, cualquier variable que valga 0 se considerar√° falsa, y cualquier
+variable con un valor distinto de 0 se considerar√° verdadera.
 
-\subsubsection{Operadores de comparaciÛn}
+\subsubsection{Operadores de comparaci√≥n}
 
-En C existen diversos operadores de comparaciÛn entre valores, a continuaciÛn
-una tabla con los operadores m·s comunes.
+En C existen diversos operadores de comparaci√≥n entre valores, a continuaci√≥n
+una tabla con los operadores m√°s comunes.
 
 \begin{tabular}{cl}
 Operador & Significado \\
 \hline
 \lstinline!a1 == a2! & \lstinline!a1! vale lo mismo que \lstinline!a2! \\
-\lstinline!a1 != a2! & \lstinline!a1! no vale lo mismo que \lstinline!a2! \\
+\lstinline|a1 != a2| & \lstinline!a1! no vale lo mismo que \lstinline!a2! \\
 \lstinline!a1 > a2! & \lstinline!a1! es mayor que \lstinline!a2! \\
 \lstinline!a1 < a2! & \lstinline!a1! es menor que \lstinline!a2! \\
 \lstinline!a1 >= a2! & \lstinline!a1! es mayor o igual que \lstinline!a2! \\
 \lstinline!a1 <= a2! & \lstinline!a1! es menor o igual que \lstinline!a2! \\
 \end{tabular}
 
-Adem·s, los operadores de comparaciÛn pueden unirse o modificarse para formar
-expresiones m·s complejas.
+Adem√°s, los operadores de comparaci√≥n pueden unirse o modificarse para formar
+expresiones m√°s complejas.
 
 \begin{tabular}{cl}
 Operador & Significado \\
@@ -309,67 +310,69 @@ Operador & Significado \\
 \lstinline?! e1?     & \lstinline!e1! debe ser falso \\
 \end{tabular}
 
-% TODO: buscar donde estan y como se usan los operadores "and" "or" y "not".
+Incluyendo la biblioteca \lstinline!<iso646.h>! se puede usar las palabras
+\lstinline!and!, \lstinline!or!, \lstinline!not!, y otros, como operadores, de
+la misma manera que son operadores en otros lenguajes.
 
 \subsection{Ciclos}
 
 El bucle \textit{mientras} en C tiene la siguiente forma:
 
 \begin{codigo-c-plano}
- while ( condiciÛn ) {
- 	cuerpo;
- }
+while ( condici√≥n ) {
+    cuerpo;
+}
 \end{codigo-c-plano}
 
-La condiciÛn es evaluada en cada iteraciÛn, y mientras sea verdadera se
+La condici√≥n es evaluada en cada iteraci√≥n, y mientras sea verdadera se
 ejecuta el cuerpo del bucle.
 
-TambiÈn existe un bucle \lstinline!do...while!:
+Tambi√©n existe un bucle \lstinline!do...while!:
 
 \begin{codigo-c-plano}
- do {
- 	cuerpo;
- } while ( condiciÛn );
+do {
+    cuerpo;
+} while ( condici√≥n );
 \end{codigo-c-plano}
 
 La diferencia con el anterior es que asegura que cuerpo va a ejecutarse al
-menos una vez, ya que la condiciÛn se eval˙a despuÈs de haber ejecutado el
+menos una vez, ya que la condici√≥n se eval√∫a despu√©s de haber ejecutado el
 cuerpo.
 
 El lenguaje C cuenta con un bucle iterativo \textit{for}, un poco distinto a
 otros bucles del mismo nombre.  Para comprenderlo mejor es importante notar
-que las dos siguientes porciones de cÛdigo son equivalentes:
+que las dos siguientes porciones de c√≥digo son equivalentes:
 
 \begin{codigo-c-plano}
- for (inicializaciÛn; condiciÛn; incremento) {
- 	cuerpo;
- }
+for (inicializaci√≥n; condici√≥n; incremento) {
+    cuerpo;
+}
 \end{codigo-c-plano}
 
 \begin{codigo-c-plano}
- inicializaciÛn;
- while (condiciÛn) {
- 	cuerpo;
- 	incremento;
- }
+inicializaci√≥n;
+while (condici√≥n) {
+    { cuerpo; }
+    incremento;
+}
 \end{codigo-c-plano}
 
 \subsection{Variables}
 
 Todas las variables en C hay que declararlas antes de poder usarlas, la
-declaraciÛn se hace de la siguiente manera:
+declaraci√≥n se hace de la siguiente manera:
 
 \begin{codigo-c-plano}
- tipo nombre_variable;
+tipo nombre_variable;
 \end{codigo-c-plano}
 
-Se pueden declarar varias variables del mismo tipo separandolas con comas. 
+Se pueden declarar varias variables del mismo tipo separandolas con comas.
 
 \begin{codigo-c-plano}
- tipo nombre_variable_1, nombre_variable_2;
+tipo nombre_variable_1, nombre_variable_2;
 \end{codigo-c-plano}
 
-Adem·s, es posible asignar un valor de inicializaciÛn al declararlas:
+Adem√°s, es posible asignar un valor de inicializaci√≥n al declararlas:
 
 \begin{codigo-c-plano}
 tipo nombre_variable_1 = valor_1 , nombre_variable_2 = valor 2;
@@ -377,71 +380,70 @@ tipo nombre_variable_1 = valor_1 , nombre_variable_2 = valor 2;
 
 \subsection{Comentarios}
 
-En C89 la ˙nica forma de poner comentarios es utilizando bloques que comiencen
-con \lstinline!/*! y terminen con \lstinline!*/!. En C99, adem·s, se agregÛ
-soporte de comentarios \textit{hasta el final de la lÌnea}, estos empiezan con
+En C89 la √∫nica forma de poner comentarios es utilizando bloques que comiencen
+con \lstinline!/*! y terminen con \lstinline!*/!. En C99, adem√°s, se agreg√≥
+soporte de comentarios \textit{hasta el final de la l√≠nea}, estos empiezan con
 \lstinline!//!.
-
 
 \subsection{Funciones}
 
 Las funciones en C se definen de la siguiente manera:
 
 \begin{codigo-c-plano}
- tipo funcion (tipo_1 argumento_1, ..., tipo_n argumento_n)
- {
- 	intrucciones;
-	...;
- 	return valor_retorno;
- }
+tipo funcion (tipo_1 argumento_1, ..., tipo_n argumento_n)
+{
+    intrucciones;
+    ...;
+    return valor_retorno;
+}
 \end{codigo-c-plano}
 
-Es decir que el tipo que devuelve la funciÛn se coloca antes del nombre de la
-funciÛn, y luego se colocan los argumentos que recibe la funciÛn, precedidos
-por su tipo.  En el caso de no recibir ning˙n argumento, se puede colocar
-simplemente \lstinline!()! o \lstinline!(void)!. 
+Es decir que el tipo que devuelve la funci√≥n se coloca antes del nombre de la
+funci√≥n, y luego se colocan los argumentos que recibe la funci√≥n, precedidos
+por su tipo.  En el caso de no recibir ning√∫n argumento, se puede colocar
+simplemente \lstinline!()! o \lstinline!(void)!.
 
-El cuerpo de las funciones contendr· una secuencia de declaraciÛn de
+El cuerpo de las funciones contendr√° una secuencia de declaraci√≥n de
 variables, instrucciones, bloques, estructuras de control, etc.  \\
 
-Una funciÛn debe estar declarada antes (leyendo el archivo desde arriba hacia
-abajo) de poder llamarla en el cÛdigo.  Es por esto que la definiciÛn (o
-prototipo) de la funciÛn puede colocarse antes del contenido de la funciÛn, de
+Una funci√≥n debe estar declarada antes (leyendo el archivo desde arriba hacia
+abajo) de poder llamarla en el c√≥digo.  Es por esto que la definici√≥n (o
+prototipo) de la funci√≥n puede colocarse antes del contenido de la funci√≥n, de
 forma que pueda ser utilizada por funciones que se encuentran implementadas
-antes.  En ese caso ser·:
+antes.  En ese caso ser√°:
 
 \begin{codigo-c-plano}
- tipo funcion (tipo_1 argumento_1, ..., tipo_n argumento_n);
+tipo funcion (tipo_1 argumento_1, ..., tipo_n argumento_n);
 \end{codigo-c-plano}
 
 \subsection{Punto de entrada}
 
-Se llama punto de entrada a la porciÛn de cÛdigo que se ejecuta en primer
-lugar cuando
-se llama al programa desde la lÌnea de comandos. En C el punto de entrada es
-la funciÛn \lstinline!main! y
-dado que es una funciÛn que interact˙a con el sistema, tiene un prototipo
-en particular (con dos opciones):
+Se llama punto de entrada a la porci√≥n de c√≥digo que se ejecuta en primer
+lugar cuando se llama al programa desde la l√≠nea de comandos. En C el punto de
+entrada es la funci√≥n \lstinline!main! y dado que es una funci√≥n que
+interact√∫a con el sistema, tiene un prototipo en particular (con dos
+opciones):
 
 \begin{codigo-c-plano}
- int main (void);
+int main (void);
 \end{codigo-c-plano}
 
-Se puede ver que la funciÛn main devuelve un entero, que ser· el valor de
-retorno del programa, 0 indicar· que el programa se ejecutÛ exitosamente y
-cualquier otro valor indicar· un error. Esta opciÛn, que no recibe par·metros,
-se utiliza cuando no se quieren tener en cuenta los par·metros de lÌnea de
-comandos.  La otra opciÛn se utiliza cuando sÌ se quieren tener en cuenta
-estos par·metros:
+Se puede ver que la funci√≥n main devuelve un entero, que ser√° el valor de
+retorno del programa, 0 indicar√° que el programa se ejecut√≥ exitosamente y
+cualquier otro valor indicar√° un error. Esta opci√≥n, que no recibe par√°metros,
+se utiliza cuando no se quieren tener en cuenta los par√°metros de l√≠nea de
+comandos.  La otra opci√≥n se utiliza cuando s√≠ se quieren tener en cuenta
+estos par√°metros:
 
 \begin{codigo-c-plano}
- int main (int argc, char *argv[]);
+int main (int argc, char *argv[]);
 \end{codigo-c-plano}
 
-En este caso, los par·metros \lstinline!argc! y \lstinline!argv! podrÌan tener cualquier otro nombre, pero es
-convenciÛn usar estos dos. Su significado es \emph{la cantidad de
-argumentos} y \emph{un vector de punteros a los argumentos} respectivamente.
-M·s adelante se ver·n en detalle los temas de vectores y punteros.
+En este caso, los par√°metros \lstinline!argc! y \lstinline!argv! podr√≠an tener
+cualquier otro nombre, pero es convenci√≥n usar estos dos. Su significado es
+\emph{la cantidad de argumentos} y \emph{un vector de punteros a los
+argumentos} respectivamente.  M√°s adelante se ver√°n en detalle los temas de
+vectores y punteros.
 
 
 \section{Tipos derivados}
@@ -449,44 +451,44 @@ M·s adelante se ver·n en detalle los temas de vectores y punteros.
 \subsection{Vectores}
 
 Los vectores (o arreglos) son bloques continuos de memoria que contienen un
-n˙mero de elementos del mismo tipo. Se los declara de la siguiente manera:
+n√∫mero de elementos del mismo tipo. Se los declara de la siguiente manera:
 
 \begin{codigo-c-plano}
- tipo_elemento nombre_vector[tamaÒo];
+tipo_elemento nombre_vector[tama√±o];
 \end{codigo-c-plano}
 
 Opcionalmente se puede inicializar el contenido:
 
 \begin{codigo-c-plano}
- tipo_elemento nombre_vector[] = { valor_0, valor_1, ... valor_n-1 };
+tipo_elemento nombre_vector[] = { valor_0, valor_1, ... valor_n-1 };
 \end{codigo-c-plano}
- 
-En este caso el tamaÒo es implÌcito, el compilador lo decide a partir de la
+
+En este caso el tama√±o es impl√≠cito, el compilador lo decide a partir de la
 cantidad de elementos ingresada en el inicializador. \\
 
-Para acceder al contenido de un vector se utiliza a travÈs del Ìndice del
-elemento dentro del vector. Los Ìndices del vector van desde 0 hasta
+Para acceder al contenido de un vector se utiliza a trav√©s del √≠ndice del
+elemento dentro del vector. Los √≠ndices del vector van desde 0 hasta
 \lstinline!largo-1!.  Es importante recordar que \lstinline!vector[largo]! es
-una posiciÛn inv·lida dentro del vector. Es decir:
+una posici√≥n inv√°lida dentro del vector. Es decir:
 
 \begin{codigo-c-plano}
- tipo vector[largo];
- vector[0] = valor; // asigna valor al primer elemento
- valor = vector[9]; // toma el valor del dÈcimo elemento
- vector[largo-1] = valor; // asigna valor al ˙ltimo elemento
+tipo vector[largo];
+vector[0] = valor; // asigna valor al primer elemento
+valor = vector[9]; // toma el valor del d√©cimo elemento
+vector[largo-1] = valor; // asigna valor al √∫ltimo elemento
 \end{codigo-c-plano}
 
-Si se accede a un vector por su nombre, sin ning˙n Ìndice, se obtiene
-la posiciÛn en memoria del vector. Esto es una optimizaciÛn para evitar tener
+Si se accede a un vector por su nombre, sin ning√∫n √≠ndice, se obtiene
+la posici√≥n en memoria del vector. Esto es una optimizaci√≥n para evitar tener
 que hacer copias de (posiblemente) grandes bloques de memoria al llamar a una
-funciÛn que recibe un vector. Esto tiene varias consecuencias:
+funci√≥n que recibe un vector. Esto tiene varias consecuencias:
 
 \begin{itemize}
 \item Los vectores se pasan como referencia, ya que lo que se pasa es la
-posiciÛn de memoria donde se encuentra el vector.
+posici√≥n de memoria donde se encuentra el vector.
 
-\item Al recibir un vector en una funciÛn no hace falta definir el largo de
-este, ya que el tamaÒo en memoria deberÌa haber sido definido previamente.
+\item Al recibir un vector en una funci√≥n no hace falta definir el largo de
+este, ya que el tama√±o en memoria deber√≠a haber sido definido previamente.
 \end{itemize}
 
 Esto hace que en ciertas situaciones un vector tenga un comportamiento similar
@@ -495,73 +497,76 @@ al de los punteros, aunque no exactamente igual.
 \subsection{Punteros}
 
 Los punteros son direcciones de memoria. En C los punteros requieren tener un
-tipo asociado, seg˙n el tipo de datos al que apuntan (es decir, el tipo de
-datos que se encuentra en la porciÛn de memoria indicada por el puntero). 
+tipo asociado, seg√∫n el tipo de datos al que apuntan (es decir, el tipo de
+datos que se encuentra en la porci√≥n de memoria indicada por el puntero).
 
 El tipo \lstinline!void*! se usa para apuntar a posiciones de memoria que
 contengan un dato de tipo desconocido.
 
-La declaraciÛn de un puntero es igual que para una variable normal, pero se le
+La declaraci√≥n de un puntero es igual que para una variable normal, pero se le
 agrega un \lstinline!*! delante. Es decir:
 
 \begin{codigo-c-plano}
- tipo *puntero_a_tipo;
+tipo *puntero_a_tipo;
 \end{codigo-c-plano}
 
-Nota: el lenguaje permite escribir el \lstinline!*! pegado al tipo, tambiÈn:
+Nota: el lenguaje permite escribir el \lstinline!*! pegado al tipo, tambi√©n:
 
 \begin{codigo-c-plano}
- tipo* puntero_a_tipo;
+tipo* puntero_a_tipo;
 \end{codigo-c-plano}
 
-Sin embargo las siguientes lÌneas son equivalentes:
+Sin embargo las siguientes l√≠neas son equivalentes:
 
 \begin{codigo-c-plano}
- tipo *puntero, variable;
- tipo* puntero, variable;
+tipo *puntero, variable;
+tipo* puntero, variable;
 \end{codigo-c-plano}
 
-En ambos casos sÛlo la primera variable es declarada como un puntero, la
-segunda es sÛlo una variable del tipo \lstinline!tipo!.
+En ambos casos s√≥lo la primera variable es declarada como un puntero, la
+segunda es s√≥lo una variable del tipo \lstinline!tipo!.
 
 Vale la pena aclarar que al declarar un puntero este no se inicializa con
-ning˙n valor determinado (contiene \textit{basura}), ni se crea un espacio en
+ning√∫n valor determinado (contiene \textit{basura}), ni se crea un espacio en
 memoria capaz de contener un valor de tipo \lstinline!tipo!, por lo que se le
-debe asignar una direcciÛn de memoria v·lida antes de poder operar con este.
+debe asignar una direcci√≥n de memoria v√°lida antes de poder operar con este.
 
-Para obtener la direcciÛn de memoria de un valor ya creado se utiliza el
+Para obtener la direcci√≥n de memoria de un valor ya creado se utiliza el
 operador \lstinline!&!:
 
 \begin{codigo-c-plano}
- puntero = &variable;
+puntero = &variable;
 \end{codigo-c-plano}
 
-La operaciÛn contraria (\textit{desreferenciar} un puntero) es \lstinline!*!,
-que accede al valor referenciado por una direcciÛn de memoria:
+La operaci√≥n contraria (\textit{desreferenciar} un puntero) es \lstinline!*!,
+que accede al valor referenciado por una direcci√≥n de memoria:
 
 \begin{codigo-c-plano}
- *puntero = valor;
+*puntero = valor;
 \end{codigo-c-plano}
 
-Dado que en C la mayorÌa de las variables pasan por valor (incluyendo los
-punteros y con la ˙nica excepciÛn de los vectores), si se pasa el valor de una
-direcciÛn de memoria (un puntero) es posible modificar el valor referenciado
-por esa direcciÛn. Por ejemplo, para leer un entero usando scanf se debe hacer:
+Dado que en C la mayor√≠a de las variables pasan por valor (incluyendo los
+punteros y con la √∫nica excepci√≥n de los vectores), si se pasa el valor de una
+direcci√≥n de memoria (un puntero) es posible modificar el valor referenciado
+por esa direcci√≥n. Por ejemplo, para leer un entero usando scanf se debe hacer:
 
 \begin{codigo-c-plano}
- scanf("%d",&entero);
+scanf("%d",&entero);
 \end{codigo-c-plano}
 
-%\subsection{ConversiÛn forzada de tipos (\textit{cast})}
-%
-%La conversiÛn forzada, o \textit{casteo}, se utiliza para convertir un valor
-%de un tipo a otro, cuando el compilador no es capaz de hacerlo
-%autom·ticamente.  Se lo logra anteponiendo un tipo entre parÈntesis delante de
-%una expresiÛn. Por ejemplo:
-%
-%\begin{codigo-c-plano}
-% int *datos = (int*) malloc( 128*sizeof(int) );
-%\end{codigo-c-plano}
+\subsection{Conversi√≥n forzada de tipos (\textit{cast})}
+
+La conversi√≥n forzada, o \textit{casteo}, se utiliza para convertir un valor
+de un tipo a otro, cuando el compilador no es capaz de hacerlo
+autom√°ticamente.  Se lo logra anteponiendo un tipo entre par√©ntesis delante de
+una expresi√≥n. Por ejemplo:
+
+\begin{codigo-c-plano}
+double resultado = 3 / 2; // divisi√≥n entera
+                          // resultado = 1.0
+double resultado = (double) 3 / 2 // divisi√≥n flotante
+                                  // resultado = 1.5
+\end{codigo-c-plano}
 
 \subsection{Estructuras}
 
@@ -569,42 +574,42 @@ Las estructuras permiten combinar distintos tipos de datos en un mismo bloque,
 de la siguiente forma:
 
 \begin{codigo-c-plano}
- struct estructura {
-  tipo_0 atributo_0;
-  tipo_1 atributo_1;
-  ...
-  tipo_n atributo_n;
- };
+struct estructura {
+    tipo_0 atributo_0;
+    tipo_1 atributo_1;
+    ...
+    tipo_n atributo_n;
+};
 \end{codigo-c-plano}
 
-Esta porciÛn de cÛdigo define un nuevo tipo de datos, llamado 
+Esta porci√≥n de c√≥digo define un nuevo tipo de datos, llamado
 \lstinline!struct estructura!, que se puede utilizar en el resto del
-cÛdigo. 
+c√≥digo.
 
-Es importante notar que este cÛdigo lleva un \lstinline!;!, es uno de los
+Es importante notar que este c√≥digo lleva un \lstinline!;!, es uno de los
 pocos casos en los que debe escribirse un \lstinline!;! luego de una
-\lstinline!}!, y una fuente muy com˙n de errores.
+\lstinline!}!, y una fuente muy com√∫n de errores.
 
 Las estructuras se declaran al nivel de declaraciones, (donde se
 definen prototipos de funciones, se incluyen encabezados, se definen enum,
-etc). 
+etc).
 
 Una estructura ocupa en memoria por lo menos la suma de cada uno de sus
-atributos, adem·s, puede haber una porciÛn de memoria desperdiciada en la
-\textit{alineaciÛn} de los datos. \\
+atributos, adem√°s, puede haber una porci√≥n de memoria desperdiciada en la
+\textit{alineaci√≥n} de los datos. \\
 
 Para acceder a los elementos de una estructura se utiliza el operador
 \lstinline!.!, por ejemplo:
 
 \begin{codigo-c-plano}
- struct prueba {
-  char nombre[10];
-  int valor;
- };
- ...
-   struct prueba ejemplo;
-   ejemplo.valor = 0;
- ...
+struct prueba {
+    char nombre[10];
+    int valor;
+};
+...
+    struct prueba ejemplo;
+    ejemplo.valor = 0;
+...
 \end{codigo-c-plano}
 
 Como todos los otros tipos de datos excepto los vectores, las estructuras en C
@@ -614,15 +619,15 @@ memoria, y para poder modificar sus atributos.  Para acceder a un elemento, en
 ese caso, se puede escribir:
 
 \begin{codigo-c-plano}
- (*puntero_estructura).nombre
+(*puntero_estructura).nombre
 \end{codigo-c-plano}
 
-Como se trata de una operaciÛn muy com˙n, esto mismo se puede escribir
-\footnote{Esta pequeÒa facilidad es un poco de \textit{az˙car sint·ctico} del
+Como se trata de una operaci√≥n muy com√∫n, esto mismo se puede escribir
+\footnote{Esta peque√±a facilidad es un poco de \textit{az√∫car sint√°ctico} del
 lenguaje}:
 
 \begin{codigo-c-plano}
- puntero_estructura->nombre
+puntero_estructura->nombre
 \end{codigo-c-plano}
 
 \subsection{Renombrado de tipos}
@@ -636,52 +641,20 @@ typedef viejo_tipo nuevo_tipo;
 
 Se puele utilizar \lstinline!typedef! para darle un nuevo nombre a la
 estructura, de forma que no haga falta anteponer
-\lstinline!struct! para usarlo, esto es: 
+\lstinline!struct! para usarlo, esto es:
 
 \begin{codigo-c-plano}
- typedef struct _estructura {
- 	tipo_1 nombre_1;
- 	tipo_2 nombre_2; } estructura;
+typedef struct _estructura {
+    tipo_1 nombre_1;
+    tipo_2 nombre_2; } estructura;
 \end{codigo-c-plano}
 
-Una vez definido de esta manera, se utiliza simplemente 
+Una vez definido de esta manera, se utiliza simplemente
 \lstinline!estructura variable;! para declarar una variable del tipo.
 
 En el \lstinline!typedef! el nombre intermedio \lstinline!_estructura! puede
-omitirse, pero ser· necesario cuando una estructura haga referencia a si misma
-dentro de su declaraciÛn.
-
-%\subsection{Uniones}
-%
-%Las uniones son similares a las estructuras, pero en este caso cada elemento
-%comparte la misma ubicaciÛn en memoria. 
-%
-%No son muy utilizadas, pero normalmente se las usa cuando se necesita guardar
-%un valor de distintos tipos y cada formato es excluyente (sÛlo uno de los
-%tipos de datos sirve en cada caso): 
-%
-%\begin{codigo-c-plano}
-%union prueba {
-% 	int valor_entero;
-% 	float valor_flotante;
-% }
-%
-% struct uso_prueba {
-% 	int	tipo;
-% 	union prueba valor;
-% }
-%\end{codigo-c-plano}
-%
-%O cuando quiero poder tener dos forma se acceder a los mismos datos:
-%
-% union flotante {
-% 	struct ieee754 { //big endian
-% 		unsigned int signo : 1;
-% 		unsigned int exponente : 8;
-% 		insigned int mantisa : 23;
-% 	}
-% 	float valor;
-% }
+omitirse, pero ser√° necesario cuando una estructura haga referencia a si misma
+dentro de su declaraci√≥n.
 
 \subsection{Valores Enumerados}
 
@@ -689,56 +662,82 @@ Es posible definir enumeraciones de valores enteros mediante el tipo
 \lstinline!enum!.
 
 \begin{codigo-c-plano}
-enum dias_semana { DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO };
-enum { TRUE=1, FALSE=0, MAX_LARGO=1024 };
+enum dias_semana {DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES,
+                  SABADO};
+enum {TRUE=1, FALSE=0, MAX_LARGO=1024};
 \end{codigo-c-plano}
 
 En este ejemplo se define un tipo \lstinline!enum dias_semana!, que define los
-valores \lstinline!DOMINGO=0!, \lstinline!LUNES=1! y asÌ sucesivamente. En el
+valores \lstinline!DOMINGO=0!, \lstinline!LUNES=1! y as√≠ sucesivamente. En el
 segundo uso de enum no se define un tipo, simplemente se definen valores.
 
-En el cÛdigo se pueden usar los nombres de esos valores en lugar del valor
-en sÌ. Es una de las formas de \textit{parametrizar} el cÛdigo.
+En el c√≥digo se pueden usar los nombres de esos valores en lugar del valor
+en s√≠. Es una de las formas de \textit{parametrizar} el c√≥digo.
 
-\subsection{AsignaciÛn y ComparaciÛn}
+\subsection{Uniones}
+
+Las uniones son similares a las estructuras, pero en este caso cada elemento
+comparte la misma ubicaci√≥n en memoria.
+
+No son muy utilizadas, pero normalmente se las usa cuando se necesita guardar
+un valor de distintos tipos y cada formato es excluyente (s√≥lo uno de los
+tipos de datos sirve en cada caso):
+
+\begin{codigo-c-plano}
+typedef enum {ENTERO, FLOTANTE} tipo_t;
+
+union contenedor {
+    int entero;
+    float flotante;
+}
+
+struct uso_prueba {
+    tipo_t tipo;
+    union contenedor valor;
+}
+\end{codigo-c-plano}
+
+O cuando se quiere poder tener dos forma se acceder a los mismos datos.
+
+\subsection{Asignaci√≥n y Comparaci√≥n}
 
 En C las asignaciones y comparaciones pueden utilizarse en cualquier parte de
-cÛdigo, como cualquier otra expresiÛn. Lo cual da lugar a errores, como por
+c√≥digo, como cualquier otra expresi√≥n. Lo cual da lugar a errores, como por
 ejemplo un error usual:
 
 \begin{codigo-c-plano}
- while (c = 1) {
-   ... // cÛdigo que eventualmente modifica el valor de c
- }
+while (c = 1) {
+    ... // c√≥digo que eventualmente modifica el valor de c
+}
 \end{codigo-c-plano}
 
 Lo que hace que un error simple se convierta en un bucle infinito en tiempo de
-ejecuciÛn. \\
+ejecuci√≥n. \\
 
-Adem·s de la asignaciÛn normal:
+Adem√°s de la asignaci√≥n normal:
 
 \begin{codigo-c-plano}
- e = f // asigna el valor de f a e
+e = f // asigna el valor de f a e
 \end{codigo-c-plano}
 
-Es C tambiÈn es v·lido utilizar var op= valor, para obtener var = var op
+Es C tambi√©n es v√°lido utilizar var op= valor, para obtener var = var op
 valor, ejemplos:
 
 \begin{codigo-c-plano}
- e += f // e = e + f
- e -= f // e = e - f
- e *= f // e = e * f
+e += f // e = e + f
+e -= f // e = e - f
+e *= f // e = e * f
 \end{codigo-c-plano}
 
-Adem·s, cuando se debe incrementar o decrementar un valor en 1, C provee
+Adem√°s, cuando se debe incrementar o decrementar un valor en 1, C provee
 pre/post (in/de)crementos, por ejemplo:
 
 \begin{codigo-c-plano}
- a = 0; b = 0; c = 0; d = 0;
- e = a++; // a = a + 1, Post incremento, e = 0, a = 1
- e = ++b; // b = b + 1, Pre incremento, e = 1, b = 1
- e = c--; // c = c - 1, Post decremento, e = 0, c = -1
- e = --d; // d = d - 1, Pre  decremento, e = -1, d = -1
+a = 0; b = 0; c = 0; d = 0;
+e = a++; // a = a + 1, Post incremento, e = 0, a = 1
+e = ++b; // b = b + 1, Pre incremento, e = 1, b = 1
+e = c--; // c = c - 1, Post decremento, e = 0, c = -1
+e = --d; // d = d - 1, Pre  decremento, e = -1, d = -1
 \end{codigo-c-plano}
 
 Las expresiones en C propagan valores de izquierda a derecha, el valor que se
@@ -748,8 +747,8 @@ propaga es el que puede ser revisado eventualmente por las estructuras
 Ejemplo:
 
 \begin{codigo-c-plano}
- a = b = c = d = e = f = 1; // usa la propagaciÛn para asignar varias
-                            // variables a la vez.
+a = b = c = d = e = f = 1; // usa la propagaci√≥n para asignar varias
+                           // variables a la vez.
 \end{codigo-c-plano}
 
 \subsection{Constantes}
@@ -759,164 +758,163 @@ preprocesador, los tipos enumeraros y las variables con el modificador const.
 
 Las constantes del preprocesador de C son \textit{macros} que son reemplazados
 por el preprocesador, que corre antes que el compilador. El preprocesador no
-conoce el lenguaje, sÛlo busca ocurrencias de una secuencia de caracteres y
-las reemplaza por otras, lo cual puede ser problem·tico en algunas situaciones
+conoce el lenguaje, s√≥lo busca ocurrencias de una secuencia de caracteres y
+las reemplaza por otras, lo cual puede ser problem√°tico en algunas situaciones
 particulares.  Ejemplos:
 
 \begin{codigo-c-plano}
- #define MAX_LARGO 2048
- #define AUTHOR "Mi Nombre"
- #define DATE "2009-09-01"
- #define LICENSE "CC-3.0-BY-SA"
- ...
-  int vector[MAX_LARGO];
+#define MAX_LARGO 2048
+#define AUTHOR "Mi Nombre"
+#define DATE "2009-09-01"
+#define LICENSE "CC-3.0-BY-SA"
+...
+    int vector[MAX_LARGO];
 \end{codigo-c-plano} 
 
-Los valores enumerados que ya fueron mencionados anteriormente sÛlo pueden
+Los valores enumerados que ya fueron mencionados anteriormente s√≥lo pueden
 contener valores enteros (\lstinline!int!), es la forma recomendada de tener
-constantes enteras, ya que es f·cilmente parametrizable y no tiene las
+constantes enteras, ya que es f√°cilmente parametrizable y no tiene las
 desventajas del preprocesador.
 
 Las variables con el modificador const pueden usarse y una vez inicializadas
 no puede alterarse el contenido sin hacer un casteo.
 
-\section{Ejemplo b·sico}
+\section{Ejemplo b√°sico}
 
-Desde hace muchos aÒos este es el ejemplo b·sico de programaciÛn en C.
+Desde hace muchos a√±os este es el ejemplo b√°sico de programaci√≥n en C.
 
 \begin{codigo-c}
- #include <stdio.h>
+#include <stdio.h>
 
- int main(int argc, char* argv[])
- {
- 	printf("Hola mundo\n");
- 	return 0;
- }
+int main(int argc, char* argv[])
+{
+    printf("Hola mundo\n");
+    return 0;
+}
 \end{codigo-c}
 
-En la primera lÌnea de este ejemplo hay una instrucciÛn \lstinline!#include!,
-se trata de una instrucciÛn al preprocesador\footnote{El preprocesador es una
+En la primera l√≠nea de este ejemplo hay una instrucci√≥n \lstinline!#include!,
+se trata de una instrucci√≥n al preprocesador\footnote{El preprocesador es una
 herramienta que corre al compilar el programa, antes de correr el compilador,
-las instrucciones de preprocesador siempre comienzan con \lstinline!#!}. Esta
-instrucciÛn significa que todo lo que
-est· en el archivo especificado se incluye dentro del archivo actual. Los
-\lstinline!<>! alrededor del nombre del archivo significan que el
-preprocesador debe buscar el archivo en la ruta de inclusiÛn del sistema.
-Si se utilizara \lstinline!""! en lugar de \lstinline!<>!, se buscar· el
-archivo en la ruta actual de compilaciÛn.
+las instrucciones de preprocesador siempre comienzan con \lstinline!#!}.
+Esta instrucci√≥n significa que todo lo que est√° en el archivo especificado se
+incluye dentro del archivo actual. Los \lstinline!<>! alrededor del nombre del
+archivo significan que el preprocesador debe buscar el archivo en la ruta de
+inclusi√≥n del sistema.  Si se utilizara \lstinline!""! en lugar de
+\lstinline!<>!, se buscar√° el archivo en la ruta actual de compilaci√≥n.
 
-En la pr·ctica las \lstinline!<>! se utilizan para incluir encabezados
+En la pr√°ctica las \lstinline!<>! se utilizan para incluir encabezados
 (conjuntos de prototipos, definiciones de tipos y constantes, etc) de las
 bibliotecas externas al programa que se vayan a utilizar, que se deben
-encontrar instaladas en el sistema.  usar, mientras que las comillas dobles se
+encontrar instaladas en el sistema. Mientras que las comillas dobles se
 utilizan para incluir encabezados propios de otras porciones del mismo
 programa.
 
-En particular la biblioteca \lstinline!stdio.h! es la biblioteca est·ndar de
+En particular la biblioteca \lstinline!stdio.h! es la biblioteca est√°ndar de
 entrada y salida, en este caso es incluida para poder usar \lstinline!printf!
-que es una funciÛn de la biblioteca est·ndar de C para imprimir por salida
-est·ndar (normalmente, la consola).  En este caso, \lstinline!printf! recibe
-un ˙nico par·metro que ser· la salida a imprimir; pero puede tambiÈn recibir
-m·s par·metros, para lograr una salida m·s avanzada.
+que es una funci√≥n de la biblioteca est√°ndar de C para imprimir por salida
+est√°ndar (normalmente, la consola).  En este caso, \lstinline!printf! recibe
+un √∫nico par√°metro que ser√° la salida a imprimir; pero puede tambi√©n recibir
+m√°s par√°metros, para lograr una salida m√°s avanzada.
 
 El primer argumento de \lstinline!printf! es siempre una cadena, que puede
-tener un formato especial o no, indicando quÈ tipos de variables se deben
-imprimir y de quÈ forma.  Adem·s, puede tener marcas especiales para indicar
-el fin de lÌnea (\verb!'\n'!), una tabulaciÛn (\verb!'\t'!), una contrabarra
-(\verb!'\\'!) y algunos m·s.
+tener un formato especial o no, indicando qu√© tipos de variables se deben
+imprimir y de qu√© forma.  Adem√°s, puede tener marcas especiales para indicar
+el fin de l√≠nea (\verb!'\n'!), una tabulaci√≥n (\verb!'\t'!), una contrabarra
+(\verb!'\\'!) y algunos m√°s.
 
 Vale la pena notar que \lstinline!printf! no es parte del lenguaje sino de la
-biblioteca est·ndar, que est· especificada en el mismo est·ndar donde est·
-especificado el lenguaje pero a˙n asÌ, no es parte del lenguaje.
+biblioteca est√°ndar, que est√° especificada en el mismo est√°ndar donde est√°
+especificado el lenguaje pero a√∫n as√≠, no es parte del lenguaje.
 
-Se puede encontrar documentaciÛn completa de \lstinline!printf! y de las otras
-funciones de biblioteca mediante las p·ginas del manual, generalmente
+Se puede encontrar documentaci√≥n completa de \lstinline!printf! y de las otras
+funciones de biblioteca mediante las p√°ginas del manual, generalmente
 instaladas en los sistemas Linux o similares (\verb!$ man 3 printf!) o
-mediante el programa gr·fico \verb!yelp! en estos mismos sistemas, o bien
-on-line en cualquier sitio que publique las p·ginas de manual en internet
+mediante el programa gr√°fico \verb!yelp! en estos mismos sistemas, o bien
+on-line en cualquier sitio que publique las p√°ginas de manual en internet
 \footnote{http://linux.die.net/man/}
 \footnote{http://www.linuxinfor.com/spanish/man3/index.html}.
 
-\section{CompilaciÛn}
+\section{Compilaci√≥n}
 
 Para poder compilar programas en C, es necesario contar con un entorno de
-programaciÛn que permita compilar, enlazar y correr los programas compilados.
-Esto requiere tener el compilador de C instalado, junto con la versiÛn para
-desarrollar de la biblioteca est·ndar.
+programaci√≥n que permita compilar, enlazar y correr los programas compilados.
+Esto requiere tener el compilador de C instalado, junto con la versi√≥n para
+desarrollar de la biblioteca est√°ndar.
 
 Existen numerosos programas \footnote{Codeblocks, Geany, Anjuta, Kdevelop,
 etc} que permiten compilar, enlazar y correr apretando una tecla o eligiendo
-una opciÛn desde un menu.  Si bien estos programas son una ayuda para el
-desarrollador, no son indispensables, es posible editar el cÛdigo del programa
-con cualquier archivo de texto y luego compilarlo desde la lÌnea de comandos.
+una opci√≥n desde un menu.  Si bien estos programas son una ayuda para el
+desarrollador, no son indispensables, es posible editar el c√≥digo del programa
+con cualquier archivo de texto y luego compilarlo desde la l√≠nea de comandos.
 
-El compilador m·s difundido en los sistemas Linux y uno de los m·s difundidos
+El compilador m√°s difundido en los sistemas Linux y uno de los m√°s difundidos
 en general es el compilador \textbf{gcc}.  Se trata de un compilador libre,
-con muchos aÒos de madurez, y es el que se explica en este apunte.
+con muchos a√±os de madurez, y es el que se explica en este apunte.
 
-Asumiendo que el ejemplo presentado antes se grabÛ como \verb!hola.c!, para
-compilarlo usando \verb!gcc! ser· necesario escribir, en el directorio donde
-se encuentra el cÛdigo del programa:
+Asumiendo que el ejemplo presentado antes se grab√≥ como \verb!hola.c!, para
+compilarlo usando \verb!gcc! ser√° necesario escribir, en el directorio donde
+se encuentra el c√≥digo del programa:
 
 \begin{verbatim}
- $ gcc hola.c -o hola
+$ gcc hola.c -o hola
 \end{verbatim}
 
-Esto generar· el archivo ejecutable \verb!hola! en ese mismo directorio.  Si
-bien no se puede ver en esta sencilla lÌnea de comandos, hay varios pasos
-involucrados en la compilaciÛn de up programa.
+Esto generar√° el archivo ejecutable \verb!hola! en ese mismo directorio.  Si
+bien no se puede ver en esta sencilla l√≠nea de comandos, hay varios pasos
+involucrados en la compilaci√≥n de up programa.
 
 \begin{itemize}
-\item En primer lugar, el cÛdigo es procesado por un \textit{prepocesador},
+\item En primer lugar, el c√≥digo es procesado por un \textit{prepocesador},
 que se encarga de hacer los \lstinline!#include! antes mencionados, entre
 muchas otras cosas.
 
 \item La salida del preprocesador es \textit{compilada}, es decir que el
-cÛdigo C es convertido en cÛdigo binario que pueda ser ejecutado por la
+c√≥digo C es convertido en c√≥digo binario que pueda ser ejecutado por la
 computadora.
 
 \item Una vez compilado, el programa es \textit{enlazado} con las bibliotecas
-que utilizadas, en el ejemplo anterior con la biblioteca est·ndar de C, para
+que utilizadas, en el ejemplo anterior con la biblioteca est√°ndar de C, para
 poder usar \lstinline!printf!.
 \end{itemize}
 
 Con \textbf{gcc} es posible realizar estos pasos intermedios uno por uno:
 
 \begin{verbatim}
- $ # Prepocesador
- $ gcc -E hola.c -o hola.i
- $ # Compilador
- $ gcc -c hola.i -o hola.o
- $ # Enlazador
- $ gcc hola.o -o hola
- $ # EjecuciÛn del programa
- $ ./hola
+$ # Prepocesador
+$ gcc -E hola.c -o hola.i
+$ # Compilador
+$ gcc -c hola.i -o hola.o
+$ # Enlazador
+$ gcc hola.o -o hola
+$ # Ejecuci√≥n del programa
+$ ./hola
 \end{verbatim}
 
 El compilador gcc tiene una gran variedad de otras opciones que se pueden
-consultar en las p·ginas de manual del mismo (\verb!man gcc!).  A continuaciÛn
-algunas de las m·s importantes.
+consultar en las p√°ginas de manual del mismo (\verb!man gcc!).  A continuaci√≥n
+algunas de las m√°s importantes.
 
 \begin{center}
 \begin{tabular}{lp{10cm}}
-OpciÛn & AcciÛn \\
+Opci√≥n & Acci√≥n \\
 \hline
 \lstinline!-Wall! &
- Muestra advertencias por cada detalle que el compilador       
- detecta como posible error de programaciÛn. \\
+ Muestra advertencias por cada detalle que el compilador
+ detecta como posible error de programaci√≥n. \\
 \lstinline!--pedantic! &
- El compilador se pone en modo pedante, busca m·s posibles     
- errores de programaciÛn e interrumpe la compilaciÛn por estos. \\
+ El compilador se pone en modo pedante, busca m√°s posibles
+ errores de programaci√≥n e interrumpe la compilaci√≥n por estos. \\
 \lstinline!--std=c99! &
- El compilador compila cÛdigo usando el est·ndar C99 
- (C89 se utiliza por omisiÛn) \\
+ El compilador compila c√≥digo usando el est√°ndar C99
+ (C89 se utiliza por omisi√≥n) \\
 \lstinline!-g! &
- Pone marcas en el archivo generado para que las use el 
+ Pone marcas en el archivo generado para que las use el
  \textit{debugger} (\verb!gdb!). \\
-\lstinline!-O! Û \lstinline!-O1! &
- Habilita las optimizaciones b·sicas. Las optimizaciones pueden cambiar el
+\lstinline!-O! √≥ \lstinline!-O1! &
+ Habilita las optimizaciones b√°sicas. Las optimizaciones pueden cambiar el
 flujo del programa por lo que es muy poco recomendable aplicar optimizaciones
-sobre un cÛdigo a utilizar con un debugger. \\
+sobre un c√≥digo a utilizar con un debugger. \\
 \lstinline!-O2! &
  Habilita todas las optimizaciones basicas y varias avanzadas que se
 consideran seguras. \\
@@ -925,9 +923,9 @@ consideran seguras. \\
 no se consideran del todo seguras (pueden generar errores en situaciones de
 borde). \\
 \lstinline!-Os! &
- Habilita las optimizaciones que reducen el tamaÒo del cÛdigo. \\
+ Habilita las optimizaciones que reducen el tama√±o del c√≥digo. \\
 \lstinline!-O0! &
- Deshabilita todas las optimizaciones, este es el comportamiento por omisiÛn. \\
+ Deshabilita todas las optimizaciones, este es el comportamiento por omisi√≥n. \\
 \end{tabular}
 \end{center}
 

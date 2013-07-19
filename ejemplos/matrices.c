@@ -23,13 +23,13 @@ void imprimir_matriz2(void *aux, size_t filas, size_t cols) {
 }
 
 void imprimir_matriz3(int* v, size_t filas, size_t cols) {
-	for (int i=0; i < filas; i++) {
-        int *fila = v+i*cols;
-		for (int j=0; j < cols; j++) {
-			printf("%d ", fila[j]);
-		}
-		printf("\n");
-	}
+    for (int i=0; i < filas; i++) {
+        int *fila = v + i * cols;
+        for (int j=0; j < cols; j++) {
+            printf("%d ", fila[j]);
+        }
+        printf("\n");
+    }
 }
 
 void imprimir_matriz4(int** v, size_t filas, size_t cols) {
@@ -43,24 +43,23 @@ void imprimir_matriz4(int** v, size_t filas, size_t cols) {
 
 int main(void) {
 
-	int filas = 3; 
+	int filas = 3;
 	int cols = 4;
 
 	int v[][4] = { { 1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 	imprimir_matriz1(v, filas);
 	imprimir_matriz2(v, filas, cols);
-	imprimir_matriz3(v, filas, cols);
+	imprimir_matriz3((int *) v, filas, cols);
 
 	int *w[filas];
 	for (int i=0; i < filas; i++) {
 		w[i] = malloc(cols*sizeof(int));
 		for (int j=0; j < cols; j++) {
 			w[i][j] = i*10+j;
-		}	
-		printf("w[%d]: %p\n", i, w[i]);
+		}
+		printf("w[%d]: %p\n", i, (void *) w[i]);
 	}
 	imprimir_matriz4(w, filas, cols);
-
 
 	return 0;
 }
