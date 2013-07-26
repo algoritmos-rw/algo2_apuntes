@@ -1,51 +1,51 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
-% Esta obra est· licenciada de forma dual, bajo las licencias Creative
+% Esta obra est√° licenciada de forma dual, bajo las licencias Creative
 % Commons:
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 2.5 Argentina 
-%    http://creativecommons.org/licenses/by-sa/2.5/ar/ 
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 3.0 Unported
-%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR. 
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 2.5 Argentina
+%    http://creativecommons.org/licenses/by-sa/2.5/ar/
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 3.0 Unported
+%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
 %
 % A su criterio, puede utilizar una u otra licencia, o las dos.
 % Para ver una copia de las licencias, puede visitar los sitios
-% mencionados, o enviar una carta a Creative Commons, 
+% mencionados, o enviar una carta a Creative Commons,
 % 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\thesection}{\arabic{section}}
 \chapter*{Ordenamiento recursivo por mezcla, \textit{merge sort}}
 
-El mÈtodo de ordenamiento \textit{merge sort} es uno de los mÈtodos de
-ordenamiento recursivos, basados en la tÈcnica de dividir y conquistar.  Se
+El m√©todo de ordenamiento \textit{merge sort} es uno de los m√©todos de
+ordenamiento recursivos, basados en la t√©cnica de dividir y conquistar.  Se
 lo puede utilizar para ordenar cualquier estructura secuencial (vectores,
 listas, etc).
 
-Los pasos de este mÈtodo de ordenamiento son:
+Los pasos de este m√©todo de ordenamiento son:
 \begin{enumerate}
 \item Cuando la longitud del vector sea 0 o 1, se considera que ya se
-encuentra ordenado. De no ser asÌ:
+encuentra ordenado. De no ser as√≠:
 \item Se divide el vector en dos partes de aproximadamente la mitad del
-tamaÒo.
-\item Se ordena cada una de esas partes, utilizando este mismo mÈtodo.
+tama√±o.
+\item Se ordena cada una de esas partes, utilizando este mismo m√©todo.
 \item Tomando las dos partes ordenadas, se las intercala de forma ordenada,
 para obtener el vector original ordenado.
 \end{enumerate}
 
 Por ejemplo, si el vector original es \verb+[6, 7, -1, 0, 5, 2, 3, 8]+, se
-lo dividir· en dos partes: \verb+[6, 7, -1, 0]+ y \verb+[5, 2, 3, 8]+, que
-ser·n ordenadas de forma recursiva.  Luego de ordenarlas, se obtendr·:
+lo dividir√° en dos partes: \verb+[6, 7, -1, 0]+ y \verb+[5, 2, 3, 8]+, que
+ser√°n ordenadas de forma recursiva.  Luego de ordenarlas, se obtendr√°:
 \verb+[-1, 0, 6, 7]+ y \verb+[2, 3, 5, 8]+.  Al intercalar ordenadamente
-los dos vectores ordenados se obtendr· la soluciÛn buscada:
+los dos vectores ordenados se obtendr√° la soluci√≥n buscada:
 \verb+[-1, 0, 2, 3, 5, 6, 7, 8]+.
 
-\section{ImplementaciÛn b·sica}
+\section{Implementaci√≥n b√°sica}
 
-Ser· necesario programar dos funciones.  Por un lado la funciÛn
-\lstinline!merge_sort!, que ser· la funciÛn recursiva encargada de dividir
-la lista en dos hasta llegar a la condiciÛn de corte (cuando la lista tenga
-un tamaÒo menor que 2).
+Ser√° necesario programar dos funciones.  Por un lado la funci√≥n
+\lstinline!merge_sort!, que ser√° la funci√≥n recursiva encargada de dividir
+la lista en dos hasta llegar a la condici√≥n de corte (cuando la lista tenga
+un tama√±o menor que 2).
 
 \begin{codigo-c}
 void merge_sort(int vector[], int inicio, int fin)
@@ -62,17 +62,17 @@ void merge_sort(int vector[], int inicio, int fin)
 }
 \end{codigo-c}
 
-Se puede ver que esta es una funciÛn extremadamente sencilla, cuya ˙nica
-tarea es dividir el vector en dos partes. Por otro lado, ser· necesario
-programar la funciÛn \lstinline!merge!, que ser· la encargada de intercalar
-las partes una vez que estÈn ordenadas.
+Se puede ver que esta es una funci√≥n extremadamente sencilla, cuya √∫nica
+tarea es dividir el vector en dos partes. Por otro lado, ser√° necesario
+programar la funci√≥n \lstinline!merge!, que ser√° la encargada de intercalar
+las partes una vez que est√©n ordenadas.
 
 \begin{codigo-c}
 void merge (int vector[], int inicio, int medio, int fin)
 {
     int pos_1 = inicio;
     int pos_2 = medio;
-    int aux[fin-inicio];
+    int aux[fin - inicio];
     int pos_a = 0;
 
     // Intercala ordenadamente
@@ -106,44 +106,44 @@ void merge (int vector[], int inicio, int medio, int fin)
 }
 \end{codigo-c}
 
-Si bien esta funciÛn tiene unas cuantas lÌneas de cÛdigo, su tarea no es
+Si bien esta funci√≥n tiene unas cuantas l√≠neas de c√≥digo, su tarea no es
 muy compleja, simplemente inserta en un vector auxiliar los elementos del
-vector que ya se encuentran ordenados, de forma que sÛlo se recorren los
+vector que ya se encuentran ordenados, de forma que s√≥lo se recorren los
 elementos una sola vez.
 
-\section{An·lisis de complejidad}
+\section{An√°lisis de complejidad}
 
 Sea $N$ la longitud del vector. Se pueden hacer las siguientes
 observaciones:
 
 \begin{itemize}
-\item En la funciÛn \lstinline!merge! se ve que el tiempo que se tarda en
+\item En la funci√≥n \lstinline!merge! se ve que el tiempo que se tarda en
 intercalar dos vectores de longitud $N/2$ es proporcional a $N$, ya que
 todos los elementos se copian una vez al vector auxiliar y luego se los
 vuelve a copiar al vector original. Es posible, entonces, utilizar $A * N$
 para representar ese tiempo.
 
 \item Si se denomina $T(N)$ al tiempo que tarda el algoritmo en ordenar
-un vector de longitud $N$, en la funciÛn \lstinline!merge_sort! 
-se puede ver que $T(N) = 2 * T(N/2) + A * N$, ya que la funciÛn simplemente
-se llama a sÌ misma con dos partes de la mitad de tamaÒo, y luego a la
-funciÛn \lstinline!merge! con el tamaÒo total.
+un vector de longitud $N$, en la funci√≥n \lstinline!merge_sort!
+se puede ver que $T(N) = 2 * T(N/2) + A * N$, ya que la funci√≥n simplemente
+se llama a s√≠ misma con dos partes de la mitad de tama√±o, y luego a la
+funci√≥n \lstinline!merge! con el tama√±o total.
 
-\item Adem·s, tambiÈn en \lstinline!merge_sort! se puede ver que el tiempo
-necesario para un vector de longitud menor a 2 es sÛlo el necesario en
-hacer una comparaciÛn. Es decir que, $T(1) = T(0) = B$.
+\item Adem√°s, tambi√©n en \lstinline!merge_sort! se puede ver que el tiempo
+necesario para un vector de longitud menor a 2 es s√≥lo el necesario en
+hacer una comparaci√≥n. Es decir que, $T(1) = T(0) = B$.
 \end{itemize}
 
-Estos datos forman una ecuaciÛn de recurrencia, para resolverla, se
-supondr· que $N = 2^k$, quedando las ecuaciones:
+Estos datos forman una ecuaci√≥n de recurrencia, para resolverla, se
+supondr√° que $N = 2^k$, quedando las ecuaciones:
 
 \begin{eqnarray}
 T(N) = T(2^k) &=&  2 * T(2^{k-1}) + A * 2^k \\
 T(1) &=& B
 \end{eqnarray}
 
-Es posible resolver estas ecuaciones utilizando el \textit{mÈtodo
-telescÛpico}.  
+Es posible resolver estas ecuaciones utilizando el \textit{m√©todo
+telesc√≥pico}.
 
 \begin{eqnarray}
 T(2^k) &=& 2 * T(2^{k-1}) + A * 2^k \\
@@ -156,49 +156,49 @@ T(2^k) &=& 2 * T(2^{k-1}) + A * 2^k \\
 &=&2^k*B  + k * A * 2^k
 \end{eqnarray}
 
-Como $N = 2^k$ entonces $k=\log_2N$, y por lo que esta resoluciÛn demuestra
+Como $N = 2^k$ entonces $k=\log_2N$, y por lo que esta resoluci√≥n demuestra
 que $T(N) = B*N+A*N*\log_2N$.
 
-Como $A*N*\log_2N$ es un tÈrmino de mayor orden que $B*N$, el orden de este
-algoritmo es $O(N*\log_2N)$.  
+Como $A*N*\log_2N$ es un t√©rmino de mayor orden que $B*N$, el orden de este
+algoritmo es $O(N*\log_2N)$.
 
 Los valores de las constantes $A$ y $B$ son importantes a la hora de buscar
-la mejor implementaciÛn de \textit{merge sort}, pero no para el c·lculo del
+la mejor implementaci√≥n de \textit{merge sort}, pero no para el c√°lculo del
 orden del algoritmo.
 
 Por otro lado, al analizar el espacio que consume este algoritmo, se puede
 ver que para realizar el intercalado, necesita copiar el vector a un
 vectora auxiliar, es decir que duplica el espacio consumido.
 
-\section{Implementaciones m·s eficientes}
+\section{Implementaciones m√°s eficientes}
 
-Si bien el orden del algoritmo \textit{merge sort} ser· siempre
-$O(N*\log_2N)$, si se quiere una implementaciÛn realmente eficiente del
-ordenamiento, ser· necesario hacerle algunas mejoras a la implementaciÛn
+Si bien el orden del algoritmo \textit{merge sort} ser√° siempre
+$O(N*\log_2N)$, si se quiere una implementaci√≥n realmente eficiente del
+ordenamiento, ser√° necesario hacerle algunas mejoras a la implementaci√≥n
 mostrada.
 
-\subsection{ImplementaciÛn con un solo pedido de memoria}
+\subsection{Implementaci√≥n con un solo pedido de memoria}
 
-El valor $A$ est· asociado al tiempo necesario para ejecutar la funciÛn
+El valor $A$ est√° asociado al tiempo necesario para ejecutar la funci√≥n
 \lstinline!merge!. Una de las operaciones que se puede eliminar de esta
-funciÛn es el pedido de memoria para el arreglo auxiliar, 
-\lstinline!int aux[fin-inicio];!, ya que esta operaciÛn consume tiempo en
-pedir la memoria (y luego devolverla, al terminar la funciÛn), que podrÌa
-ahorrarse si se hiciera un ˙nico pedido de memoria para todo el algoritmo.
+funci√≥n es el pedido de memoria para el arreglo auxiliar,
+\lstinline!int aux[fin-inicio];!, ya que esta operaci√≥n consume tiempo en
+pedir la memoria (y luego devolverla, al terminar la funci√≥n), que podr√≠a
+ahorrarse si se hiciera un √∫nico pedido de memoria para todo el algoritmo.
 
-Para ello, ser· necesario crear una funciÛn adicional, que sea la que haga
-el pedido de memoria auxiliar, y luego llame a la funciÛn recursiva, con
+Para ello, ser√° necesario crear una funci√≥n adicional, que sea la que haga
+el pedido de memoria auxiliar, y luego llame a la funci√≥n recursiva, con
 esa memoria ya reservada.
 
 \begin{codigo-c}
 void merge_sort(int vector[], int largo)
 {
-    int aux[largo]; 
-    msort(vector,0,largo,aux);
+    int aux[largo];
+    msort(vector, 0, largo, aux);
 }
 \end{codigo-c}
 
-La funciÛn recursiva es ahora \lstinline!msort!, que es pr·cticamente igual
+La funci√≥n recursiva es ahora \lstinline!msort!, que es pr√°cticamente igual
 a la vista previamente, siemplemente incluye el pasaje de la variable
 auxiliar.
 
@@ -218,9 +218,9 @@ void msort(int vector[], int inicio, int fin, int aux[])
 }
 \end{codigo-c}
 
-Por otro lado, la funciÛn \lstinline!merge!, ya no deber· realizar el
-pedido de memoria para alojar el vector adicional, sino que trabajar·
-directamente sobre la misma porciÛn del vector auxiliar que la utilizada
+Por otro lado, la funci√≥n \lstinline!merge!, ya no deber√° realizar el
+pedido de memoria para alojar el vector adicional, sino que trabajar√°
+directamente sobre la misma porci√≥n del vector auxiliar que la utilizada
 para el vector de valores.
 
 \begin{codigo-c}
@@ -235,16 +235,16 @@ void merge (int vector[], int inicio, int medio, int fin, int aux[])
     // Copia lo que haya quedado al final del segundo vector (...)
 
     // Copia los valores del vector auxiliar al original
-    int i; 
+    int i;
     for (i = inicio; i < fin; i++) {
         vector[i] = aux[i];
     }
 }
 \end{codigo-c}
 
-De esta forma se logrÛ evitar tener que estar pidiendo memoria para el
+De esta forma se logr√≥ evitar tener que estar pidiendo memoria para el
 vector auxiliar una y otra vez.  Sin embargo, esto no alcanza para decir
-que se cuenta con una versiÛn realmente eficiente de \textit{merge sort}.
+que se cuenta con una versi√≥n realmente eficiente de \textit{merge sort}.
 
 \subsection{Otras mejoras}
 
@@ -253,26 +253,24 @@ otras mejoras, como por ejemplo:
 
 \begin{description}
 
-\item[ImplementaciÛn sin copia in˙til de los datos]
+\item[Implementaci√≥n sin copia in√∫til de los datos]
 
-Otra operaciÛn que consume tiempo in˙tilmente es volver a copiar los
-datos del vector auxiliar al principal al terminar la funciÛn
+Otra operaci√≥n que consume tiempo in√∫tilmente es volver a copiar los
+datos del vector auxiliar al principal al terminar la funci√≥n
 \lstinline!merge!.
 
 Esta copia puede evitarse si se opera alternadamente
 con el vector auxiliar y con el principal, de modo que el vector auxiliar
 de una llamada a \lstinline!msort! es el principal de la llamada recursiva
-realizada dentro de la funciÛn, y asÌ.
+realizada dentro de la funci√≥n, y as√≠.
 
 \item[Uso de otros tipos de datos]
 
-En los ejemplos mostrados se han usado vectores de enteros para hacer m·s
+En los ejemplos mostrados se han usado vectores de enteros para hacer m√°s
 simple el ejemplo, pero de la misma forma puede usarse cualquier otro tipo
 de dato que tengamos alguna forma de compararlo. O bien hacer una
-implementaciÛn que no le importe el tipo de dato con el que opera, y use
-una funciÛn que recibe por par·metro para comparar elementos.
+implementaci√≥n que no le importe el tipo de dato con el que opera, y use
+una funci√≥n que recibe por par√°metro para comparar elementos.
 
 \end{description}
-
-
 

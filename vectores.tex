@@ -32,13 +32,13 @@ El siguiente código imprime la posición de memoria del vector a:
 Por otro lado,
 
 \begin{codigo-c-plano}
-  int *p = a; 
+  int *p = a;
 \end{codigo-c-plano}
 
 Es una intrucción válida, ya que C guarda la dirección de memoria de a en p.
-Sin embargo, esto no quiere decir que un vector sea un puntero. 
+Sin embargo, esto no quiere decir que un vector sea un puntero.
 
-\begin{figure}[htb] 
+\begin{figure}[htb]
 \centering
 \includegraphics{imagenes/vectores-pila}
 \caption{Pila de ejecución del código mostrado}
@@ -57,7 +57,7 @@ dirección de memoria del vector. Por ejemplo, si definimos la siguiente
 función \lstinline!suma!:
 
 \begin{codigo-c-plano}
-  long suma(int *datos, int largo) 
+  long suma(int *datos, int largo)
   {
     long res = 0;
     for(int i = 0; i<largo; i++) {
@@ -72,7 +72,7 @@ El puntero \lstinline!datos! tendrá la dirección de memoria del vector recibid
 podremos hacerlo de la siguiente forma:
 
 \begin{codigo-c-plano}
-    suma(a, 5); 
+    suma(a, 5);
 \end{codigo-c-plano}
 
 Siendo \lstinline!a! el mismo vector con el que venimos trabajando. Al
@@ -98,7 +98,7 @@ usual de recibir un vector en C.
 
 Al declarar cualquier tipo de vector, C requiere que cada posición del
 vector tenga exactamente el mismo largo (en bytes), por lo que cada
-posición debe ser de un tamaño fijo. 
+posición debe ser de un tamaño fijo.
 
 Es por ello que, si se desea armar un vector de vectores (una matriz), se
 lo deba hacer de una forma particular.  Por ejemplo, si se desea construir
@@ -162,7 +162,7 @@ genéricas, que reciban el tamaño de la matriz por parámetro. Por ejemplo:
 \begin{codigo-c}
 void imprimir_matriz(void* aux, size_t filas, size_t cols)
 {
-	int *x = aux;
+    int *x = aux;
     for (int i=0; i < filas; i++) {
         for (int j=0; j < cols; j++) {
             printf("%d ", (x + i*cols)[j]);
@@ -206,7 +206,7 @@ void imprimir_matriz(int** v, size_t filas, size_t cols) {
 Utilizando este formato será posible seguir accediendo a los datos
 contenidos en la matriz como \lstinline!v[fila][columna]!.
 
-\begin{figure}[htb] 
+\begin{figure}[htb]
 \centering
 \includegraphics{imagenes/vectores-matrices}
 \caption{Ubicación de los vectores mostrados en la memoria}
@@ -242,6 +242,4 @@ de manera similar a la mostrada para las matrices.
 Es decir que en este caso la variable \lstinline!palabras! contiene un
 arreglo de tres punteros, cada uno de los cuales apunta a una porción de
 memoria donde están almacenadas las palabras.
-
-
 

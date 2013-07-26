@@ -1,36 +1,36 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
-% Esta obra est· licenciada de forma dual, bajo las licencias Creative
+% Esta obra est√° licenciada de forma dual, bajo las licencias Creative
 % Commons:
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 2.5 Argentina 
-%    http://creativecommons.org/licenses/by-sa/2.5/ar/ 
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 3.0 Unported
-%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR. 
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 2.5 Argentina
+%    http://creativecommons.org/licenses/by-sa/2.5/ar/
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 3.0 Unported
+%    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
 %
 % A su criterio, puede utilizar una u otra licencia, o las dos.
 % Para ver una copia de las licencias, puede visitar los sitios
-% mencionados, o enviar una carta a Creative Commons, 
+% mencionados, o enviar una carta a Creative Commons,
 % 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\thesection}{\arabic{section}}
-\chapter*{Ordenamiento r·pido, \textit{quick sort}}
+\chapter*{Ordenamiento r√°pido, \textit{quick sort}}
 
-El mÈtodo de ordenamiento \textit{quick sort} es el m·s famoso de los
-mÈtodos de ordenamiento recursivos, su fama se basa en que puede ser
-implementado de forma muy eficiente y en la gran mayorÌa de los casos tiene
+El m√©todo de ordenamiento \textit{quick sort} es el m√°s famoso de los
+m√©todos de ordenamiento recursivos, su fama se basa en que puede ser
+implementado de forma muy eficiente y en la gran mayor√≠a de los casos tiene
 el mismo orden de complejidad que \textit{merge sort}.
-Al igual que este ˙ltimo, est· basado en la tÈcnica de dividir y conquistar.\\
+Al igual que este √∫ltimo, est√° basado en la t√©cnica de dividir y conquistar.\\
 
-Los pasos de este mÈtodo de ordenamiento son:
+Los pasos de este m√©todo de ordenamiento son:
 \begin{enumerate}
 \item Cuando la longitud del vector sea 0 o 1, se considera que ya se
-encuentra ordenado. De no ser asÌ:
+encuentra ordenado. De no ser as√≠:
 \item Se elige un elemento del vector como \textit{pivote}.  Generalmente
-ser· el primero o el ˙ltimo.
+ser√° el primero o el √∫ltimo.
 \item Se reordenan los elementos del vector de modo que quede dividido en
-tres partes (\textbf{particiÛn}): los elementos menores al pivote, el pivote y los elementos
+tres partes (\textbf{partici√≥n}): los elementos menores al pivote, el pivote y los elementos
 mayores al pivote. Al terminar este paso, el pivote
 queda en su lugar definitivo.
 \item Se repite el mismo proceso para cada una de las partes que no
@@ -38,18 +38,18 @@ contienen al pivote (los menores y los mayores).
 \end{enumerate}
 
 Por ejemplo, si el vector original es \verb+[6, 7, -1, 0, 5, 2, 3, 8]+ y se
-elige el primer elemento como pivote (\verb!6!), la particiÛn del vector
-ser·: \verb![-1, 0, 5, 2, 3]!, \verb!6!, \verb![7, 8]!. Se proceder· a
+elige el primer elemento como pivote (\verb!6!), la partici√≥n del vector
+ser√°: \verb![-1, 0, 5, 2, 3]!, \verb!6!, \verb![7, 8]!. Se proceder√° a
 ordenar recursivamente \verb![-1, 0, 5, 2, 3]! y \verb![7, 8]!, de modo que
-el vector final ser· \verb![-1, 0, 2, 3, 5, 6, 7, 8]!.
+el vector final ser√° \verb![-1, 0, 2, 3, 5, 6, 7, 8]!.
 
-\section{ImplementaciÛn b·sica}
+\section{Implementaci√≥n b√°sica}
 
-En este caso se implementar· una funciÛn \lstinline!quick_sort!, que se
-encargar· tanto de realizar la particiÛn, como de llamarse recursivamente
-hasta que no haya m·s elementos que ordenar.
+En este caso se implementar√° una funci√≥n \lstinline!quick_sort!, que se
+encargar√° tanto de realizar la partici√≥n, como de llamarse recursivamente
+hasta que no haya m√°s elementos que ordenar.
 
-La elecciÛn del pivote depende de cada implementaciÛn de \textit{quick
+La elecci√≥n del pivote depende de cada implementaci√≥n de \textit{quick
 sort}, en este caso se elige el primer elemento del vector como pivote.
 
 \begin{codigo-c}
@@ -70,7 +70,7 @@ void quick_sort(int vector[], int inicio, int fin)
         }
     }
 
-    // Coloca el pivote al final de los menores y el ˙ltimo
+    // Coloca el pivote al final de los menores y el √∫ltimo
     // menor en el primer lugar.
     swap(vector, pivote, ult_menor);
     // Ordena cada una de las mitades
@@ -80,14 +80,14 @@ void quick_sort(int vector[], int inicio, int fin)
 }
 \end{codigo-c}
 
-El bucle principal de la funciÛn recorre los elementos del vector una ˙nica
+El bucle principal de la funci√≥n recorre los elementos del vector una √∫nica
 vez, cambiando de lugar aquellos que son menores al pivote para que queden
 en la primera parte y que los mayores queden en la segunda.
 
 Una vez terminado este bucle, se coloca el pivote en el medio de ambas
-partes, de modo que quede ubicado en su posiciÛn final.
+partes, de modo que quede ubicado en su posici√≥n final.
 
-La funciÛn \lstinline!swap! utilizada en esta porciÛn de cÛdigo, recibe un
+La funci√≥n \lstinline!swap! utilizada en esta porci√≥n de c√≥digo, recibe un
 vector y dos posiciones dentro del vector, e intercambia los valores que se
 encuentran en esas dos posiciones:
 
@@ -100,21 +100,21 @@ void swap(int vector[], int pos_1, int pos_2)
 }
 \end{codigo-c}
 
-Esta funciÛn puede utilizarse siempre que se necesite intercambiar dos
+Esta funci√≥n puede utilizarse siempre que se necesite intercambiar dos
 elementos de un vector.
 
-\section{An·lisis de complejidad}
+\section{An√°lisis de complejidad}
 
 A simple vista, el algoritmo de \textit{quick sort} puede parecer muy
 similar al de \textit{merge sort}, ya que en ambos casos se divide a la
-lista en dos, y se opera sobre partes cada vez m·s pequeÒas.
+lista en dos, y se opera sobre partes cada vez m√°s peque√±as.
 
 Sin embargo, algo importante a tener en cuenta es que en el caso del
-\textit{quick sort} el orden que tenga el algoritmo depender· en una gran
-parte de la elecciÛn del pivote, ya que no es lo mismo elegir un valor que
+\textit{quick sort} el orden que tenga el algoritmo depender√° en una gran
+parte de la elecci√≥n del pivote, ya que no es lo mismo elegir un valor que
 se encuentre aproximadamente en el medio, de forma que las dos partes sean
-aproximadamente del mismo tamaÒo, que elegir un valor que se encuentre en
-uno de los extremos, de modo que una de las partes mida mucho m·s que la
+aproximadamente del mismo tama√±o, que elegir un valor que se encuentre en
+uno de los extremos, de modo que una de las partes mida mucho m√°s que la
 otra.
 
 Asumiendo que el valor elegido se encuentra aproximadamente en el medio,
@@ -132,14 +132,14 @@ principal.  Puede verse que estas ecuaciones son las mismas que para
 
 Sin embargo, cuando el pivote elegido no divide ambas partes al medio, el
 comportamiento no es tan bueno.  En el peor caso (cuando una parte queda
-con todos los elementos menos el pivote y la otra vacÌa), ser·:
+con todos los elementos menos el pivote y la otra vac√≠a), ser√°:
 
 \begin{eqnarray}
 T(N) &=& A * N + T(N-1) \\
 T(1) &=& B
 \end{eqnarray}
 
-De modo que aplicando el mÈtodo telescÛpico, similar al utilizado
+De modo que aplicando el m√©todo telesc√≥pico, similar al utilizado
 anteriormente:
 
 \begin{eqnarray}
@@ -152,21 +152,21 @@ T(N) &=& A * N + T(N-1) \\
 &=&A * \frac{N^2+N}{2} - 1 + B
 \end{eqnarray}
 
-Se puede ver que en el peor caso, el orden ser· $O(N^2)$, mucho peor que el
+Se puede ver que en el peor caso, el orden ser√° $O(N^2)$, mucho peor que el
 $O(Nlog_2N)$ visto anteriormente.  Sin embargo, se pueden tomar recaudos
 especiales para que este peor caso sea extremadamente improbable, y que en
-la pr·ctica se pueda considerar que el algoritmo se comporta como
+la pr√°ctica se pueda considerar que el algoritmo se comporta como
 $O(Nlog_2N)$.
 
-\section{Implementaciones m·s eficientes}
+\section{Implementaciones m√°s eficientes}
 
-\subsection{ElecciÛn del pivote}
+\subsection{Elecci√≥n del pivote}
 
-Si se elige el primer elemento (o el ˙ltimo), el algoritmo resulta muy
+Si se elige el primer elemento (o el √∫ltimo), el algoritmo resulta muy
 inconveniente para el caso de una lista que ya se encuentra ordenada, y
 este es un caso que en ciertas situaciones es esperable que suceda.
 
-Es por eso que una optimizaciÛn sencilla es intercambiar el elemento del
+Es por eso que una optimizaci√≥n sencilla es intercambiar el elemento del
 medio con el que se vaya a utilizar de pivote antes de comenzar el bucle
 principal.
 
@@ -175,29 +175,29 @@ principal.
     swap(vector, pivote, medio);
 \end{codigo-c}
 
-Otras tÈcnicas de elecciÛn del pivote incluyen:
+Otras t√©cnicas de elecci√≥n del pivote incluyen:
 \begin{itemize}
 \item Elegir un elemento aleatoriamente, esto hace que en promedio sea
-mucho m·s probable tener un buen caso que uno malo, pero no elimina la
+mucho m√°s probable tener un buen caso que uno malo, pero no elimina la
 posibilidad del peor caso.
-\item Recorrer la lista y buscar el elemento que ocupar· la posiciÛn
+\item Recorrer la lista y buscar el elemento que ocupar√° la posici√≥n
 central de la lista.  Eso asegura que el orden sea siempre $O(Nlog_2N)$, pero
 decrementa mucho la eficiencia del caso base.
 \item Elegir tres elementos de la lista (por ejemplo, el primero, el del
-medio y el ˙ltimo), y quedarse con el del medio de los tres como pivote.
+medio y el √∫ltimo), y quedarse con el del medio de los tres como pivote.
 \end{itemize}
 
-\subsection{ReducciÛn de la cantidad de intercambios}
+\subsection{Reducci√≥n de la cantidad de intercambios}
 
-En la implementaciÛn vista, puede suceder que se hagan numerosos
+En la implementaci√≥n vista, puede suceder que se hagan numerosos
 intercambios innecesarios, cuando un elemento ya es menor que el pivote, y
-simplemente harÌa falta avanzar la variable que indica la posiciÛn del
-˙ltimo menor.
+simplemente har√≠a falta avanzar la variable que indica la posici√≥n del
+√∫ltimo menor.
 
-Una implementaciÛn alternativa de {\it quick sort} se basa en esta idea para
+Una implementaci√≥n alternativa de {\it quick sort} se basa en esta idea para
 tratar de minimizar la cantidad de intercambios.  Se cuenta con dos
 variables, que se utilizan para saltear los elementos que no hace falta
-cambiar de lugar, y sÛlo cambiar aquellos que es necesario.
+cambiar de lugar, y s√≥lo cambiar aquellos que es necesario.
 
 \begin{codigo-c}
 void quick_sort(int vector[], int inicio, int fin)
@@ -209,8 +209,8 @@ void quick_sort(int vector[], int inicio, int fin)
     int der = fin - 1;
     int pivote = inicio;
 
-    // Cambia el del medio con el primero. 
-    // (optimizaciÛn para vectores ordenados).
+    // Cambia el del medio con el primero.
+    // (optimizaci√≥n para vectores ordenados).
     int medio = (izq + der) / 2;
     swap(vector, pivote, medio);
 
@@ -223,7 +223,7 @@ void quick_sort(int vector[], int inicio, int fin)
             swap(vector, izq, der);
     }
 
-    // Coloca el pivote al final de los menores y el ˙ltimo
+    // Coloca el pivote al final de los menores y el √∫ltimo
     // menor en el primer lugar.
     swap(vector, pivote, der);
     // Ordena cada una de las mitades
@@ -236,29 +236,29 @@ Como se puede ver, se ha reemplazado el bucle principal, por otro que
 recorre el vector desde ambas puntas hacia el medio, buscando los elementos
 que necesitan ser intercambiados.
 
-\subsection{UtilizaciÛn de otros algoritmos}
+\subsection{Utilizaci√≥n de otros algoritmos}
 
-En particular para los casos de las partes m·s pequeÒas, al tener menos
-elementos, sin importar cu·l se elija como pivote, es m·s probable que se
+En particular para los casos de las partes m√°s peque√±as, al tener menos
+elementos, sin importar cu√°l se elija como pivote, es m√°s probable que se
 asemejen al peor caso.
 
-Es por ello que una tÈcnica de optimizaciÛn puede incluir utilizar un
-algoritmo alternativo, como por ejemplo el de ordenamiento por inserciÛn,
+Es por ello que una t√©cnica de optimizaci√≥n puede incluir utilizar un
+algoritmo alternativo, como por ejemplo el de ordenamiento por inserci√≥n,
 para secuencias de pocos elementos. \\
 
-Por otro lado, puede tambiÈn implementarse un contador que verifique la
-profundidad de la recursiÛn y cuando esta exceda el nivel esperado por el
+Por otro lado, puede tambi√©n implementarse un contador que verifique la
+profundidad de la recursi√≥n y cuando esta exceda el nivel esperado por el
 algoritmo, pasar a utilizar otro algoritmo de ordenamiento, como {\it merge
 sort} o {\it heap sort}.
 
-\section{Quick sort en la biblioteca est·ndar de C}
+\section{Quick sort en la biblioteca est√°ndar de C}
 
-Entre las funciones que provee la biblioteca est·ndar de C, se incluye una
-implementaciÛn de quick sort. Dado que la biblioteca est·ndar est· altamente
+Entre las funciones que provee la biblioteca est√°ndar de C, se incluye una
+implementaci√≥n de quick sort. Dado que la biblioteca est√°ndar est√° altamente
 probada y seguramente contenga optimizaciones avanzadas, es en general una
 buena idea usar las funciones que provistas antes que usar las propias.
 
-En el caso del \textit{quick sort}, la funciÛn se llama \lstinline!qsort! y se
+En el caso del \textit{quick sort}, la funci√≥n se llama \lstinline!qsort! y se
 encuentra definida en el encabezado \lstinline!<stdlib.h>!, su prototipo es:
 
 \begin{codigo-c}
@@ -266,11 +266,11 @@ void qsort(void *base, size_t nmemb, size_t size,
            int(*compar)(const void *, const void *));
 \end{codigo-c}
 
-Que puede ser intimidante por la cantidad y complejidad de par·metros que
-recibe, en gran parte debido a la generalidad del cÛdigo. \lstinline!base! se
+Que puede ser intimidante por la cantidad y complejidad de par√°metros que
+recibe, en gran parte debido a la generalidad del c√≥digo. \lstinline!base! se
 refiere al vector a ordenar, \lstinline!nmemb! es la cantidad de elementos
-del vector, \lstinline!size! es el tamaÒo en bytes de un elemento,
-\lstinline!compar! es la funciÛn que se debe usar para comparar.
+del vector, \lstinline!size! es el tama√±o en bytes de un elemento,
+\lstinline!compar! es la funci√≥n que se debe usar para comparar.
 
-Este tipo de funciones se ver·n con m·s detalle m·s adelante.
+Este tipo de funciones se ver√°n con m√°s detalle m√°s adelante.
 

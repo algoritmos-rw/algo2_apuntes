@@ -1,11 +1,11 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
-% Esta obra est· licenciada de forma dual, bajo las licencias Creative
+% Esta obra est√° licenciada de forma dual, bajo las licencias Creative
 % Commons:
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 2.5 Argentina
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 2.5 Argentina
 %    http://creativecommons.org/licenses/by-sa/2.5/ar/
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 3.0 Unported
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 3.0 Unported
 %    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
 %
 % A su criterio, puede utilizar una u otra licencia, o las dos.
@@ -15,49 +15,49 @@
 
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\thesection}{\arabic{section}}
-\chapter*{CompilaciÛn de varios archivos en C}
+\chapter*{Compilaci√≥n de varios archivos en C}
 
-En todo programa es importante modularizar el cÛdigo de forma que se facilite
-la reutilizaciÛn y se minimice la repeticiÛn de cÛdigo.
+En todo programa es importante modularizar el c√≥digo de forma que se facilite
+la reutilizaci√≥n y se minimice la repetici√≥n de c√≥digo.
 En particular, cuando se trata de tipos abstractos de datos, es importante
-tener un mÛdulo correspondiente a cada tipo abstracto.
+tener un m√≥dulo correspondiente a cada tipo abstracto.
 
 Por otro lado, para que un tipo abstracto de datos sea realmente
-\textit{abstracto} es recomendable que la implementaciÛn de las operaciones
-correspondientes al tipo estÈn separadas de los prototipos de estas
-operaciones, de modo que quien las utiliza se concentre ˙nicamente en cu·les
-son las operaciones y no en cÛmo se llevan a cabo.  
+\textit{abstracto} es recomendable que la implementaci√≥n de las operaciones
+correspondientes al tipo est√©n separadas de los prototipos de estas
+operaciones, de modo que quien las utiliza se concentre √∫nicamente en cu√°les
+son las operaciones y no en c√≥mo se llevan a cabo.
 
-\section{Encabezado, implementaciÛn y cÛdigo objeto}
+\section{Encabezado, implementaci√≥n y c√≥digo objeto}
 
-En C, esto se logra mediante la separaciÛn de cada mÛdulo en un archivo
+En C, esto se logra mediante la separaci√≥n de cada m√≥dulo en un archivo
 \verb!.h!, que contiene las declaraciones de estructuras, constantes y
-prototipos de las funciones, que es llamado el \textit{encabezado} del mÛdulo,
+prototipos de las funciones, que es llamado el \textit{encabezado} del m√≥dulo,
 y un archivo \verb!.c! que contiene las implementaciones correspondientes.
 
 Cada uno de los archivos \verb!.c! se utiliza para generar un archivo
-\verb!.o! que contiene el \textit{cÛdigo objeto}, es decir el cÛdigo de
-m·quina, correspondiente a cada mÛdulo.
+\verb!.o! que contiene el \textit{c√≥digo objeto}, es decir el c√≥digo de
+m√°quina, correspondiente a cada m√≥dulo.
 
 Cuando se compila un programa completo, todos los \verb!.o! que se hayan
-generado a partir de los mÛdulos programados deben combinarse en un sÛlo
+generado a partir de los m√≥dulos programados deben combinarse en un s√≥lo
 ejecutable.
 
-\subsection{InclusiÛn de otros encabezados}
+\subsection{Inclusi√≥n de otros encabezados}
 
-Cuando un mÛdulo requiere de funciones definidas en otros mÛdulos, debe
+Cuando un m√≥dulo requiere de funciones definidas en otros m√≥dulos, debe
 incluir los encabezados (los archivos \verb!.h!) en los que esas funciones
-est·n definidas.  Esta inclusiÛn se realiza normalmente dentro del encabezado 
-correspondiente al mÛdulo en cuestiÛn.
+est√°n definidas.  Esta inclusi√≥n se realiza normalmente dentro del encabezado
+correspondiente al m√≥dulo en cuesti√≥n.
 
-Es posible que al momento de construir un programa de tamaÒo considerable
-suceda que hay varios mÛdulos que dependen de otro. De modo que podrÌa suceder
-que este otro se incluya varias veces, lo cual es problem·tico y debe ser
+Es posible que al momento de construir un programa de tama√±o considerable
+suceda que hay varios m√≥dulos que dependen de otro. De modo que podr√≠a suceder
+que este otro se incluya varias veces, lo cual es problem√°tico y debe ser
 evitado.
 
 Para solucionar este problema, se utilizan las construcciones condicionales
-del preprocesador, haciendo que el cÛdigo definido dentro de un encabezado se
-incluya en el programa un ˙nica vez. Por ejemplo:
+del preprocesador, haciendo que el c√≥digo definido dentro de un encabezado se
+incluya en el programa un √∫nica vez. Por ejemplo:
 
 \begin{codigo-c-plano}
 #ifndef __ENUM_H
@@ -67,39 +67,39 @@ incluya en el programa un ˙nica vez. Por ejemplo:
 #endif
 \end{codigo-c-plano}
 
-En este caso, el preprocesador verifica si est· definida la variable
+En este caso, el preprocesador verifica si est√° definida la variable
 \lstinline!__ENUM_H!. De no estar definida, la define y luego define los tipos
-enumerados correspondientes a este encabezado.  
+enumerados correspondientes a este encabezado.
 
 En cambio, si la variable ya estaba definida, significa que este encabezado ya
 fue procesado, con lo cual no se hace nada.
 
 
-\section{CompilaciÛn con \texttt{make}}
+\section{Compilaci√≥n con \texttt{make}}
 
-Cuando los mÛdulos que componen un programa son muchos, los pasos necesarios
+Cuando los m√≥dulos que componen un programa son muchos, los pasos necesarios
 para compilarlo pueden ser muchos y tener que regenerarlos manualmente cada
-vez que se los modificque serÌa una tarea demasiado tediosa.  Es por ello que
+vez que se los modificque ser√≠a una tarea demasiado tediosa.  Es por ello que
 existe una herramienta llamada \verb!make!, encargada de realizar todos los
-pasos de compilaciÛn y necesarios y de hacerlos sÛlo cuando haga falta.
+pasos de compilaci√≥n y necesarios y de hacerlos s√≥lo cuando haga falta.
 
-Esta herramienta utiliza, a modo de configuraciÛn, los archivos
-\verb!Makefile! en donde se indican los pasos a realizar para la compilaciÛn
-tanto de los mÛdulos como del programa principal.
+Esta herramienta utiliza, a modo de configuraci√≥n, los archivos
+\verb!Makefile! en donde se indican los pasos a realizar para la compilaci√≥n
+tanto de los m√≥dulos como del programa principal.
 
-En estos archivos, b·sicamente, se pueden definir variables y reglas para
-compilar los distintos mÛdulos.  
+En estos archivos, b√°sicamente, se pueden definir variables y reglas para
+compilar los distintos m√≥dulos.
 
 \subsection{Un \texttt{Makefile} sencillo}
 
-A continuaciÛn un ejemplo de cÛmo puede verse un posible archivo
+A continuaci√≥n un ejemplo de c√≥mo puede verse un posible archivo
 \verb!Makefile!.
 
 \begin{lstlisting}[language=make, numbers=none]
-CFLAGS=-g -Wall
-EXEC=miprog
-OBJ=lista.o pila.o
-CC=gcc
+CFLAGS = -g -Wall -std=c99
+EXEC = miprog
+OBJ = lista.o pila.o
+CC = gcc
 
 all: $(EXEC)
 
@@ -116,38 +116,38 @@ $(EXEC): $(OBJ) miprog.c
 \subsection{Variables}
 
 En la primera parte se declaran 4 variables, \lstinline!CFLAGS! son los
-\textit{flags} (par·metros) de compilaciÛn utilizados, en este caso se trata
-del par·metro que incluye la informaciÛn para depuraciÛn \lstinline!-g! y el
-par·metro para que advierta sobre todos los posibles problemas que el
+\textit{flags} (par√°metros) de compilaci√≥n utilizados, en este caso se trata
+del par√°metro que incluye la informaci√≥n para depuraci√≥n \lstinline!-g! y el
+par√°metro para que advierta sobre todos los posibles problemas que el
 compilador encuentre, \lstinline!-Wall!.
 
-Luego se declara el nombre que tendr· el programa ejecutable.  En este caso no
-tiene extensiÛn, puesto que es un programa para sistemas UNIX (Linux, BSD,
+Luego se declara el nombre que tendr√° el programa ejecutable.  En este caso no
+tiene extensi√≥n, puesto que es un programa para sistemas UNIX (Linux, BSD,
 Solaris, etc). Si se estuviera compilando para un sistema Windows, la variable
-\lstinline!EXEC! serÌa \lstinline!miprog.exe!.
+\lstinline!EXEC! ser√≠a \lstinline!miprog.exe!.
 
-Luego se listan cu·les ser·n los mÛdulos que deber·n transformarse en cÛdigo
+Luego se listan cu√°les ser√°n los m√≥dulos que deber√°n transformarse en c√≥digo
 objeto, y finalmente se coloca el nombre del compilador.  Separar la
-informaciÛn de esta manera permite que si es necesario hacer un cambio en la
-forma de compilar un programa, el trabajo para realizarlo sea mÌnimo.
+informaci√≥n de esta manera permite que si es necesario hacer un cambio en la
+forma de compilar un programa, el trabajo para realizarlo sea m√≠nimo.
 
 Es importante notar que en el \verb!Makefile!, las variables se definen
 simplemente con \lstinline!VARIABLE=VALOR!, pero luego para utilizarlas, se lo
 hace de la forma \lstinline!$(VARIABLE)!.
 
-\subsection{Reglas de compilaciÛn}
+\subsection{Reglas de compilaci√≥n}
 
 Luego de las variables, se definen cada uno de los archivos a generar, los
 archivos de los cuales estos dependen, y las acciones a llevar a cabo para
 compilar los archivos correspondientes.
 
-Cuando se ejecuta el comando \verb!make! sin ning˙n par·metro, se ejecuta
-autom·ticamente la primera de todas las reglas, es por eso que esta regla
-normalmente se llama \lstinline!all! y simplemente indica cu·l es el archivo a
+Cuando se ejecuta el comando \verb!make! sin ning√∫n par√°metro, se ejecuta
+autom√°ticamente la primera de todas las reglas, es por eso que esta regla
+normalmente se llama \lstinline!all! y simplemente indica cu√°l es el archivo a
 generar.
 
-Luego de esta regla especial, se encuentran las reglas de compilaciÛn de cada
-uno de los mÛdulos del programa.  Las reglas tienen un formato especÌfico que
+Luego de esta regla especial, se encuentran las reglas de compilaci√≥n de cada
+uno de los m√≥dulos del programa.  Las reglas tienen un formato espec√≠fico que
 se debe cumplir para que funcione el \verb!Makefile!.
 
 \begin{lstlisting}[language=make, numbers=none]
@@ -160,9 +160,9 @@ cambie una de las \lstinline!dependencias!, ejecutando las
 \lstinline!acciones!.
 
 Es importante notar que para que el \verb!make! funcione correctamente, las
-acciones a realizar deben tener un tabulador de separaciÛn desde el comienzo
-de lÌnea.  Puede haber m·s de una acciÛn, de a una por lÌnea, siempre que se
-mantenga un tabulador de separaciÛn. \\
+acciones a realizar deben tener un tabulador de separaci√≥n desde el comienzo
+de l√≠nea.  Puede haber m√°s de una acci√≥n, de a una por l√≠nea, siempre que se
+mantenga un tabulador de separaci√≥n. \\
 
 En particular, la regla que se encarga de generar el programa principal es
 diferente a las otras, ya que incluye una mayor cantidad de dependencias y de
@@ -175,24 +175,24 @@ $(EXEC): $(OBJ) miprog.c
 
 Esta regla indica que el archivo indicado mediante la variable
 \lstinline!$(EXEC)! definida previamente debe generarse cuando cambie cualquiera
-de los archivos objeto, ya que si estos cambian, tambiÈn debe cambiar el
-ejecutable final, o bien si cambia el cÛdigo principal del programa. \\
+de los archivos objeto, ya que si estos cambian, tambi√©n debe cambiar el
+ejecutable final, o bien si cambia el c√≥digo principal del programa. \\
 
-Es importante notar que mediante estas reglas, \verb!make! no sÛlo es capaz de
-compilar los archivos de forma correcta, sino que tambiÈn es capaz de
-realizarlo sÛlo cuando sea necesario.  Para ello, verifica que la fecha de
-modificaciÛn de los archivos listados como dependencias sea anterior al
-archivo a generar.  De no ser asÌ, vuelve a generarlo, ya que algo ha
+Es importante notar que mediante estas reglas, \verb!make! no s√≥lo es capaz de
+compilar los archivos de forma correcta, sino que tambi√©n es capaz de
+realizarlo s√≥lo cuando sea necesario.  Para ello, verifica que la fecha de
+modificaci√≥n de los archivos listados como dependencias sea anterior al
+archivo a generar.  De no ser as√≠, vuelve a generarlo, ya que algo ha
 cambiado.
 
-\subsection{Reglas genÈricas}
+\subsection{Reglas gen√©ricas}
 
-Cuando la gran mayorÌa de los archivos del programa se compilan de una misma
+Cuando la gran mayor√≠a de los archivos del programa se compilan de una misma
 forma, es posible simplificar el archivo \verb!Makefile!, mediante el uso de reglas
-genÈricas.
+gen√©ricas.
 
 Por ejemplo, para el caso del \verb!Makefile! visto anteriormente, las dos
-lÌneas que generan los archivos \verb!.o! podrÌan simplificarse en una sola de
+l√≠neas que generan los archivos \verb!.o! podr√≠an simplificarse en una sola de
 la siguiente forma:
 
 \begin{lstlisting}[language=make, numbers=none]
@@ -202,21 +202,21 @@ la siguiente forma:
 
 Esta regla significa que para generar un archivo \verb!.o! es necesario contar
 con un archivo del mismo nombre \verb!.c! y otro del mismo nombre \verb!.h!.
-En la regla de compilaciÛn se utiliza la variable especial \lstinline!$<!, que
+En la regla de compilaci√≥n se utiliza la variable especial \lstinline!$<!, que
 toma el valor de la primera de las dependencias listadas (el archivo
-\verb!.c!.).  Existe tambiÈn \lstinline!$@!, que toma el nombre del archivo
-que est· siendo generado en esa regla.
+\verb!.c!.).  Existe tambi√©n \lstinline!$@!, que toma el nombre del archivo
+que est√° siendo generado en esa regla.
 
 \subsection{Acciones comunes}
 
-Adem·s de compilar, es com˙n querer eliminar los archivos generados, de modo
-que queden ˙nicamente los archivos fuente del programa.  Esta acciÛn
+Adem√°s de compilar, es com√∫n querer eliminar los archivos generados, de modo
+que queden √∫nicamente los archivos fuente del programa.  Esta acci√≥n
 normalmente se realiza mediante una regla especial llamada \lstinline!clean!.
 
-Si bien puede llevar cualquier nombre, lo m·s usual es ponerle este nombre ya
-que tanta gente la llama asÌ que cualquier programador que se encuentre con un
-\verb!Makefile! esperar· encontrar una regla con este nombre que realice esta
-acciÛn.
+Si bien puede llevar cualquier nombre, lo m√°s usual es ponerle este nombre ya
+que tanta gente la llama as√≠ que cualquier programador que se encuentre con un
+\verb!Makefile! esperar√° encontrar una regla con este nombre que realice esta
+acci√≥n.
 
 \begin{lstlisting}[language=make, numbers=none]
 clean:
@@ -224,33 +224,47 @@ clean:
 \end{lstlisting}
 
 Para utilizar esta regla (o cualquier otra que no sea la predeterminada), debe
-invocarse el comando \verb!make! con el nombre de la regla como par·metro. Es
+invocarse el comando \verb!make! con el nombre de la regla como par√°metro. Es
 decir, \verb!make clean!.
 
 Al igual que con \lstinline!clean!, existen otras acciones comunes que se
-suelen incluir en la mayorÌa de los programas.  Las m·s conocidas:
+suelen incluir en la mayor√≠a de los programas.  Las m√°s conocidas:
 
 \begin{description}
-\item[build] Para compilar el cÛdigo (equivalente a la regla
+\item[build] Para compilar el c√≥digo (equivalente a la regla
 \lstinline!all! del ejemplo mostrado).
-\item[install] Para instalar el cÛdigo compilado en el sistema.
+\item[install] Para instalar el c√≥digo compilado en el sistema.
 \item[uninstall] Para desinstalar el programa que haya sido
 instalado.
 \end{description}
 
 \subsection{Variables comunes}
 
-AsÌ como existen reglas comunes, que la mayorÌa de los programadores est·n
-acostumbrados a encontrar en los archivos \verb!Makefile!, tambiÈn existen
+As√≠ como existen reglas comunes, que la mayor√≠a de los programadores est√°n
+acostumbrados a encontrar en los archivos \verb!Makefile!, tambi√©n existen
 variables que suelen estar presentes.
 
 \begin{description}
 \item[CFLAGS] Que estaba en el ejemplo mostrado, son los
-par·metros pasados al compilador.
-\item[LDFLAGS] Son los par·metros pasados al enlazador.
-\item[PREFIX] Utilizado cuando hay una regla de instalaciÛn, es el
-directorio a partir del cual se instalar·n los archivos.
+par√°metros pasados al compilador.
+\item[LDFLAGS] Son los par√°metros pasados al enlazador.
+\item[PREFIX] Utilizado cuando hay una regla de instalaci√≥n, es el
+directorio a partir del cual se instalar√°n los archivos.
 \end{description}
 
-%Reglas PHONY
+\subsection{Reglas, archivos y PHONY}
+
+Cada regla de makefile tiene como finalidad crear un archivo, sin embargo hay
+reglas como la regla \verb!clean! que mostramos m√°s arriba que no genera
+ning√∫n archivo, tampoco depende de ning√∫n archivo (de hecho borra archivos,
+pero esto es parte de la acci√≥n y a make no le importa que hace la acci√≥n).
+
+Es m√°s, si creamos un archivo llamado \verb!clean! make creer√° que la regla
+est√° satisfecha. Para evitar que \verb!make! revise archivos que no vamos a
+generar es de bastante recomendable declarar las reglas que no generan
+archivos como \verb!.PHONY!, por ejemplo:
+
+\begin{lstlisting}[language=make, numbers=none]
+.PHONY: install clean
+\end{lstlisting}
 
