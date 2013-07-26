@@ -1,11 +1,11 @@
-% Copyright (C) Maximiliano Curia <maxy@gnuservers.com.ar>,
-%               Margarita Manterola <marga@marga.com.ar>
+% Copyright (C) 2010-2013, Maximiliano Curia <maxy@gnuservers.com.ar>,
+%               2010-2013, Margarita Manterola <marga@marga.com.ar>
 
-% Esta obra est· licenciada de forma dual, bajo las licencias Creative
+% Esta obra est√° licenciada de forma dual, bajo las licencias Creative
 % Commons:
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 2.5 Argentina
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 2.5 Argentina
 %    http://creativecommons.org/licenses/by-sa/2.5/ar/
-%  * AtribuciÛn-Compartir Obras Derivadas Igual 3.0 Unported
+%  * Atribuci√≥n-Compartir Obras Derivadas Igual 3.0 Unported
 %    http://creativecommons.org/licenses/by-sa/3.0/deed.es_AR.
 %
 % A su criterio, puede utilizar una u otra licencia, o las dos.
@@ -17,134 +17,134 @@
 \renewcommand{\thesection}{\arabic{section}}
 \chapter*{Archivos en C}
 
-En este apunte se ver· una referencia de las funciones y conceptos de archivos
+En este apunte se ver√° una referencia de las funciones y conceptos de archivos
 usado en C, resaltando algunas peculiaridades que no se ven en otros
 lenguajes. Pero de ninguna manera pretende ser un apunte completo sobre el uso
 de archivos en general y se asume cierta experiencia al respecto.
 
 Una de las peculiaridades de C es que, todos los programas al ejecutarse ya
-tienen tres archivos abiertos, estos son: la entrada est·ndar
-(\textit{stdin}), salida est·ndar (\textit{stdout}) y salida de error
+tienen tres archivos abiertos, estos son: la entrada est√°ndar
+(\textit{stdin}), salida est√°ndar (\textit{stdout}) y salida de error
 (\textit{stderr}). Los primeros dos son los que usan las funciones de entrada
 y salida del usuario, como \lstinline!scanf!  y \lstinline!printf!,
-respectivamente. El tercero es un archivo de salida destinado al envÌo de
-errores de ejecuciÛn y por omisiÛn saldr·n en la misma salida que los de
+respectivamente. El tercero es un archivo de salida destinado al env√≠o de
+errores de ejecuci√≥n y por omisi√≥n saldr√°n en la misma salida que los de
 salida externa.
 
 Siendo que lo que tiene que ver con archivos es normalmente entrada o salida
-del programa, las funciones listadas en este apunte est·n declaradas en el
+del programa, las funciones listadas en este apunte est√°n declaradas en el
 encabezado \lstinline!<stdio.h>!.
 
 \section{Entrada y salida de una terminal}
 
 La entrada y salida de una terminal en C se comporta de una forma similar a la
-lectura y escritura de archivos, por lo que se listan a continuaciÛn algunas
+lectura y escritura de archivos, por lo que se listan a continuaci√≥n algunas
 de las funciones de entrada y de salida.
 
-Tanto la entrada como la salida est·ndar suelen tener un \textit{buffer}, es
-decir una memoria intermedia, en este caso por lÌneas, por lo que al intentar
-leer de entrada est·ndar mediante \lstinline!scanf!, el programa se quedar·
-esperando hasta que se termine una lÌnea en la entrada, a˙n si sÛlo se quiere
-leer un caracter. El resto de lÌnea no procesada ser· la entrada de las
+Tanto la entrada como la salida est√°ndar suelen tener un \textit{buffer}, es
+decir una memoria intermedia, en este caso por l√≠neas, por lo que al intentar
+leer de entrada est√°ndar mediante \lstinline!scanf!, el programa se quedar√°
+esperando hasta que se termine una l√≠nea en la entrada, a√∫n si s√≥lo se quiere
+leer un caracter. El resto de l√≠nea no procesada ser√° la entrada de las
 siguientes llamadas a las funciones de entrada.
 
 Algo similar sucede con la salida por consola, cuando se utiliza
-\lstinline!printf!, la salida suele tener tambiÈn un \textit{buffer} orientado
-a lÌneas, por lo que hasta que no se termine una lÌnea, la salida no se emite
+\lstinline!printf!, la salida suele tener tambi√©n un \textit{buffer} orientado
+a l√≠neas, por lo que hasta que no se termine una l√≠nea, la salida no se emite
 en la terminal.
 
 \subsection{Manejo de caracteres de a uno}
 
-Sin embargo, no es la ˙nica opciÛn.  Existen otras funciones como:
+Sin embargo, no es la √∫nica opci√≥n.  Existen otras funciones como:
 
 \begin{codigo-c-plano}
 int getchar(void);
 \end{codigo-c-plano}
 
-Esta funciÛn permite leer un ˙nico caracter desde la entrada est·ndar,
-devuelve el valor del caracter leÌdo o, en caso de haberse terminado la
+Esta funci√≥n permite leer un √∫nico caracter desde la entrada est√°ndar,
+devuelve el valor del caracter le√≠do o, en caso de haberse terminado la
 entrada, el valor especial \lstinline!EOF!.
 
-De la misma forma, para emitir un ˙nico caracter por la terminal:
+De la misma forma, para emitir un √∫nico caracter por la terminal:
 
 \begin{codigo-c-plano}
 int putchar(int c);
 \end{codigo-c-plano}
 
-Esta funciÛn permite escribir un caracter en la terminal, devuelve el valor
+Esta funci√≥n permite escribir un caracter en la terminal, devuelve el valor
 del caracter escrito o bien \lstinline!EOF! en caso de error.
 
-% %%%% scanf y printf ya estaban, pero se podrÌa completar mejor.
+% %%%% scanf y printf ya estaban, pero se podr√≠a completar mejor.
 
 %\subsection{Entrada y salida con formato}
 %
-%Como ya se ha visto previamente, para una lectura con formato se utiliza 
-%\lstinline!scanf!\footnote{Para m·s informaciÛn: \texttt{man 3 scanf}.}, 
+%Como ya se ha visto previamente, para una lectura con formato se utiliza
+%\lstinline!scanf!\footnote{Para m√°s informaci√≥n: \texttt{man 3 scanf}.},
 %cuyo prototipo es:
 %
 %\begin{codigo-c-plano}
 %int scanf(const char *formato, ...);
 %\end{codigo-c-plano}
 %
-%El primer par·metro es una cadena de formato, que define, entre otras cosas,
+%El primer par√°metro es una cadena de formato, que define, entre otras cosas,
 %los tipos de las variables a leer. El \lstinline!...!, es una forma de
-%declarar una funciÛn que recibe una cantidad arbitraria de par·metros. En este
-%caso, en esa ubicaciÛn van las direcciones de memoria en las que se deben
+%declarar una funci√≥n que recibe una cantidad arbitraria de par√°metros. En este
+%caso, en esa ubicaci√≥n van las direcciones de memoria en las que se deben
 %escribir los datos leidos. El valor devuelto es la cantidad de valores leidos,
 %que puede ser menor a la cantidad pedida, o bien \lstinline!EOF! en caso de
 %error.
 %
 %Para emitir valores por la terminal usamos \lstinline!printf!\footnote{Para
-%m·s informaciÛn \texttt{man 3 scanf}.}, cuyo prototipo es:
+%m√°s informaci√≥n \texttt{man 3 scanf}.}, cuyo prototipo es:
 %
 %\begin{codigo-c-plano}
 %int printf(const char *formato, ...);
 %\end{codigo-c-plano}
 %
-%El primer par·metro es una cadena de formato, que define, entre otras cosas,
-%los tipos de las variables a emitir. Los siguientes par·metros ser·n los
+%El primer par√°metro es una cadena de formato, que define, entre otras cosas,
+%los tipos de las variables a emitir. Los siguientes par√°metros ser√°n los
 %valores a imprimir.
 
 % %%% Cadena de formato
 
 \section{Abrir archivos}
 
-Para abrir un archivo en C se utiliza la funciÛn
-\lstinline!fopen!\footnote{Para m·s informaciÛn: \texttt{man 3 fopen}.}, cuyo
+Para abrir un archivo en C se utiliza la funci√≥n
+\lstinline!fopen!\footnote{Para m√°s informaci√≥n: \texttt{man 3 fopen}.}, cuyo
 prototipo es:
 
 \begin{codigo-c-plano}
 FILE *fopen(const char *ruta, const char *modo);
 \end{codigo-c-plano}
 
-El primer par·metro es el nombre del archivo, y el segundo el modo de
+El primer par√°metro es el nombre del archivo, y el segundo el modo de
 apertura, que puede ser:
 
 \begin{tabular}{lp{10cm}}
-\verb!r!  & SÛlo lectura, se posiciona al principio del archivo. \\
+\verb!r!  & S√≥lo lectura, se posiciona al principio del archivo. \\
 \verb!r+! & Lectura y escritura, se posiciona al principio del archivo. \\
-\verb!w!  & Borra el contenido del archivo o crea uno nuevo, sÛlo escritura, se
+\verb!w!  & Borra el contenido del archivo o crea uno nuevo, s√≥lo escritura, se
 posiciona al principio del archivo. \\
 \verb!w+! & Borra el contenido del archivo o crea uno nuevo, lectura y
 escritura, se posiciona al principio del archivo. \\
-\verb!a!  & Abre para aÒadir (escribir al final del archivo). El archivo se
+\verb!a!  & Abre para a√±adir (escribir al final del archivo). El archivo se
 crea si no existe. Se posiciona al final del archivo. \\
-\verb!a+! & Abre para leer y aÒadir (escribir al final del archivo). El
+\verb!a+! & Abre para leer y a√±adir (escribir al final del archivo). El
 archivo se crea si no existe. Se posiciona al final del archivo.\\
 \end{tabular}
 
-Adem·s, el archivo puede abrirse en modo \emph{archivo de texto} (por omisiÛn)
-o en modo \emph{archivo binario} (agreg·ndole una \verb!b! al modo). Los
+Adem√°s, el archivo puede abrirse en modo \emph{archivo de texto} (por omisi√≥n)
+o en modo \emph{archivo binario} (agreg√°ndole una \verb!b! al modo). Los
 archivos de texto tienen un tratamiento especial para el caracter fin de
-lÌnea, mientras que con los archivos binarios se accede a los datos en crudo.
+l√≠nea, mientras que con los archivos binarios se accede a los datos en crudo.
 
 El valor devuelto por \lstinline!fopen! es un puntero de tipo
-\lstinline!FILE! que representa a los archivos en la biblioteca est·ndar. En
+\lstinline!FILE! que representa a los archivos en la biblioteca est√°ndar. En
 caso de error, el valor devuelto es \lstinline!NULL!.
 
 \section{Cerrar archivos}
 
-Cerrar un archivo es m·s sencillo:
+Cerrar un archivo es m√°s sencillo:
 
 \begin{codigo-c-plano}
 int fclose(FILE *archivo);
@@ -155,14 +155,14 @@ Devuelve \lstinline!0! si tuvo exito, o \lstinline!EOF! en caso de error.
 \section{Leer o escribir de un archivo}
 
 De la misma manera que \lstinline!getchar!  para leer un caracter de la
-entrada est·ndar, existe \lstinline!fgetc!  \footnote{Para m·s informaciÛn:
-\texttt{man 3 fgetc}.} para leer un ˙nico caracter de un archivo.
+entrada est√°ndar, existe \lstinline!fgetc!  \footnote{Para m√°s informaci√≥n:
+\texttt{man 3 fgetc}.} para leer un √∫nico caracter de un archivo.
 
 \begin{codigo-c-plano}
 int fgetc(FILE *archivo);
 \end{codigo-c-plano}
 
-De hecho, la siguiente funciÛn es pr·cticamente equivalente a la funciÛn
+De hecho, la siguiente funci√≥n es pr√°cticamente equivalente a la funci√≥n
 \lstinline!getchar()!.
 
 \begin{codigo-c-plano}
@@ -174,7 +174,7 @@ int mi_getchar(void)
 
 De la misma forma, existen \lstinline!fputc!, para escribir un caracter a un
 archivo, \lstinline!fscanf!, para leer con formato de un archivo,
-\lstinline!fprintf!  un archivo.\footnote{Para m·s informaciÛn: \texttt{man
+\lstinline!fprintf!  un archivo.\footnote{Para m√°s informaci√≥n: \texttt{man
 3 fputc}, \texttt{man 3 fscanf}, \texttt{man 3 fprintf}.}, para escribir con
 formato a Sus prototipos son:
 
@@ -184,29 +184,29 @@ int fscanf(FILE *archivo, const char *formato, ...);
 int fprintf(FILE *archivo, const char *formato, ...);
 \end{codigo-c-plano}
 
-Adem·s de estas funciones existen:
+Adem√°s de estas funciones existen:
 
 \begin{codigo-c-plano}
 char *fgets(char *buffer, int tamanio, FILE *archivo);
 int fputs(const char *buffer, FILE *archivo);
 \end{codigo-c-plano}
 
-La funciÛn \lstinline!fgets! lee el archivo hasta encontrar un fin de lÌnea,
+La funci√≥n \lstinline!fgets! lee el archivo hasta encontrar un fin de l√≠nea,
 un fin de archivo o haber llegado a leer \lstinline!tamanio! bytes. Cuando lee
-un fin de lÌnea lo deja en el \lstinline!buffer!. Devuelve la direcciÛn del
+un fin de l√≠nea lo deja en el \lstinline!buffer!. Devuelve la direcci√≥n del
 \lstinline!buffer! o bien \lstinline!EOF! si se trata de leer estando al final
 del archivo.
 
-La funciÛn \lstinline!fputs! escribe la cadena apuntada por \lstinline!buffer!
+La funci√≥n \lstinline!fputs! escribe la cadena apuntada por \lstinline!buffer!
 en \lstinline!archivo!. Devuelve la cantidad de bytes escritos o bien
 \lstinline!EOF! en caso de error.
 
 Las funciones \lstinline!fgets! y \lstinline!fputs! constituyen la forma
-est·ndar de leer o escribir lÌneas en un archivo, si bien puede suceder que lo
-que se lea no sea una lÌnea completa (cuando la lÌnea ocupa m·s espacio que
+est√°ndar de leer o escribir l√≠neas en un archivo, si bien puede suceder que lo
+que se lea no sea una l√≠nea completa (cuando la l√≠nea ocupa m√°s espacio que
 \lstinline!tamanio!.
 
-Si bien tienen un paralelo que trabaja sobre la entrada y salida est·ndar,
+Si bien tienen un paralelo que trabaja sobre la entrada y salida est√°ndar,
 esas funciones no se utilizan ya que pueden dar lugar a varios problemas de
 seguridad.
 
@@ -219,45 +219,45 @@ int fflush(FILE *archivo);
 int feof(FILE *archivo);
 \end{codigo-c-plano}
 
-La funciÛn \lstinline!fflush! fuerza la escritura de los buffers que estÈn
-pendientes en el archivo. Devuelve 0 si se ejecutÛ correctamente, o
+La funci√≥n \lstinline!fflush! fuerza la escritura de los buffers que est√©n
+pendientes en el archivo. Devuelve 0 si se ejecut√≥ correctamente, o
 \lstinline!EOF! en caso de error. Puede utilizarse para evitar el
-comportamiento del buffer por lÌneas de las salida est·ndar.
+comportamiento del buffer por l√≠neas de las salida est√°ndar.
 
-La funciÛn \lstinline!feof! devuelve algo distinto de cero si se encuentra al
+La funci√≥n \lstinline!feof! devuelve algo distinto de cero si se encuentra al
 final del archivo o \lstinline!0! en caso contrario.
 
 \section{Archivos binarios}
 
-Los archivos de texto son sencillos de procesar y faciles de leer a˙n fuera
-del programa que los usa, el Èxito en los ˙ltimos aÒos de los formatos XML,
+Los archivos de texto son sencillos de procesar y faciles de leer a√∫n fuera
+del programa que los usa, el √©xito en los √∫ltimos a√±os de los formatos XML,
 HTML, SVG, etc, demuestra su gran flexibilidad. Por otro lado, los archivos
-binarios permiten almacenar la informaciÛn de forma que sea muy eficiente
+binarios permiten almacenar la informaci√≥n de forma que sea muy eficiente
 acceder a ella.
 
-El formato a utilizar en una aplicaciÛn se debe decidir seg˙n el uso que se le
+El formato a utilizar en una aplicaci√≥n se debe decidir seg√∫n el uso que se le
 vaya a dar a los archivos, si se quiere que sean legibles por seres humanos,
-si se quiere poder compartir la informaciÛn entre aplicaciones, o si
-simplemente se quiere poder leer y guardar la informaciÛn de la forma m·s
+si se quiere poder compartir la informaci√≥n entre aplicaciones, o si
+simplemente se quiere poder leer y guardar la informaci√≥n de la forma m√°s
 eficiente.
 
 %Es parte del trabajo de un programador decidir el formato de datos a utilizar,
-%por suerte para nosotros esto se ve con mucho m·s detalle en otra materia. :)
+%por suerte para nosotros esto se ve con mucho m√°s detalle en otra materia. :)
 
-Las funciones vistas hasta ahora son las m·s utilizadas al trabajar sobre
-archivos de texto, estas pueden servir para archivos binarios, pero adem·s se
-necesitar·n las siguientes:
+Las funciones vistas hasta ahora son las m√°s utilizadas al trabajar sobre
+archivos de texto, estas pueden servir para archivos binarios, pero adem√°s se
+necesitar√°n las siguientes:
 
 \begin{codigo-c-plano}
 size_t fread(void *buffer, size_t tamanio, size_t cantidad, FILE *archivo);
-size_t fwrite(const void *buffer, size_t tamanio, size_t cantidad, 
-				FILE *archivo);
+size_t fwrite(const void *buffer, size_t tamanio, size_t cantidad,
+              FILE *archivo);
 \end{codigo-c-plano}
 
-La funciÛn \lstinline!fread! lee \lstinline!cantidad! bloques de bytes de
+La funci√≥n \lstinline!fread! lee \lstinline!cantidad! bloques de bytes de
 \lstinline!tamanio! bytes cada uno, de un archivo, almacenandolos en
-\lstinline!buffer!. Devuelve la cantidad de elementos leÌdos del archivo, en
-el caso de estar en el final del archivo devolver· 0.
+\lstinline!buffer!. Devuelve la cantidad de elementos le√≠dos del archivo, en
+el caso de estar en el final del archivo devolver√° 0.
 
 De la misma forma \lstinline!fwrite! escribe \lstinline!cantidad! bloques de
 bytes de \lstinline!tamanio! bytes cada uno en archivo y devuelve la cantidad
@@ -269,15 +269,15 @@ int fseek(FILE *archivo, long desplazamiento, int origen);
 
 Se mueve dentro el archivo, \lstinline!desplazamiento! es un valor relativo a
 \lstinline!origen!, puede referirse al principio del archivo
-(\lstinline!SEEK_SET!), a la posiciÛn actual (\lstinline!SEEK_CUR!) o al final
-del archivo (\lstinline!SEEK_END!). El valor devuelto ser· 0 en caso de exito
+(\lstinline!SEEK_SET!), a la posici√≥n actual (\lstinline!SEEK_CUR!) o al final
+del archivo (\lstinline!SEEK_END!). El valor devuelto ser√° 0 en caso de exito
 o \lstinline!-1! en caso de error.
 
 \begin{codigo-c-plano}
 long ftell(FILE *archivo);
 \end{codigo-c-plano}
 
-Devuelve la posiciÛn actual del archivo, o \lstinline!-1! en caso de error.
+Devuelve la posici√≥n actual del archivo, o \lstinline!-1! en caso de error.
 
 \section{Ejemplo: Copiar un archivo}
 
@@ -318,8 +318,8 @@ int main(void)
 \end{codigo}
 
 En este ejemplo vemos el uso de varias de las funciones mencionadas
-anteriormente. El cÛdigo copia un archivo de un forma muy ineficiente,
-leyendolo de 1 caracter. Se muestra tambiÈn el uso de \lstinline!stderr!.
+anteriormente. El c√≥digo copia un archivo de un forma muy ineficiente,
+leyendolo de 1 caracter. Se muestra tambi√©n el uso de \lstinline!stderr!.
 
 Podemos mejorarlo un poco leyendo por lineas en vez de caracter a caracter.
 
@@ -335,10 +335,10 @@ enum {MAXLINE = 1024};
 	} while (aux != NULL);
 \end{codigo-c-plano}
 
-Se puede mejorar la eficiencia de este cÛdigo utilizando \lstinline!fread! y
+Se puede mejorar la eficiencia de este c√≥digo utilizando \lstinline!fread! y
 \lstinline!fwrite!.
 
-% Tomar los nombres de archivo por par·metro 
+% Tomar los nombres de archivo por par√°metro
 % Y usar stdin y stdout si no se especifican.
 % TODO: Falta, freopen
 
