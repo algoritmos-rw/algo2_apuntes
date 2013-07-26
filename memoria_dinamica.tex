@@ -126,6 +126,9 @@ de \lstinline!tamanio! bytes.
 Si ocurriera algún problema, porque el sistema no dispone de suficiente memoria
 o similar, la llamada de \lstinline!malloc! devolvería \lstinline!NULL!.
 
+El tipo de datos \lstinline!size_t! es un valor entero sin signo capaz que
+contener cualquier tamaño de memoria válido en la arquitectura actual.
+
 \section{Devolver memoria al sistema (\textit{free()})}
 
 Cuando un bloque de memoria ya no es necesario para un programa, se lo debe
@@ -143,7 +146,7 @@ Recibe como único parámetro un puntero antes devuelto por \lstinline!malloc! o
 
 Es importante notar que no es posible liberar una porción de memoria que ya ha
 sido liberada.  Esta acción puede provocar el mismo tipo de errores que los
-provocados por acceder a una porción de memoria inválida. 
+provocados por acceder a una porción de memoria inválida.
 
 \section{Agrandar/achicar un bloque de memoria (\textit{realloc()})}
 
@@ -168,22 +171,22 @@ construcción como la siguiente.
 
 \begin{codigo-c-plano}
 /* MAL */
-datos = (dato_t*) realloc( datos, sizeof(dato_t) * tamanio_nuevo);
+datos = realloc(datos, sizeof(dato_t) * tamanio_nuevo);
 \end{codigo-c-plano}
 
-Ya que si \lstinline!realloc! devolviera \lstinline!NULL!, existirá en memoria
-un bloque de datos válido, con información válida, al cual es imposible
-acceder, ya que se perdió la dirección de memoria que antes estaba en
-\lstinline!datos!.
+Ya que si \lstinline!realloc! no puede cumplir lo pedido devolverá
+\lstinline!NULL! y entonces existirá en memoria un bloque de datos válido, con
+información válida, al cual es imposible acceder, ya que se perdió la
+dirección de memoria que antes estaba en \lstinline!datos!.
 
 En cambio se debe utilizar:
 
 \begin{codigo-c-plano}
-void *aux = realloc( datos, sizeof(dato_t) * tamanio_nuevo );
+void *aux = realloc(datos, sizeof(dato_t) * tamanio_nuevo);
 if ( aux == NULL ) {
-	// realloc no pudo pedir el bloque nuevo, hacer algo al respecto.
+    // realloc no pudo pedir el bloque nuevo, hacer algo al respecto.
 } else {
-	datos = (dato_t*) aux;
+    datos = aux;
 }
 \end{codigo-c-plano}
 
@@ -208,11 +211,12 @@ elementos a la pila.
 En este caso, la estructura de la pila será de la forma:
 
 \begin{codigo-c-plano}
-typedef struct {
-	int cantidad;
-	dato_t *datos;
-	int tamanio;
-} pila_dinamica;
+struct _pila {
+    void **datos;
+    size_t tam;
+    size_t largo;
+};
+typedef struct _pila pila_t;
 \end{codigo-c-plano}
 
 Donde \lstinline!cantidad! es la cantidad de elementos almacenada en la pila,
@@ -228,33 +232,40 @@ también deben hacer el primer pedido de memoria, para reservar el bloque
 inicial con el que se trabajará.
 
 \begin{codigo-c-plano}
-bool pila_crear(pila_dinamica *pila) 
+pila_t *pila_crear()
 {
-	pila->cantidad = 0;
-	pila->datos = (dato_t *) malloc( TAM_INICIAL * sizeof(dato_t) );
-	if (pila->datos == NULL) return false;
-	pila->tamanio = TAM_INICIAL;
-	return true;
+    // Pedido de memoria para la pila
+    pila_t *pila = malloc(sizeof(pila_t));
+    if (!pila) return NULL;
+
+    // Pedido de memoria para los datos de la pila
+    pila->datos = malloc(MIN_TAM * sizeof(void *));
+    if (! pila->datos) {
+        free(pila);
+        return NULL;
+    }
+
+    // Otras inicializaciones
+    pila->largo = 0;
+    pila->tam = MIN_TAM;
+    return pila;
 }
 \end{codigo-c-plano}
 
 La función \lstinline!malloc! es la encargada de reservar un bloque de memoria
-para los datos que contendrá la pila.  El tamaño de este bloque de memoria es
-el argumento que se le da a \lstinline!malloc!.  En este caso es el resultado
-de multiplicar una constante \lstinline!TAM_INICIAL! por el tamaño del tipo de
-dato que contiene la pila, es decir que en primera instancia la pila podrá
-contener \lstinline!TAM_INICIAL! elementos.
-
-% %%% Ya está explicado arriba, no hace falta volver a explicarlo %%%
-%La función \lstinline!malloc! devuelve un puntero del tipo \lstinline!void *!,
-%es decir un puntero genérico.  Es por eso que es necesario convertir ese
-%puntero al puntero de tipo específico \lstiline!dato_t *!, para indicar que se
-%trata de un puntero a datos de tipo \lstinline!dato_t!.
+para la estructura de la pila y luego para el bloque de datos que contendrá la
+pila. El tamaño de la estructura pila lo obtenemos con
+\lstinline!sizeof(pila_t)!, mientras que el tamaño para el bloque inicial de
+datos es el resultado de multiplicar una constante \lstinline!MIN_TAM! por el tamaño del tipo de
+dato que contiene la pila (\lstinline!void *!, es una pila de
+punteros), es decir que en primera instancia la pila podrá
+hasta contener \lstinline!MIN_TAM! elementos.
 
 Si por algún motivo el sistema operativo no pudiera reservar la memoria
 requerida, la función \lstinline!malloc! devuelve \lstinline!NULL!. En ese
-caso, la función de creación de la pila devuelve \lstinline!false! para
-indicar que no se ha podido crear la pila.
+caso, la función de creación de la pila devuelve \lstinline!NULL! para
+indicar que no se ha podido crear la pila, si falla el segundo malloc, debemos
+liberar el bloque de memoria pedido por el primero malloc.
 
 \subsection{Incremento del tamaño de la pila}
 
@@ -262,29 +273,43 @@ En el caso de agotarse el lugar, será necesario reservar una porción mayor de
 memoria.  Es decir que la función \lstinline!apilar! deberá ser de la forma:
 
 \begin{codigo-c-plano}
-bool pila_apilar(pila_dinamica *pila, dato_t valor)
+bool pila_apilar(pila_t *pila, void* valor)
 {
-    if (pila->cantidad >= pila->tamanio) {
-        if (! pila_cambiar_tamanio(pila, pila->tamanio*2)) return false;
+    if (!pila) return false;
+
+    // Verifica si hay que agrandar, si no puede devuelve false.
+    if (pila->largo == pila->tam) {
+        if (! pila_redimensionar(pila, 2 * pila->tam)) {
+            return false;
+        }
     }
-    pila->datos[pila->cantidad++] = valor;
+
+    // Asigna el valor y avanza
+    pila->datos[pila->largo] = valor;
+    pila->largo++;
     return true;
 }
 \end{codigo-c-plano}
 
 En esta función, cuando la cantidad de elementos es igual o mayor al tamaño
-actual de la pila, se llama a la función \lstinline!pila_cambiar_tamanio!, que
+actual de la pila, se llama a la función \lstinline!pila_redimensionar!, que
 será la encargada de reservar un bloque de mayor tamaño, en este caso se le
 pide que el bloque sea del doble del tamaño original. La función
-\lstinline!pila_cambiar_tamanio! tendrá la siguiente forma:
+\lstinline!pila_redimensionar! tendrá la siguiente forma:
 
 \begin{codigo-c-plano}
-bool pila_cambiar_tamanio(pila_dinamica *pila, size_t tamanio)
+bool pila_redimensionar(pila_t *pila, size_t nuevo_tam)
 {
-    void *aux = realloc (pila->datos, sizeof(dato_t) * tamanio);
-    if (aux == NULL) return false;
-    pila->datos = (dato_t*) aux;
-    pila->tamanio = tamanio;
+    // No achica la pila menos del valor inicial.
+    if (nuevo_tam < MIN_TAM) nuevo_tam = MIN_TAM;
+
+    // Pide la nueva memoria
+    void **nuevo = realloc(pila->datos, nuevo_tam * sizeof(void *));
+    if (! nuevo) return false;
+
+    // Asigna los nuevos valores
+    pila->datos = nuevo;
+    pila->tam = nuevo_tam;
     return true;
 }
 \end{codigo-c-plano}
@@ -300,7 +325,7 @@ posible reservar la memoria según se quiere, \lstinline!realloc! devuelve
 \lstinline!NULL!.  En este caso, los valores que ya estaban en la pila siguen
 estando ahí, simplemente significa que no se ha podido agrandar la porción de
 memoria reservada según se había pedido, es por ello que se utiliza un puntero
-auxiliar \lstinline!aux! y sólo se lo asigna al atributo \lstinline!datos! en
+auxiliar \lstinline!nuevo! y sólo se lo asigna al atributo \lstinline!datos! en
 el caso en que la reserva de memoria haya sido exitosa.
 
 \subsection{Destrucción de la pila}
@@ -312,15 +337,16 @@ una función \lstinline!pila_destruir!, y quien utilice la pila deberá recordar
 llamar a esta función al terminar de utilizarla.
 
 \begin{codigo-c-plano}
-bool pila_destruir(pila_dinamica *pila)
+void pila_destruir(pila_t *pila)
 {
-    free(pila->datos);
+    if (pila) free(pila->datos);
+    free(pila);
 }
 \end{codigo-c-plano}
 
 Una vez que se ha llamado a la función \lstinline!free!, la porción de memoria
 dinámica deja de estar reservada, ya no es más una porción de memoria válida y
-no puede ser accedida por el programa (a menos que se haga una nueva reserva).  
+no puede ser accedida por el programa (a menos que se haga una nueva reserva).
 
 \subsection{Disminución del tamaño de la pila}
 
@@ -331,14 +357,20 @@ que sería deseable que la pila se reduzca al desapilar, cuando el espacio
 ocupado por los elementos en mucho menor que el tamaño de la pila.
 
 \begin{codigo-c-plano}
-bool pila_desapilar(pila_dinamica *pila, dato_t *valor)
+void* pila_desapilar(pila_t *pila)
 {
-    if ( ! pila_ver_tope(pila, valor) ) return false;
-    pila->cantidad--;
-    if ( pila->cantidad < (pila->tamanio / 4) ) {
-        pila_cambiar_tamanio(pila, pila->tamanio/2);
+    if (pila_esta_vacia(pila)) return NULL;
+
+    // Desapila y se guarda el tope.
+    pila->largo--;
+    void *r = pila->datos[pila->largo];
+
+    // Verifica si hay que achicar, si no puede no hace nada
+    if ((pila->tam > MIN_TAM) && (pila->largo <= (pila->tam/4))) {
+        pila_redimensionar(pila, pila->tam / 2);
     }
-    return true;
+
+    return r;
 }
 \end{codigo-c-plano}
 
@@ -350,7 +382,7 @@ de ser así, reduce el tamaño a la mitad.
 
 Las direcciones de memoria en C son valores enteros positivos, el valor
 \lstinline!NULL! es equivalente a \lstinline!0!, que es una posición de memoria
-inválida. 
+inválida.
 
 Los punteros contienen direcciones de memoria asociadas a un tipo en
 particular (a excepción de el tipo \lstinline!void!). Como ya se vio, cada
@@ -364,7 +396,7 @@ En particular, es posible utilizar esta técnica para recorrer un arreglo de
 valores, sin que necesariamente se los haya declarado como vector. Ejemplo:
 
 \begin{codigo-c-plano}
-float fs[MAX_LARGO];       
+float fs[MAX_LARGO];
 float *pf = fs;           // pf apunta al comienzo del vector fs
 pf = pf + 1;              // pf apunta al segundo elemento de fs (&fs[1])
 pf = fs + MAX_LARGO - 1;  // pf apunta a el último elemento de fs
@@ -461,7 +493,7 @@ es:
 void *memset(void *direccion, int byte, size_t cantidad);
 \end{codigo-c-plano}
 
-Que escribe el valor de \lstinline!byte!, en el bloque de 
+Que escribe el valor de \lstinline!byte!, en el bloque de
 \lstinline!cantidad! bytes, que empieza en \lstinline!direccion!.  Devuelve un
 puntero a \lstinline!direccion!.
 
