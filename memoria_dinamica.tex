@@ -256,10 +256,10 @@ La función \lstinline!malloc! es la encargada de reservar un bloque de memoria
 para la estructura de la pila y luego para el bloque de datos que contendrá la
 pila. El tamaño de la estructura pila lo obtenemos con
 \lstinline!sizeof(pila_t)!, mientras que el tamaño para el bloque inicial de
-datos es el resultado de multiplicar una constante \lstinline!MIN_TAM! por el tamaño del tipo de
-dato que contiene la pila (\lstinline!void *!, es una pila de
-punteros), es decir que en primera instancia la pila podrá
-hasta contener \lstinline!MIN_TAM! elementos.
+datos es el resultado de multiplicar una constante \lstinline!MIN_TAM! por el
+tamaño del tipo de dato que contiene la pila (\lstinline!void *!, es una pila
+de punteros), es decir que en primera instancia la pila podrá hasta contener
+\lstinline!MIN_TAM! elementos.
 
 Si por algún motivo el sistema operativo no pudiera reservar la memoria
 requerida, la función \lstinline!malloc! devuelve \lstinline!NULL!. En ese
