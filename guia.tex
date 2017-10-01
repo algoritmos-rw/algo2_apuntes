@@ -1,0 +1,1460 @@
+\documentclass[11pt,a4paper]{article}
+\tolerance=5000
+\renewcommand{\baselinestretch}{1.3}
+
+\usepackage{times}
+\usepackage{t1enc}
+\usepackage{fancyvrb}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc} % Permite escribir directamente áéíóúñ
+\usepackage{listings}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{verbatim}
+\usepackage{fullpage}
+
+\lstset{language=C,
+    numbers=none,
+    numberstyle=\ttfamily\tiny,
+    basicstyle=\ttfamily\normalsize,
+    keywordstyle=\ttfamily\bfseries,
+    identifierstyle=\ttfamily,
+    commentstyle=\ttfamily\itshape,
+    stringstyle=\ttfamily,
+    showstringspaces=false,
+    % NOTA: esta sección se podría omitir usando XeTeX.
+    extendedchars=true,
+    inputencoding=utf8x,
+    literate={á}{{\'a}}1
+             {é}{{\'e}}1
+             {í}{{\'i}}1
+             {ó}{{\'o}}1
+             {ú}{{\'u}}1
+             {ü}{{\"u}}1
+             {ñ}{{\~n}}1
+             {Á}{{\'A}}1
+             {É}{{\'E}}1
+             {Í}{{\'I}}1
+             {Ó}{{\'O}}1
+             {Ú}{{\'U}}1
+             {Ü}{{\"U}}1
+             {Ñ}{{\~N}}1
+             {¿}{{?`}}1
+             {¡}{{!`}}1}
+
+%\oddsidemargin 0.0cm \evensidemargin 0.0cm \topmargin 0in
+%\headheight .3in \headsep .2in \footskip .2in
+%\setlength{\textwidth}{16cm} %ancho para apunte
+%\setlength{\textheight}{22cm} %largo para apunte
+%\leftmargin 2.5cm
+%\rightmargin 2.5cm
+%\topmargin 0.5 cm
+
+\theoremstyle{definition}
+\newtheorem{ejercicio}{Ejercicio}[section]
+
+
+\title{75.41 Algoritmos y Programación II \\
+    \textbf{Guía de Ejercicios}}
+\date{2do Cuatrimestre 2011}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\section*{Recomendaciones al realizar las guías.}
+
+\textbf{Generales:}
+\begin{itemize}
+	\item Sea claro y prolijo. Es muy importante que el código sea lo más claro y legible posible.
+	\item Es muy importante que los identificadores de funciones y variables sean coherentes. El identificador debe ser suficientemente descriptivo.
+	\item Ponga una línea en blanco entre las definiciones de función para simplificar la lectura del programa.
+	\item Las expresiones matemáticas complejas pueden representarse en varios pasos.
+\end{itemize}
+
+\textbf{Documentación:}
+\begin{itemize}
+	\item Documente correctamente las funciones y módulos que desarrolle.
+	\item Documente partes del código cuyo significado pudiera no quedar del todo claro.
+	\item No documente en exceso, pero tampoco ahorre documentación necesaria. La documentación debe ser breve y concisa.
+\end{itemize}
+
+
+% Comandos para que las enumeraciones sean como queremos:
+%\usepackage{tweaklist}
+%\renewcommand{\enumhook}{\setlength{\topsep}{0pt} \setlength{\itemsep}{0pt}}
+%\renewcommand{\labelenumi}{\alph{enumi})}
+%\renewcommand{\labelenumii}{\arabic{enumii}.}
+
+\newcounter{partesi}
+\newenvironment{partes}
+{	\begin{list}{\alph{partesi})}{
+		\usecounter{partesi}
+		\setlength{\topsep}{0pt}
+		\setlength{\itemsep}{0pt}}}
+{	\end{list} }
+
+\newpage
+\section{Programación en C}
+
+\begin{ejercicio}
+Escribir un programa en C, que lea el nombre del usuario por teclado y
+luego imprima un saludo personalizado a ese usuario. \\
+Temas: \lstinline!scanf!, \lstinline!printf!, cadenas.
+\end{ejercicio}
+
+\begin{ejercicio}
+Escribir un programa en C que reciba por parámetro de línea de comandos un
+número y luego imprima por consola el factorial de ese número. \\
+Temas: \lstinline!argc! y \lstinline!argv!, creación de funciones.
+\end{ejercicio}
+
+\begin{ejercicio}
+Escribir un programa que cree un arreglo con los valores del 1 al 10, lo
+imprima (utilizando una función que recibe un vector y lo imprime), eleve los
+valores al cuadrado (utilizando una función que recibe un vector y guarda el
+cuadrado de los valores en sus posiciones) y luego lo vuelva a imprimir. \\
+Temas: arreglos, paso de arreglos a funciones, modificación de arreglos.
+\end{ejercicio}
+
+\begin{ejercicio}
+Programar una función swap que intercambie los valores de dos variables que
+recibe por parámetro. Escribir un programa que pruebe el funcionamiento. \\
+Tema: punteros.
+\end{ejercicio}
+
+\begin{ejercicio}
+Modificar el programa anterior para que el tamaño máximo del arreglo esté
+definido mediante una constante. \\
+Temas: diversas formas de definir constantes en C.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Experimentacion con punteros}.
+\begin{partes}
+\item Crear un entero. Obtener un puntero al entero y guardarlo en una
+variable.
+\item Imprimir la dirección de memoria del puntero (con \lstinline!"%p"!).
+\item Incrementar el puntero (\lstinline!puntero++!)
+\item Imprimir la dirección nuevamente.
+\item Convertir el puntero en un puntero a \lstinline!char! (con:
+\lstinline!pchar = (char *) puntero)!.
+\item Incrementar el puntero a \lstinline!char!.
+\item Imprimir la dirección de memoria.
+\end{partes}
+Temas: direcciones de memoria, conversión de tipos, aritmética de punteros.
+\end{ejercicio}
+
+\newpage
+\section{Recursividad y complejidad}
+
+\begin{ejercicio}
+Utilizando las técnicas de división y conquista, y la propiedad de que $x^n
+= x^{n/2}*x^{n/2}$, escribir una función en C que eleve un número a otro, de
+forma más eficiente que la potenciación común.  Analizar la complejidad.
+\end{ejercicio}
+
+\begin{ejercicio}
+Búsqueda Binaria.
+\begin{partes}
+\item Programar busqueda binaria en C y analizar la complejidad.
+\item Escribir un programa que contenga un vector, busque los números
+recibidos por línea de comandos en ese vector, y devuelva la posición de cada
+uno o indique que no se encuentra en el vector.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er Parcialito 2009
+Analizar el orden de un algoritmo de búsqueda ternaria (el vector se divide en
+tres partes en lugar de dos). ¿Qué ventajas y desventajas tendría este
+algoritmo?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 2010
+Implementar el algoritmo de Euclides: \\
+Dados dos números enteros positivos $m$ y $n$, tal que $m > n$,
+para encontrar su máximo común divisor (es decir, el mayor entero positivo que divide a ambos):
+\begin{itemize}
+\item Dividir $m$ por $n$ para obtener el resto $r$ ($0 \leq r < n$).
+\item Si $r = 0$, $MCD=n$.
+\item Si no, el máximo común divisor es $MCD(n,r)$.
+\end{itemize}
+Indicar el orden del algoritmo implementado
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er Parcialito 2010
+Para resolver un determinado problema hay tres posibles algoritmos:
+\begin{partes}
+\item El algoritmo A resuelve el problema dividiéndolo en 5 subproblemas de la
+mitad de tamaño, resuelve cada subproblema recursivamente y combina las
+soluciones en tiempo lineal.
+\item El algoritmo B resuelve un problema de tamaño n resolviendo
+recursivamente 2 subproblemas de tamaño $n-1$, y combina las soluciones en
+tiempo constante.
+\item El algoritmo C resuelve un problema de tamaño $n$ dividiéndolo en 9
+subproblemas de tamaño $n/3$, y combina las soluciones en tiempo O($n^2$).
+\end{partes}
+¿Cuál algoritmo elegirías y por qué?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er Parcialito 2011
+Se proponen dos algoritmos para resolver un problema P dado:
+\begin{partes}
+\item Se toman 4 subproblemas de tamaño $N/5$ y se los resuelve recursivamente.
+Partir y juntar los resultados cuestan respectivamente O($N^2$) y O($N$)
+\item Se toman 5 subproblemas de tamaño $N/4$ y se los resuelve recursivamente.
+Partir y juntar los resultados cuestan respectivamente O($N$) y O($N^2$).
+\end{partes}
+¿Cuál de los dos elegirías por su eficiencia computacional? ¿Por qué? ¿Y teniendo en
+cuenta la memoria consumida?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 1 P 2011
+Para la resolución de un problema de $N$ elementos se cuenta con tres
+posibles algoritmos:
+\begin{partes}
+\item Resuelve el problema recursivamente, mediante 2 subproblemas de tamaño
+n-1, y combinando las soluciones en tiempo constante
+\item Resuelve el problema reduciéndolo en 1 elemento con costo lineal y luego
+aplicando la solución recursivamente.
+\item Divide el problema en 4 subproblemas de un cuarto del tamaño original,
+los resuelve recursivamente, y combina las soluciones en tiempo lineal.
+\end{partes}
+¿Cuál de las tres soluciones elegiría y por qué?
+\end{ejercicio}
+
+\section{Ordenamiento}
+
+\begin{ejercicio}
+Medición de tiempos
+\begin{partes}
+\item Usando un generador de numeros aleatorios como el del ejemplo, crear vectores
+de 100, 1000, 10000 y 100000 elementos, y tomar los tiempos requeridos (usando
+el comando \verb!time!) para ordenarlos con quicksort, mergesort e insert sort.
+
+\begin{lstlisting}
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+int main(void) {
+    // Obtiene la fecha y hora actual desde 1970, en segundos.
+    time_t t = time(NULL);
+    // Inicializa el generador de números aleatorios.
+    srand(t);
+    // Imprime 10 números aleatorios
+    int i;
+    for (i = 0; i < 10; i++)
+        printf ("%d\n", rand());
+    return 0;
+}
+\end{lstlisting}
+
+\item Mejorar la medición generando y ordenando 1000 arreglos en lugar de uno.
+Graficar los tiempos requeridos por los 4 ordenamientos en cada caso.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+Modificar el quicksort con las siguientes optimizaciones y medir los tiempos
+requeridos en cada caso:
+\begin{partes}
+\item Revisar tres elementos del vector y usar el elemento medio como
+pivote.
+\item Cuando la lista tiene menos de 8 elementos, usar insert sort en vez
+de quick sort.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er parcialito 2009
+Listar y justificar tres similitudes y tres diferencias entre quicksort y
+mergesort.
+\end{ejercicio}
+
+\begin{ejercicio}
+Elegir el método de ordenamiento más apropiado para una situación en la
+cual se sabe que el arreglo a ordenar se encuentra \textit{casi ordenado}
+(sólo el 1\% de los datos está fuera de orden). Justificar.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 2009
+Se quiere ordenar 1 giga de datos, que miden 4 bytes cada uno. Pero sólo se
+tienen 2 gigabytes de memoria RAM disponible. Se desea que el ordenamiento
+sea lo más eficiente posible, por lo que ordenar directamente en disco no
+es una opción. Se puede, sin embargo, escribir bloques de información a
+disco temporalmente, para luego volver a utilizarlos. \textbf{Diseñar} un
+algoritmo que solucione este problema específico.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er parcialito 2011
+Escribir una función que reciba un arreglo de $N$ números reales e informe
+los índices de dos números que estén entre sí a mínima distancia.
+El orden de la función debe ser \verb!O(N log N)!. Justificar el orden de la
+solución propuesta. \\
+\textbf{Nota}: se considera distancia entre a y b como |b-a|
+\end{ejercicio}
+
+\newpage
+\section{Tipos Abstractos de Datos}
+
+\begin{ejercicio}
+Operaciones sobre una estructura alumno.
+\begin{partes}
+\item Crear una estructura \lstinline!alumno! que contenga nombre, apellido, padrón y un arreglo
+de notas.
+\item Escribir las funciones para: crear la estructura, leer los datos
+desde teclado, imprimir la estructura por pantalla, y destruirla.
+\item Hacer un programa que lea los datos para tres alumnos y luego los imprima.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+Implementar un tipo abstracto de datos que represente un \textbf{polinomio}
+de una variable. Escribir una estructura para representarlo, una función
+para \textit{crearlo}, una para \textit{sumar} dos polinomios, y una para
+\textit{evaluar} un polinomio en un valor dado.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er parcialito 2009
+Implementar un tipo abstracto de datos que represente una
+\textbf{fracción}. Escribir la estructura para representarlo, una función
+para \textit{crearlo}, una para \textit{multiplicar} dos fracciones, y una
+para \textit{comparar} dos fracciones, que debe devolver verdadero aún
+cuando los números no sean iguales, pero representan el mismo valor
+racional (ej: $3/4$ y $9/12$ son iguales).
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er parcialito 2010
+Implementar el TAD \textbf{conjunto}, que contiene elementos del tipo
+\lstinline!conjunto_dato_t!, que no pueden estar repetidos dentro del conjunto. La
+cantidad máxima de elementos a almacenar se determina en el constructor.
+
+Las primitivas a implementar son:
+\begin{lstlisting}
+	conjunto_t* conjunto_crear(int tamanio)
+	bool conjunto_agregar(conjunto_t* conjunto, conjunto_dato_t dato)
+	bool conjunto_eliminar(conjunto_t* conjunto conjunto_dato_t dato)
+	bool conjunto_pertenece(conjunto_t* conjunto, conjunto_dato_t dato)
+	bool conjunto_esta_vacio(const conjunto_t* conjunto)
+	void conjunto_destruir(conjunto_t* conjunto)
+\end{lstlisting}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er parcialito 2011
+Se tiene implementado un tipo abstracto de datos \textbf{conjunto}, como el del
+ejercicio anterior.  Se pide agregar las siguientes primitivas:
+\begin{lstlisting}
+  conjunto_t* conjunto_union(const conjunto_t* c, const conjunto_t* d)
+  conjunto_t* conjunto_interseccion(const conjunto_t* c, const conjunto_t* d)
+\end{lstlisting}
+Indicar el orden de las funciones realizadas.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 1er P 2009
+Implementar un tipo abstracto de datos que modele un \textbf{guardarropas},
+que cuenta con una cantidad limitada de perchas, y permite guardar prendas
+o retirarlas. Cada vez que se guarda una prenda se debe devolver un número
+de ticket (correspondiente a la ubicación) o -1 si no hay perchas libres.
+
+Para retirar una prenda se debe indicar el número de ticket.  Escribir la
+estructura para representar el tipo de abstracto de datos, y las primitivas
+para \textit{crear}, \textit{guardar}, \textit{retirar} y
+\textit{destruir}. Los datos a guardar serán de tipo \lstinline!dato_t!.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 1er P 2010
+Implementar en C la estructura para un TAD \textbf{número complejo}, con
+las siguientes primitivas:
+\begin{lstlisting}
+    complejo_t* complejo_crear(parte_real, parte_imaginaria);
+    complejo_t* complejo_sumar(complejo_t* a, complejo_t* b);
+    complejo_t* complejo_multiplicar(complejo_t* a, complejo_t* b);
+    void complejo_destruir(complejo_t* c);
+\end{lstlisting}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 1er P 2011
+Implementar en C la estructura para un TAD \textbf{teléfono}, con
+las siguientes primitivas:
+\begin{lstlisting}
+   telefono_t* telefono_crear();
+   bool telefono_llamar(telefono_t* t, char* numero_destino);
+   bool telefono_cortar(telefono_t* t);
+   bool telefono_recibir_llamada(telefono_t* t, char* numero_origen);
+   bool telefono_atender(telefono_t* t);
+   int telefono_estado_actual(const telefono_t* t);
+   char* telefono_numero_actual(const telefono_t* t);
+\end{lstlisting}
+\end{ejercicio}
+
+
+\newpage
+\section{Pilas y Colas}
+
+\begin{ejercicio}
+% 1er parcialito 2009
+Escribir una función que reciba una pila que contiene valores de tipo
+\texttt{double}, vaya desapilando los elementos de a dos y apilando el cociente
+del primero por el segundo, hasta que sólo quede un elemento en la pila, y
+devuelva el valor de ese elemento. \\
+\bf{Nota}: utilizar únicamente las primitivas provistas por la pila.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er parcialito 2010
+Dada una pila de números enteros y un número \verb!n!, escribir una función que
+saque de la pila los números que sean iguales a \verb!n!, dejando la pila tal como
+fue recibida pero sin ocurrencias de este número. \\
+\bf{Nota}: se pueden usar estructuras auxiliares.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 1er P 2010
+Escribir una función en C, que recibe un arreglo de colas y la cantidad de
+colas que hay en el arreglo, y devuelve una nueva cola, con todos los
+elementos de las colas, pero entremezclados de forma equitativa, es decir,
+primero el primero de la cola 1, luego el primero de la cola 2, luego el
+primero de la cola 3, y así, luego el segundo de la cola 1, y así.  Las
+colas no necesariamente tienen el mismo largo. \\
+Al final de la función todas las colas deben quedar vacías, menos la cola
+devuelta que debe contener todos los elementos.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 1er P 2009
+Hacer un programa que ponga en una pila los números naturales pares menores
+que 100 y en una cola los naturales impares menores que 100. (incluir el 0). \\
+Luego, tomando elemento a elemento de las estructuras anteriores y generar una
+nueva pila con todos los números en forma ordenada, de manera tal que al
+finalizar el tope quede apuntando al 0, y si se los fuera sacando de la
+pila, se los sacaría ordenados en forma ascendente. \\
+\bf{Nota}: utilizar únicamente las primitivas provistas por la pila y la
+cola.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 1er P 2011
+Se tiene una cola con procesos, y $n$ procesadores entre los cuales se
+quieren repatir las tareas. Se pide implementar la siguiente función:
+\begin{lstlisting}
+   cola_t** cola_repartir(cola_t* c, int n)
+\end{lstlisting}
+La función recibe una cola y la transforma en un arreglo de $n$ colas,
+repartiendo las tareas de forma equitativa entre ellas, sin alterar su
+orden relativo.
+\end{ejercicio}
+
+\begin{ejercicio}
+Escribir una función que reciba una cadena e informe si es un palíndromo o
+no. La función debe usar una pila y una cola para analizar el texto
+recibido. Ejemplos de palíndromos: reconocer, anilina, rallar, rotor,
+salas, seres, somos, erre, ojo.
+\bf{Nota}: utilizar la pila y la cola sin acceder a su estructura interna.
+\end{ejercicio}
+
+% **************
+%    LISTAS
+% **************
+
+\newpage
+\section{Listas Enlazadas}
+
+\begin{ejercicio}
+\textbf{Mejora sobre lista simplemente enlazada} En la implementación
+sugerida para la implementación de la lista, el iterador contiene dos
+punteros, uno para el elemento anterior y otro para el actual, sin embargo
+es posible conseguir el mismo funcionamiento con un sólo puntero. ¿De qué
+forma es esto posible? ¿Qué cambios habría que hacer a los prototipos
+propuestos?
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Lista doblemente enlazada} Implementar el TAD lista doblemente
+enlazada, es decir que cada nodo contiene una referencia al siguiente y al
+anterior. ¿Qué cambios hay que hacer en las estructuras de datos?
+Las primitivas serán las mismas del ejercicio anterior, a las de
+iteración se agrega:
+\begin{lstlisting}
+    bool lista_iter_retroceder(lista_iter_t *iter);
+\end{lstlisting}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Colas sobre listas enlazadas}
+Implementar una Cola (con la interfaz vista anteriormente) que use
+una lista enlazada para contener sus datos.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Lista circular}.
+Una lista circular es una lista enlazada que luego de pasar por el último
+elemento, vuelve al primero, de manera que se forma un recorrido sin fin.
+
+\begin{partes}
+\item Implementar el TAD lista circular, esto es, una lista
+tal que después del último elemento sigue el primero, las primitivas serán las
+mismas que las de listas simplemente enlazadas.
+Analizar la eficiencia de las primitivas \lstinline!insertar_primero! y
+\lstinline!borrar_primero!. ¿Como se pueden mejorar?
+
+% 1er recuperatorio 2do P 2009
+\item Alternativamente, en lugar de implementar la lista circular, es
+posible utilizar la lista enlazada como base y recorrerla circularmente
+mediante un iterador circular. Implementar la estructura del iterador
+\lstinline!lista_circ_iter_t! y las primitivas
+\lstinline!lista_circ_iter_avanzar! y \lstinline!lista_circ_iter_al_final!
+correspondientes a un iterador circular (\textbf{Atención}: pensar bien cuándo está
+al final un iterador circular).
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Lista ordenada} Implementar una lista ordenada, la primitiva de
+creación deberá recibir una función de comparación de elementos, las
+primitivas \lstinline!lista_insertar_primero! y \lstinline!lista_insertar! son
+reemplazadas por \lstinline!lista_insertar_ordenado!.
+\begin{partes}
+\item Analizar la eficiencia de \lstinline!lista_insertar_ordenado!.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 2do P 2011
+Escribir una primitiva intercambiar para la lista enlazada.  Recibe la
+lista y dos índices ($i$ y $j$). Debe intercambiar el elemento de la
+posición $i$ con el de la posición $j$, recorriendo la lista una única vez.
+Devuelve \textit{true} si tuvo éxito \textit{false} si alguno de los
+índices era incorrecto.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2009
+Escribir una función que reciba una lista enlazada, busque un dato y devuelva
+su posición en la lista o -1 si no se encuentra.  El dato es de tipo
+\lstinline!lista_dato_t!, y para encontrarlo se debe utilizar una función de
+comparación recibida por parámetro:
+\lstinline!int (*cmp) (const lista_dato_t, const lista_dato_t)!.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2011
+% muy similar a 1er recuperatorio 2do P 2010
+Se tiene una lista enlazada, implementada como sólo un puntero a un nodo
+enlazado (es decir, no hay una estructura \lstinline!lista_t!.
+Escribir una primitiva \lstinline!invertir_lista! que reciba un puntero a la lista y
+la deje invertida, accediendo directamente a los punteros internos de cada
+nodo. Indicar el orden de complejidad de la función implementada.
+\end{ejercicio}
+
+\begin{ejercicio}
+Escribir una función \lstinline!map! que reciba una lista \lstinline!l! y una
+función \lstinline!f!, la función \lstinline!f! debe recibir un dato y devolver
+un dato, la función \lstinline!map! debe llamar a \lstinline!f!  con cada uno
+de los elementos de la lista y guardar el resultado reemplazando el dato del
+nodo correspondiente.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 2do P 2010
+Se cuenta con una lista enlazada completa, con iterador. Se pide escribir
+una función \lstinline!filter!, que reciba una lista y una función
+\lstinline!f!, la función \lstinline!f! debe recibir un dato y devolver
+verdadero o falso, la función \lstinline!filter! debe llamar a
+\lstinline!f!  con cada uno de los elementos de la lista y devolver otra
+lista que contenga sólo los elementos para los que \lstinline!f! devolvió
+verdadero.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 2do P 2009
+Escribir una función \lstinline!reduce!, que recibe una lista y una función por
+parámetro, de la forma: \lstinline!lista_dato_t (*operar) (lista_dato_t, lista_dato_t)!. La
+función \lstinline!reduce! debe iterar por los elementos de la lista y
+llamar a \lstinline!operar! para cada elemento, con el dato actual como
+primer parámetro, y el resultado de la llamada previa a \lstinline!operar!
+como segundo parámetro. Para el primer paso, se debe utilizar el primer
+elemento de la lista como resultado acumulado y el segundo elemento
+como valor a procesar. Devuelve el último valor obtenido.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Vector dinámico, con agregar al final} Implementar un vector dinámico,
+el cual sea eficiente agregar al final.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Vector dinámico, con agregar el principio} Implementar un vector
+dinámico, el cual sea eficiente agregar al principio.
+\end{ejercicio}
+
+\begin{ejercicio}
+Comparar la eficiencia de un vector dinámico con agregar al principio y
+agregar al final con los de una lista enlazada. ¿En que casos usaría uno u
+otro?
+\end{ejercicio}
+
+% **************
+%      HASH
+% **************
+
+\newpage
+\section{Tablas de Hash}
+
+\begin{ejercicio}
+% muy similar a 1er recuperatorio 2do P 2009
+% muy similar a 2do parcialito 2011
+Se tiene la función de hashing $h(x)= x \textrm{mod} 100$ y se hace hashing cerrado
+con datos enteros, sobre un arreglo \lstinline!A[0:99]! con resolución
+lineal de colisiones. Indicar cómo queda  el arreglo si se realizan las
+siguientes operaciones:
+\begin{partes}
+\item \lstinline!hash_insertar(255)!,
+\item \lstinline!hash_insertar(355)!,
+\item \lstinline!hash_insertar(256)!,
+\item \lstinline!hash_insertar(199)!,
+\item \lstinline!hash_insertar(299)!,
+\item \lstinline!hash_borrar(355)!.
+\end{partes}
+Justificar los pasos que se hacen en cada caso.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Hash cerrado parametrizable} Implementar el TAD hash cerrado que
+pueda ser parametrizable, es decir, en la creación recibe una función h que es la
+función de hashing a utilizar y una función h1 se utiliza para calcular la
+siguiente posición en caso de una colisión, la primera sólo recibe la clave
+y la otra recibe, la clave, la cantidad de colisiones y el valor devuelto
+por h.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 2do P 2009
+Explicar las diferencias entre un hash abierto y un hash cerrado. ¿En qué
+situación hay que redimensionar un hash cerrado? ¿Por qué? ¿En qué
+situación hay que redimensionar un hash abierto? ¿Por qué?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2010
+% Muy similar 1er recup 2do P 2011
+Se realizan las siguientes operaciones sobre un hash:
+\begin{lstlisting}
+       hash_insertar("Fiesta", "Serrat");
+       hash_insertar("El misterioso dragon", "Heredia");
+\end{lstlisting}
+Sin embargo, la función de hash es tal que
+\lstinline!fhash("Fiesta")! es igual a \lstinline!fhash("El misterioso dragon")!
+\begin{partes}
+\item Armar un gráfico mostrando cómo quedaría la estructura interna del hash
+para una implementación de hash abierto y para uno cerrado.
+\item ¿Qué pasaría si \lstinline!fhash()! devuelve siempre el mismo valor
+cualquiera sea la clave, y se agregaran 100 elementos con distinta clave?
+Explicar el comportamiento tanto para un hash abierto como uno cerrado.
+\item ¿Cuál sería la complejidad computacional de la operación
+\lstinline!hash_insertar()! en un hash abierto, si se utiliza siempre la
+funcion de hash "degenerada" del punto b? ¿Por qué?
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 2do P 2010
+Dada una lista con bolitas con numeros y colores y una \textit{lista negra}
+de colores, armar un hash con los colores como claves y una lista con todos
+los números de ese color como valores, sólo en el caso en que el color no
+está en la lista negra. Dejar en la lista original únicamente las bolitas
+cuyos colores estén en la lista negra.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 2do P 2010
+Se tiene una lista de elementos del tipo \lstinline!ropa_t!, una estructura
+que tiene como miembros: \lstinline!char* color! y \lstinline!char* tipo!,
+y se los quiere separar mediante una tabla de hash, para obtener una lista
+por cada color, con los elementos de ese color.
+
+Una vez separadas las prendas, se pide devolver el color que contenga más
+prendas (asumir que las listas tienen una primitiva cantidad). La función
+debe recibir la lista con los elementos y la tabla de hash vacía, al
+terminar la lista debe estar vacía y la tabla de hash llena.
+\end{ejercicio}
+
+% **************
+%   ÁRBOLES
+% **************
+
+\newpage
+\section{Árboles}
+
+\begin{ejercicio}
+Un árbol binario está equilibrado si sus subárboles están equilibrados y
+además el valor absoluto de la diferencia entre la altura de su subárbol
+izquierdo y la altura de su subárbol derecho es a lo sumo 1.  Escribir una
+función \lstinline!equilibrado_y_altura! que dado un árbol binario devuelva
+un estructura con dos valores (\lstinline!equilibrado!, \lstinline!altura!)
+donde \lstinline!equilibrado! es el valor booleano que indica si el árbol
+está equilibrado o no, y \lstinline!altura! es la altura del árbol dado.
+\end{ejercicio}
+
+\begin{ejercicio}
+\label{insercion_abb}
+% 2do parcialito 2009
+Dibujar el árbol binario de búsqueda que se forma si se llama a la primitiva
+insertar, con los nodos en el siguiente orden: 5, 4, 8, 2, 3, 6, 10, 1, 9,
+7, 11. Dibujar el proceso de borrado del nodo que contiene el 8, y el árbol
+resultante.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2010
+Escribir una primitiva para un árbol binario de búsqueda, que devuelva
+la cantidad de nodos hoja del mismo. Un nodo es \textit{hoja} si no tiene
+ningún hijo.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2011
+Escribir una primitiva de árbol binario, que reciba el árbol y una función
+con la siguiente firma: \lstinline!int f(void* valor)!. Para cada valor
+guardado en el árbol, la primitiva debe llamar a la función \lstinline!f!,
+devolviendo finalmente la suma total de todas las llamadas a la función.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 2do P 2010
+Se tiene un arreglo ordenado de elementos y se los desea cargar en un
+árbol binario.  Diseñar un algoritmo para poder insertar los elementos en
+el árbol de forma tal que quede balanceado. Indicar la complejidad
+algorítmica de la solución propuesta.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2009
+% 1er recup 2do parcialito 2011
+\textbf{Árbol AVL}
+¿Qué caracteriza a un árbol AVL? ¿Qué procesos deben llevarse a cabo para
+mantener esta característica? ¿Qué ventajas y desventajas tiene un árbol
+AVL con respecto a un árbol binario de búsqueda común? ¿Y con respecto a un
+hash?
+\end{ejercicio}
+
+\begin{ejercicio}
+Dibujar el proceso de borrado e inserción de los datos dados en el
+ejercicio \ref{insercion_abb} para un árbol AVL.
+\end{ejercicio}
+
+\begin{ejercicio}
+Las primitivas del árbol AVL son las mismas que las del árbol binario de
+búsqueda, pero difieren en la implementación.  Diseñar cada una de las
+primitivas para que se cumplan las condiciones del árbol AVL.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do parcialito 2010
+Dado un arbol AVL con factor de equilibrio 2, ¿Cuál es la complejidad
+computacional de balancearlo? ¿Y si el factor es un número arbitrario B?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 2do P 2009
+Se tiene un organigrama que representa las relaciones de dependencia de los
+empleados con respecto a sus jefes, guardado dentro de un árbol, se desea
+calcular la cantidad de empleados que dependen de cada jefe.
+\begin{partes}
+\item Diseñar un algoritmo que calcule este valor para un árbol genérico (de N
+hijos por cada nodo).
+\item Implementar una función que actualice un campo llamado
+\lstinline!dependientes! que se encuentra dentro de cada nodo de un árbol
+binario, con el valor correspondiente.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 2do P 2010
+Escribir una primitiva \lstinline!reduce! de un árbol binario de búsqueda, que
+recibe una función por parámetro y un dato inicial.  La función recibida
+tiene la siguiente firma:
+\begin{lstlisting}
+    arbol_dato_t funcion(arbol_dato_t a, arbol_dato_t b);
+\end{lstlisting}
+
+La primitiva \lstinline!reduce! debe recorrer el árbol en in-order (sin
+iterador) y para cada nodo, llamar a la función recibida por parámetro,
+pasándole el resultado anterior como primer parámetro y el dato actual como
+segundo parámetro.  La primera vez debe utilizar el
+\lstinline!dato_inicial! como resultado anterior.
+\end{ejercicio}
+
+% **************
+%      HEAP
+% **************
+
+\newpage
+\section{Heaps}
+
+\begin{ejercicio}
+% 3er parcialito 2009
+Se tiene un heap de máximo representado por el siguiente vector: [28, 10,
+25, 9, 8, 19, 7, 6, 2, 3, 4, 1]. Representarlo en forma de árbol. Mostrar
+qué sucede cuando se sacan los 3 elementos mayores, y qué sucede si luego
+se agrega el 12.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 3er parcialito 2011
+Se tiene un heap de mínimo, representado por el vector [ 3 6 9 7 15 28
+10 14 11 ].
+Mostrar su representación en forma de árbol.
+Mostrar qué elementos salen y cómo queda el heap luego de desencolar 2
+veces.
+Mostrar cómo queda el heap luego de encolar el 8.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 3er P 2010
+Se tiene el siguiente arreglo de números: [4, 39, 94, 71, 17, 47, 21, 2]
+y se lo quiere convertir en un heap de mínimo.  Muestre el procedimiento
+que utiliza heapify para transformar el arreglo en un heap, paso a paso.
+Muestre el árbol correspondiente al heap terminado.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 3er parcialito 2010
+Dado un heap de mínimo, si se imprime desde la raíz todos los
+nodos izquierdos hasta llegar a una hoja, ¿que se obtiene? ¿Por que? \\
+¿Y si en lugar de todos los descendientes izquierdos se imprime
+un hijo izquierdo, luego su hijo derecho, luego su hijo izquierdo, y
+así?
+\end{ejercicio}
+
+\begin{ejercicio}
+Escribir la operación \lstinline!upheap! para un heap de máximo, que
+almacena sus valores en un arreglo de tipo \lstinline!heap_dato_t! y los compara
+mediante una función \lstinline!int (*cmp)(heap_dato_t, heap_dato_t)! que se
+encuentra dentro de la estructura del heap, y devuelve -1 si el primero es
+menor, 0 si son iguales, y 1 si el segundo es mayor. La función
+\lstinline!upheap! recibe el heap y el índice que se debe reposicionar.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 3er P 2009
+Asumiendo que se tienen las primitivas \lstinline!heap_heapify! (que
+crea un heap a partir de un vector), \lstinline!heap_desencolar! y
+\lstinline!heap_esta_vacia!, implementar una función \lstinline!heapsort!
+que reciba un vector y lo ordene. Indicar las pre y post condiciones que se
+necesitan sobre las primitivas para que la función implementada sea
+correcta. Indicar el orden de cada paso y el orden final del algoritmo.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 3er P 2010
+¿Cuál es la cantidad mínima y máxima de elementos que puede tener un
+heap, si el árbol que lo representa tiene altura h? Si se trata de un heap
+de mínimo, ¿entre qué posiciones podrá encontrarse el elemento más grande?
+\end{ejercicio}
+
+\newpage
+\section{Ordenamientos lineales}
+
+\begin{ejercicio}
+% 3er parcialito 2010
+¿Cuál es la ventaja de usar un algoritmo de ordenamiento lineal
+(como pueden ser radix sort o bin sort) por sobre un algoritmo de
+ordenamiento clásico como quick sort, merge sort o heap sort?  ¿En qué
+situación elegiría cada uno?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recuperatorio 3er P 2010
+Se desea ordenar un arreglo que contiene todos los números padrón de los
+alumnos de la facultad. ¿Qué forma de ordenamiento conviene utilizar? ¿Por
+qué? ¿Cuál será la complejidad algorítmica de esta resolución?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 3er P 2010
+Se tiene una lista con una cantidad muy grande de números reales, y se
+sabe que no hay más de $n$ distintos, aunque se desconoce el rango de los
+números. ¿Cuál es la forma más eficiente de ordenarlos? Justificar
+claramente la respuesta.
+\end{ejercicio}
+
+
+% ************************
+%   DISEÑO DE ALGORITMOS
+% ************************
+
+\newpage
+\section{Diseño de algoritmos}
+
+A partir de esta sección, los ejercicios pueden programarse en cualquier lenguaje.
+
+\begin{ejercicio}
+% 3er parcialito 2009
+\textbf{Laberinto}.
+Dada una matriz de \lstinline!N! filas por \lstinline!M! columnas, que
+representa un laberinto, cuyos casilleros pueden ser \lstinline!VACIO!,
+\lstinline!PARED! ó \lstinline!PISADO! (inicialmente ninguno está
+\lstinline!PISADO!), devolverla marcando como \lstinline!PISADO! los
+casilleros que forman un camino válido desde \lstinline!(0,0)!  hasta
+\lstinline!(N,M)!.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 3er parcialito 2011
+Se quiere encontrar la salida de un laberinto como el del problema anterior y se cuenta con las
+siguientes posibilidades:
+\begin{partes}
+\item Algoritmo de Batman: para salir de cualquier laberinto ir siempre a la
+derecha, para mantenerse contra una pared exterior y llegar a la salida.
+¡Santos enredos Batman!
+\item Método de Ariadna y Teseo: usando un ovillo de lana, explorar siempre
+los nuevos corredores y sólo cuando no quede ningún camino sin explorar,
+volver sobre sus pasos.
+\item Regla de la tiza: entrando por la salida, contar los pasos recorridos y
+en cada bifurcación escribir con tiza la cantidad de pasos y la dirección
+hacia la salida. Para salir, ir siempre en la dirección indicada por la
+tiza.
+\end{partes}
+Indicar qué tipo de estrategia es cada una, cuál elegiría y por qué.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 3er parcialito 2009
+La sucesión de Lucas está definida de la siguiente manera:
+$l(0) = 2$, $l(1) = 1$, $l(n) = l(n-1)+l(n-2)$ para todo otro $n$, incluyendo
+números negativos. Escribir una función que calcule el valor de Lucas para
+cualquier número entero, utilizando programación dinámica.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 3er P 2009
+Escribir usando programación dinámica una función
+\lstinline!cuantos_caminos(n, m)! que cuenta por cuántos caminos diferentes
+se puede ir del punto \lstinline!(n, m)! al punto \lstinline!(0, 0)! sobre
+una grilla de enteros no negativos, sabiendo que sólo se pueden dar pasos
+hacia abajo y hacia la izquierda. Calcular el orden.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 3er parcialito 2011
+La cantidad de posibles colocaciones de paréntesis para $n$ operadores
+binarios está dada por la fórmula:
+\begin{displaymath}
+v[n] = \sum_{j=0}^{n-1}{v[j] \times v\left[(n-1)-j\right]} \;\;
+\textrm{con } v[0]=1
+\end{displaymath}
+Escribir una función que obtenga la cantidad de agrupaciones para un valor
+$i$ de operadores de forma eficiente.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 3er P 2010
+Se quiere recorrer una ruta de $M$ kilómetros en auto, haciendo la menor
+cantidad de cargas de combustible posible. Se sabe que con el tanque lleno
+el auto puede recorrer $K$ kilómetros, y se cuenta con un arreglo ordenado de
+las estaciones disponibles en la ruta, con sus ubicaciones en kilómetros
+desde la salida. \\
+Escribir un algoritmo que resuelva el problema, utilizando programación
+dinámica o algoritmos greedy.  Justificar la decisión y la complejidad de
+la solución.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 3er parcialito 2010
+Se tiene una lista con enteros positivos, y se desea separar todos
+sus elementos en dos conjuntos disjuntos, tales que la diferencia
+entre la suma de los elementos de cada conjunto sea mínima. \\
+Escribir un algoritmo para formar los dos conjuntos, explicar qué
+estrategia se utiliza, y por qué.  Indicar el orden de la solución.
+\end{ejercicio}
+
+\begin{ejercicio}
+El siguiente algoritmo encuentra una farmacia de turno:
+\begin{itemize}
+\item En un papel ir anotando la lista de farmacias ya visitadas.
+\item Ir a la farmacia mas cercana que no esté en la lista.
+\item Si está de turno, el algoritmo terminó exitosamente.
+\item Si no, anotar la farmacia en la lista, y volver a empezar.
+\end{itemize}
+
+\begin{partes}
+\item ¿De qué tipo de estrategia se trata?
+\item ¿Encuentra siempre alguna solución?
+\item Si encuentra una solución, ¿podemos estar seguros de que es la mejor?
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 3er P 2009
+Escribir una función que, mediante backtracking, obtenga la cantidad de
+números de 5 cifras, formados sólo por dígitos pares, cuya suma sea 20.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 4to P 2010
+Dado un arreglo de $N$ números enteros y un número entero $K$, escribir una
+función que devuelva una lista con todos los subconjuntos del arreglo,
+cuya suma sea $K$. Indicar la estrategia utilizada y la complejidad
+algorítmica obtenida.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 3er P 2009
+\textbf{Problema del cambio}.
+Se quiere optimizar una máquina de boletos de colectivo para que devuelva
+la menor cantidad de monedas de cada denominación cada vez que deba dar un
+vuelto. Indicar el diseño de este algoritmo utilizando una estrategia
+greedy, una de programación dinámica y una de backtracking. ¿Cuál de las
+tres elegiría? ¿Por qué?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 3er P 2009
+\textbf{Problema de la mochila}.
+Se quiere hacer un programa que dada una capacidad máxima elija de una
+lista de elementos, aquellos que otorgan mayor beneficio para la capacidad
+dada. Indicar el diseño de este algoritmo utilizando una estrategia greedy,
+una de programación dinámica y una de backtracking. ¿Cuál elegiría? ¿Por
+qué?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 4to P 2010
+\textbf{Sudoku} Para el desarrollo de un programa que resuelve matrices de
+sudoku, ya se han implementado las siguientes funciones:
+\begin{itemize}
+\item \lstinline!es_movida_valida(matriz, x, y, valor)!, devuelve verdadero
+si valor puede ir en la posición \lstinline!(x,y)! de la matriz .
+
+\item \lstinline!proxima_posicion(matriz, x, y)!, devuelve la próxima posición vacía dentro
+de la matriz, o null o None en caso de que no haya ninguna posición libre.
+\end{itemize}
+
+Escribir la función \lstinline!resolver_sudoku! que recibe la matriz
+inicial y devuelve la matriz con los números en las posiciones
+correspondientes.  Indicar la complejidad algorítmica de la solución
+desarrollada.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recuperatorio 3er P 2010
+Se tiene un arreglo de $N$ elementos, en el que cada elemento es el costo
+de una pieza de Sushi en particular.
+Se desea elegir la mayor cantidad posible de piezas de Sushi si se tienen P
+pesos para comprar.  Escribir un algoritmo para elegir las piezas, explicar
+qué estrategia de diseño de algoritmos se utiliza, y por qué.  Indicar la
+complejidad algorítmica de la solución propuesta.
+\end{ejercicio}
+
+
+% ************************
+%         GRAFOS
+% ************************
+
+\newpage
+\section{Grafos}
+
+\begin{ejercicio}
+\begin{partes}
+% 4to parcialito 2009
+\item Implementar la primitiva \lstinline!agregar_arista! para un grafo dirigido
+y ponderado, implementado mediante matriz de adyacencia y para un grafo
+implementado mediante listas de adyacencia (sin diccionarios). Comparar el
+orden de cada una de las implementaciones.
+% 2do recup 4to P 2009
+\item Implementar la primitiva \lstinline!eliminar_arista! para un grafo
+implementado mediante matriz de adyacencia y para un grafo implementado
+mediante listas de adyacencia (sin diccionarios). Comparar el orden de cada
+una de las implementaciones.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2011
+Se desea tener una primitiva para grafos dirigidos que devuelva el grado
+de incidencia de un vértice $v$ (la cantidad de aristas que llegan a él).
+Implementar la primitiva para un grafo implementado con matriz de
+adyacencias, y luego para un grafo implementado con listas de adyacencias.
+Comparar el orden de cada una de las implementaciones.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 4to P 2009
+Explicar el funcionamiento del algoritmo de Prim para obtener el árbol de
+tendido mínimo. ¿Cómo sabemos que realmente es mínimo? ¿Para qué tipo de
+grafos se utiliza este algoritmo?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2009
+Explicar en qué consisten los puntos de articulación de un grafo y cómo
+encontrarlos.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 4to P 2010
+Dado un grafo no dirigido $G$, con primitivas que permiten listar los
+vértices del grafo, y en los vértices, primitivas que permiten listar sus
+vecinos, escribir una función (no primitiva) que devuelva 0 si no es
+conexo, 1 si es conexo sin ciclos, y 2 si es conexo con ciclos.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2009
+Se tiene un grafo cuyos vértices representan personas y cuyas aristas
+representan relaciones de enemistad. Es decir si dos vértices están unidos
+por una arista esas dos personas son enemigas. Se garantiza que para todos
+los vértices el enemigo de un enemigo no es enemigo propio. Diseñar un
+algoritmo que cree dos listas de personas de forma que los integrantes de
+cada lista no sean enemigos entre sí, conteniendo a todas las personas del
+grafo.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2010
+Escribir una función que, dado un grafo no dirigido, devuelva una lista
+conformada por un nodo cualquiera de cada componente conexa.  Asumir que el
+grafo cuenta con una primitiva para listar todos los vértices y otra para
+listar los vecinos de un vértice dado.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 4to P 2009
+Se desea hacer un programa que coloree los países de un mapa. Se sabe que
+un mapa se puede modelar como un grafo cuyas aristas representan las
+fronteras de los países, y estas nunca se cruzan, y que con estas
+condiciones es posible colorear correctamente un mapa con sólo 4 colores.
+Diseñar un algoritmo que asigne a cada vértice del grafo el color
+correspondiente, de modo que nunca haya dos países limítrofes de un mismo
+color.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2010
+Se tienen dos matrices: \lstinline!mejor_camino! y
+\lstinline!peso_mejor_camino!, que para todo
+par $i,j$ de vértices de un grafo contienen:
+\begin{itemize}
+\item \lstinline!mejor_camino[i][j]! = lista con el mejor camino entre i y j
+\item \lstinline!peso_mejor_camino[i][j]! = peso del mejor camino entre i y j
+\end{itemize}
+Escribir una función, dado un vértice origen, un vértice destino y una
+lista de vértices intermedios, devuelva una lista con el mejor camino entre
+el origen y el destino, que pase por todos los vértices de la lista, en el
+orden recibido.  Indicar la complejidad del algoritmo propuesto. \\
+\textbf{Nota}: no hace falta tener en cuenta si hay vértices por los que se pasa más
+de una vez.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2011
+Escribir una función que reciba un grafo, un vértice $v$ y una cantidad de
+pasos $n$ (paso: ir de un vértice a un vecino, sin importar el peso de la
+arista), que devuelva una lista con todos los vértices que se encuentran a
+$n$ pasos (como mínimo) de $v$.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 4to P 2010
+Para una aplicación interactiva, se utiliza un grafo en el que cada letra
+es un nodo, y el peso de la arista entre los nodos $v_i$, $v_j$ es la
+probabilidad de que la letra $v_j$ esté a continuación de $v_i$, es decir
+que para todo par de vértices ($v_i$,$v_j$) siempre existe la arista
+($v_i$,$v_j$) con algún peso entre 0 y 1. \\
+¿Qué implementación interna de grafos utilizaría en este caso para
+optimizar la eficiencia de tiempo de acceso y espacio? ¿Por qué?
+\end{ejercicio}
+
+\begin{ejercicio}
+% 2do recup 4to P 2010
+Diseñar un algoritmo que le sugiera al usuario cómo terminar una palabra
+que está escribiendo basándose en las probabilidades descriptas por el
+grafo anterior.  Indicar cómo podría mejorarse el algoritmo si se cuenta
+con un listado ordenado de las palabras del idioma del usuario.
+\end{ejercicio}
+
+\newpage
+\section{Resolución de problemas}
+
+Estos problemas pueden resolverse con algunas de las técnicas vistas a lo
+largo de la materia.  El objetivo de esta guía es poder identificar la
+mejor técnica para cada caso.
+
+\begin{ejercicio}
+% 2do recuperatorio 2do P 2009
+Se quiere realizar un programa que sea capaz de adivinar un personaje
+elegido por un humano, mediante preguntas de sí o no, similar al de
+\texttt{http://www.akinator.com}.
+\begin{partes}
+\item Elegir en qué estructura de datos se guardaría la información y cómo se
+utilizaría esa estructura.
+\item Explicar qué habría que hacer en el caso de que un personaje no se
+encuentre almacenado en la estructura, para que el programa pudiera ir
+aprendiendo con el tiempo.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Planificador}. Se tiene que realizar un proyecto que incluye una
+lista de tareas, cada una con una duración, y una lista de
+dependencias entre ellas.  Si la tarea A depende de la tarea B y C
+para poder realizarse, no se puede comenzar a ejecutarla hasta que B y
+C hayan terminado. Diseñar un algoritmo que permita ejecutar las
+tareas a N personas distintas, de formar óptima.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Scrabble}. Se tiene una cadena de 7 letras y un vector ordenado con
+palabras pertenecientes al idioma.  Se desea encontrar la o las
+palabras que se puedan formar con esas 7 letras, que se encuentren en
+el vector. Implementar el algoritmo principal de búsqueda, intentando
+reducir la cantidad máxima de iteraciones.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Cajitas}. Se desea acomodar distintas cajas, de tamaño AxBxC dentro
+de cajas de mayor tamaño.  Las cajas vienen dadas por sus medidas, y
+una cantidad asociada a cada medida.  Se las puede rotar, pero sólo
+horizontalmente (no puede voltearse). Diseñar un algoritmo que busque
+una solución \textbf{aceptable}, no necesariamente la óptima.
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Conferencia}. Se tiene una lista de eventos, caracterizados por un
+horario de inicio, un horario de fin y un título, que se quieren realizar
+en un único lugar, pero algunos horarios se solapan; se desea poder
+realizar la mayor cantidad de eventos posibles.  Diseñar un algoritmo que
+busque la solución al problema, calcular el orden del algoritmo propuesto.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2010
+\textbf{Anagramas}. Dada una palabra y un vector que contiene un
+diccionario con todas las palabras de un idioma, escribir un algoritmo para
+buscar todos los anagramas de esa palabra que se encuentran en el
+diccionario.  Indicar el orden del algoritmo realizado. \\
+Si se tiene la posibilidad de pre-procesar el listado de palabras, ¿Cómo
+podría mejorarse el algoritmo
+\end{ejercicio}
+
+\begin{ejercicio}
+% 4to parcialito 2011
+Se cuenta con una tabla que contiene todos los posibles viajes en
+ómnibus, de una ciudad a otra del país, indicando el precio de cada viaje.
+Diseñar un algoritmo que utilice esta información para buscar la mejor
+forma de ir de un punto a otro del país, teniendo en cuenta posibles
+escalas.
+\end{ejercicio}
+
+\begin{ejercicio}
+% 1er recup 4to P 2010
+Para poder enviarle una carta a Papá Noel, se desea conocer el \textit{grado de
+separación} que hay entre una persona y Papá Noel, y el camino por el cual
+debe pasar la carta hasta llegar a destino. \\
+Se define \textit{grado de separación} como la cantidad mínima de personas
+\textit{conocidas de} que hay entre dos personas.  Por ejemplo, el grado de
+separación entre cualquier par de alumnos de este curso es 1, mientras que
+la separación entre un alumno y el padre de otro alumnos es, normalmente,
+2. \\
+Indicar qué estructura de datos usaría para almacenar la información y
+diseñar el algoritmo necesario para encontrar el grado de separación entre
+dos personas y el camino que las une.
+\end{ejercicio}
+
+\newpage
+\section{Anexo - Primitivas a entregar}
+Estas son las primitivas de los TADs que se piden para entregar a lo largo
+de la materia.
+
+\begin{ejercicio}
+% Ejercicio para entregar
+\textbf{Vector dinámico} Implementar un vector dinámico de enteros, es
+decir, un vector al que se pueda cambiar el tamaño.  El vector dinámico
+cuenta con las siguientes primitivas:
+
+\begin{lstlisting}
+    vector_t* vector_crear();
+    bool vector_guardar(vector_t *vector, int valor);
+    int vector_obtener(vector_t *vector);
+    size_t vector_obtener_tamanio(const vector_t *vector);
+    bool vector_redimensionar(vector_t *vector);
+    void vector_destruir(vector_t *vector);
+\end{lstlisting}
+\end{ejercicio}
+
+\begin{ejercicio}
+% Ejercicio para entregar
+Pila
+\begin{partes}
+\item Implementar, usando un arreglo dinámico, el tipo abstracto de dato
+pila y las primitivas asociadas a los siguientes prototipos:
+\begin{lstlisting}
+    pila_t* pila_crear();
+    bool pila_apilar(pila_t *pila, void* valor);
+    void* pila_desapilar(pila_t *pila);
+    void* pila_ver_tope(const pila_t *pila);
+    bool pila_esta_vacia(const pila_t *pila);
+    void pila_destruir(pila_t *pila);
+\end{lstlisting}
+\item Para cada una de las funciones implementadas, escribir un código de
+prueba que verifique que funciona correctamente.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+% Ejercicio para entregar
+Cola
+\begin{partes}
+\item Implementar, usando una estructura enlazada, el tipo abstracto de
+datos cola y las primitivas asociadas a los siguientes prototipos:
+\begin{lstlisting}
+    cola_t* cola_crear();
+    bool cola_encolar(cola_t *cola, void* valor);
+    void* cola_desencolar(cola_t *cola);
+    void* cola_ver_primero(cola_t *cola);
+    bool cola_esta_vacia(cola_t *cola);
+    void cola_destruir(cola_t *cola);
+\end{lstlisting}
+\item Para cada una de las funciones implementadas, escribir un código de
+prueba que verifique que funciona correctamente.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Lista simplemente enlazada} Implementar el TAD lista simplemente
+enlazada.
+\begin{partes}
+\item Primitivas de lista simplemente enlazada
+\begin{lstlisting}
+    lista_t *lista_crear();
+    bool lista_esta_vacia(const lista_t *lista);
+    bool lista_insertar_primero(lista_t *lista, void *dato);
+    bool lista_insertar_ultimo(lista_t *lista, void *dato);
+    void *lista_borrar_primero(lista_t *lista);
+    void *lista_ver_primero(const lista_t *lista);
+    void *lista_ver_ultimo(const lista_t *lista);
+    size_t lista_largo(const lista_t *lista);
+    void lista_destruir(lista_t *lista, void destruir_dato(void *))
+\end{lstlisting}
+
+\item Primitivas de iteración
+\begin{lstlisting}
+    lista_iter_t *lista_iter_crear(const lista_t *lista);
+    bool lista_iter_avanzar(lista_iter_t *iter);
+    void *lista_iter_ver_actual(const lista_iter_t *iter);
+    bool lista_iter_al_final(const lista_iter_t *iter);
+    void lista_iter_destruir(lista_iter_t *iter);
+\end{lstlisting}
+
+\item Primitivas de listas junto con iterador
+\begin{lstlisting}
+    bool lista_insertar(lista_t *lista, lista_iter_t *iter, void *dato);
+    void *lista_borrar(lista_t *lista, lista_iter_t *iter);
+\end{lstlisting}
+
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Tabla de hash}
+\begin{partes}
+\item Implementar el TAD tabla de hash, sea usando hash cerrado o
+abierto, con las siguientes primitivas:
+\begin{lstlisting}
+    typedef void (*hash_destruir_dato_t)(void *);
+    hash_t *hash_crear(hash_destruir_dato_t destruir_dato);
+    bool hash_guardar(hash_t *hash, const char *clave, void *dato);
+    void *hash_borrar(hash_t *hash, const char *clave);
+    void *hash_obtener(const hash_t *hash, const char *clave);
+    bool hash_pertenece(const hash_t *hash, const char *clave);
+    size_t hash_cantidad(const hash_t *hash);
+    void hash_destruir(hash_t* hash);
+\end{lstlisting}
+
+\item Realizar las pruebas unitarias para todas las primitivas de la tabla de
+hash previamente definida, verificando que se cumple correctamente su
+funcionamiento en todos los casos.
+
+\item Agregar un iterador al TAD tabla de hash
+\begin{lstlisting}
+    hash_iter_t *hash_iter_crear(const hash_t *hash);
+    bool hash_iter_avanzar(hash_iter_t *iter);
+    const char *hash_iter_ver_actual(const hash_iter_t *iter);
+    bool hash_iter_al_final(const hash_iter_t *iter);
+    void hash_iter_destruir(hash_iter_t* iter);
+\end{lstlisting}
+
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Árbol binario}.
+\begin{partes}
+\item Implementar un árbol binario, en el cual existen las operaciones para
+insertar y borrar nodos, a izquierda y derecha.  En caso de no ser posible
+el borrado o la inserción, devuelva falso.
+\begin{lstlisting}
+    typedef bool arbol_destruir_dato_t (void*);
+
+    arbol_t* arbol_crear(arbol_destruir_void* destruir_dato);
+    bool arbol_insertar_izquierda(arbol_t *arbol,
+                     arbol_nodo_t *nodo, void* dato);
+    bool arbol_insertar_derecha(arbol_t *arbol,
+                     arbol_nodo_t *nodo, void* dato);
+    void* arbol_borrar_izquierda(arbol_t *arbol, arbol_nodo_t *nodo);
+    void* arbol_borrar_derecha(arbol_t *arbol, arbol_nodo_t *nodo);
+    size_t arbol_cantidad(const arbol_t *arbol);
+    void arbol_destruir(arbol_t* arbol);
+
+    bool arbol_raiz(const arbol_t *arbol, arbol_nodo_t *raiz);
+    bool arbol_es_hoja(const arbol_nodo_t *nodo);
+    void* arbol_obtener_dato(const arbol_nodo_t *nodo);
+    arbol_nodo_t* arbol_obtener_derecha(const arbol_nodo_t *nodo);
+    arbol_nodo_t* arbol_obtener_izquierda(const arbol_nodo_t *nodo);
+\end{lstlisting}
+\item Escribir una primitiva adicional que permita unir dos árboles.
+\begin{lstlisting}
+    arbol_t *arbol arbol_plantar(arbol_t *izquierda, arbol_t *derecha,
+                                    void* dato);
+\end{lstlisting}
+
+\item Escribir iteradores para recorrer el árbol en pre orden, post orden e
+in orden. Será necesario usar una pila o una lista para poder volver a
+\textit{subir}.
+\end{partes}
+\end{ejercicio}
+
+\begin{ejercicio}
+\textbf{Árbol binario de búsqueda}
+\begin{lstlisting}
+    typedef struct abb abb_t;
+    typedef int (*abb_comparar_clave_t) (const char *, const char *);
+    typedef void (*abb_destruir_dato_t) (void *);
+
+    abb_t* abb_crear(abb_comparar_clave_t cmp, abb_destruir_dato_t
+                         destruir_dato);
+    bool abb_guardar(abb_t *arbol, const char *clave, void *dato);
+    void *abb_borrar(abb_t *arbol, const char *clave);
+    void *abb_obtener(const abb_t *arbol, const char *clave);
+    bool abb_pertenece(const abb_t *arbol, const char *clave);
+    size_t abb_cantidad(abb_t *arbol);
+    void abb_destruir(abb_t *arbol);
+\end{lstlisting}
+\end{ejercicio}
+
+
+\end{document}
