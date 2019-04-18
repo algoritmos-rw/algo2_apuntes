@@ -11905,20 +11905,13 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Programaci&#243;n-Din&#225;mica:-or-How-I-Learned-to-Stop-Worrying-and-Love-the-Recurrencia">Programaci&#243;n Din&#225;mica: or How I Learned to Stop Worrying and Love the Recurrencia<a class="anchor-link" href="#Programaci&#243;n-Din&#225;mica:-or-How-I-Learned-to-Stop-Worrying-and-Love-the-Recurrencia">&#182;</a></h1><p>Código en <a href="https://github.com/algoritmos-rw/algo2_apuntes/blob/master/TallerPD.ipynb">https://github.com/algoritmos-rw/algo2_apuntes/blob/master/TallerPD.ipynb</a></p>
-<p>La programación dinámica es una <em>heurística</em> de programación: una forma de pensar y encarar problemas. En los términos más básicos puede reducirse a <strong>resolver un problema en base a los problemas anteriores.</strong></p>
-<h2 id="Cu&#225;ndo-puedo-usar-PD?">Cu&#225;ndo puedo usar PD?<a class="anchor-link" href="#Cu&#225;ndo-puedo-usar-PD?">&#182;</a></h2><ul>
-<li><p>Superposición de problemas: La solución de un problema me sirve para resolver mi futuro problema.</p>
-<ul>
-<li>Si no tengo esto, <strong>no puedo</strong> aplicar PD</li>
-</ul>
-</li>
-</ul>
+<h1 id="Programaci&#243;n-Din&#225;mica:-or-How-I-Learned-to-Stop-Worrying-and-Love-the-Recurrencia">Programaci&#243;n Din&#225;mica: or How I Learned to Stop Worrying and Love the Recurrencia<a class="anchor-link" href="#Programaci&#243;n-Din&#225;mica:-or-How-I-Learned-to-Stop-Worrying-and-Love-the-Recurrencia">&#182;</a></h1><p><a href="https://gist.github.com/FdelMazo/691bdff48a9a4ecbc5d768b45b048b93">Código</a></p>
+<p>La programación dinámica es una técnica de diseño de algoritmos. En los términos más básicos puede reducirse a <strong>resolver un problema en base a subproblemas anteriores.</strong></p>
+<h2 id="Cu&#225;ndo-puedo-usar-PD?">Cu&#225;ndo puedo usar PD?<a class="anchor-link" href="#Cu&#225;ndo-puedo-usar-PD?">&#182;</a></h2><p>Siempre que un problema se pueda dividir en una secuencia de subproblemas y la solución a cada uno de estos subproblemas sirva para llegar a la solución del problema original.</p>
 <h2 id="Cu&#225;ndo-me-conviene-usar-PD?">Cu&#225;ndo me conviene usar PD?<a class="anchor-link" href="#Cu&#225;ndo-me-conviene-usar-PD?">&#182;</a></h2><ul>
-<li><p>Subestructura óptima: La combinación de resultados óptimos para mis subproblemas me da el resultado total óptimo.</p>
-<ul>
-<li>Si bien esto no es obligatorio, siempre esta bueno tener la solución óptima a un problema.</li>
-</ul>
+<li><p>Superposición de subproblemas: Las soluciones a los subproblemas se necesitan varias veces, no solo para resolver el siguiente.</p>
+</li>
+<li><p>Subestructura óptima: Se puede llegar a la solución óptima del problema usando como base las soluciones óptimas a los subproblemas.</p>
 </li>
 </ul>
 
@@ -11932,7 +11925,7 @@ a.anchor-link {
 <h2 id="Tipos-de-PD:">Tipos de PD:<a class="anchor-link" href="#Tipos-de-PD:">&#182;</a></h2><ul>
 <li><p>Top Down (memoization): Empezando desde mi problema, cada vez que voy a utilizar un resultado anterior me pregunto si ya lo tengo guardado. Si no lo esta, lo genero y lo guardo en memoria</p>
 </li>
-<li><p>Bottom Up (tabulation): Empezando desde el problema más chico posible, itero todos los problemas posibles 'para arriba'. Así, siempre voy a tener toda la información guardada (a costo de espacio). Una vez que llego al problema original, resuelvo teniendo en cuenta lo anterior. --&gt; <strong>Este es el visto en este taller</strong></p>
+<li><p>Bottom Up (tabulation): Empezando desde el problema más chico posible, itero todos los subproblemas. Así, siempre voy a tener toda la información guardada (a costo de espacio). Una vez que llego al problema original, resuelvo teniendo en cuenta lo anterior. --&gt; <strong>Este es el visto en este taller</strong></p>
 </li>
 </ul>
 
@@ -11984,7 +11977,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ejemplo:-Factorial-de-x">Ejemplo: Factorial de x<a class="anchor-link" href="#Ejemplo:-Factorial-de-x">&#182;</a></h2><h3 id="Puedo-usar-PD?">Puedo usar PD?<a class="anchor-link" href="#Puedo-usar-PD?">&#182;</a></h3><p>Si: el factorial de x depende del factorial de los anteriores a x.</p>
+<h2 id="Ejemplo:-Factorial-de-x">Ejemplo: Factorial de x<a class="anchor-link" href="#Ejemplo:-Factorial-de-x">&#182;</a></h2><h3 id="Puedo-usar-PD?">Puedo usar PD?<a class="anchor-link" href="#Puedo-usar-PD?">&#182;</a></h3><p>Si: el factorial de x depende del factorial de x-1. Todo problema depende de la solución del problema anterior.</p>
 <h3 id="Ecuaci&#243;n-de-recurrencia">Ecuaci&#243;n de recurrencia<a class="anchor-link" href="#Ecuaci&#243;n-de-recurrencia">&#182;</a></h3><ul>
 <li><p>Cuáles son mis valores iniciales?</p>
 <ul>
@@ -11995,12 +11988,6 @@ a.anchor-link {
 <li><p>Cuál es mi relación de recurrencia?</p>
 <ul>
 <li>Factorial de i = i * factorial de i-1</li>
-</ul>
-</li>
-<li><p>Cómo defino entre ambos?</p>
-<ul>
-<li>Si i = 0 o i = 1 --&gt; valor inicial</li>
-<li>Si i &gt; 1 --&gt; relación de recurrencia</li>
 </ul>
 </li>
 </ul>
@@ -12015,7 +12002,7 @@ a.anchor-link {
 <p>$$DP[0] = 1 \\ DP[1] = 1$$</p>
 <p>\begin{equation}
   DP[i]=\begin{cases}
-    i * DP[i-1] &amp; \text{if i &gt; 1}
+    i * DP[i-1]
   \end{cases}
 \end{equation}</p>
 
@@ -12024,7 +12011,7 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -12032,8 +12019,7 @@ a.anchor-link {
     <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dp</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
 
@@ -12061,7 +12047,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt output_prompt">Out[1]:</div>
 
 
 
@@ -12117,7 +12103,7 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Problema-0:-Buscar-el-m&#225;ximo-de-un-arreglo">Problema 0: Buscar el m&#225;ximo de un arreglo<a class="anchor-link" href="#Problema-0:-Buscar-el-m&#225;ximo-de-un-arreglo">&#182;</a></h2><h3 id="Ecuaci&#243;n-de-recurrencia">Ecuaci&#243;n de recurrencia<a class="anchor-link" href="#Ecuaci&#243;n-de-recurrencia">&#182;</a></h3><ul>
 <li>Cuáles son mis valores iniciales? <ul>
-<li>Mi problema más chico: Estar en la primera posición (pensar que estoy en una lista de longitud 1)<ul>
+<li>Mi problema más chico: Una lista de longitud 1<ul>
 <li>Maximo de [3] es 3
 <br><strong>Valor inicial: DP[0] = arr[0]</strong></li>
 </ul>
@@ -12158,11 +12144,11 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">maximo</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>                 <span class="c1">#Creo</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>              <span class="c1">#Creo</span>
     <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                      <span class="c1">#Seteo</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dp</span><span class="p">)):</span>          <span class="c1">#Recorro</span>
         <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
@@ -12172,7 +12158,6 @@ a.anchor-link {
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                       <span class="c1">#Devuelvo</span>
 
-<span class="n">maximo</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">maximo</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">maximo</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
@@ -12200,7 +12185,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -12248,36 +12233,13 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><p>Muchas veces puedo reescribir mi ecuacion de recurrencia, ya que solo pregunto quién es más grande/chico</p>
-<ul>
-<li><p>Ej, buscando el máximo:</p>
-
-<pre><code>  Si el caso base es mayor al problema anterior:
-      resultado = caso base
-  Si no:
-      resultado = caso no base</code></pre>
-<p>Puede ser escrito como:</p>
-<p><code>resultado = maximo(actual, anterior)</code></p>
-</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
 <li><p>Ojo! No siempre tengo que devolver el último resultado:</p>
 <ul>
 <li>Encontrar la maxima ganancia para 100 ventas --&gt; Me piden el resultado en 100</li>
 <li>Encontrar la maxima ganancia para cualquier venta, hasta 100 --&gt; Me piden el maximo de mis resultados</li>
 </ul>
 </li>
-<li><p>La devolucion suele ser: <code>min(dp), max(dp), dp[-1], dp[0], dp[n]</code></p>
+<li><p>La devolucion suele ser: <code>min(dp), max(dp), dp[-1], dp[0]</code></p>
 </li>
 </ul>
 
@@ -12286,14 +12248,14 @@ a.anchor-link {
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">copy</span>
 <span class="k">def</span> <span class="nf">maximo_refactorizado</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>                          <span class="c1">#Creo</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dp</span><span class="p">)):</span>              <span class="c1">#Recorro</span>
-        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>          <span class="c1">#Resuelvo</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>         <span class="c1">#Resuelvo</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>                           <span class="c1">#Devuelvo</span>
 
 <span class="n">maximo_refactorizado</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
@@ -12309,7 +12271,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -12353,7 +12315,7 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -12375,7 +12337,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -12403,96 +12365,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problema-2a:-Longest-Increasing-Subsequence-(LIS)">Problema 2a: Longest Increasing Subsequence (LIS)<a class="anchor-link" href="#Problema-2a:-Longest-Increasing-Subsequence-(LIS)">&#182;</a></h2><blockquote><p>Dado un arreglo, encontrar la longitud del mayor subarreglo incremental (no necesariamente contiguo).</p>
-</blockquote>
-<p>Por ejemplo: <code>LIS([1,-1, 4, 5, 3])</code> --&gt; Devuelve 3, que es la longitud del subarreglo <code>[1,4,5]</code></p>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$DP[0] = 1$$</p>
-<p>\begin{equation}
-  DP[i]=\begin{cases}
-    DP[j]+1 &amp; \text{if existe DP[j] más grande que DP[i]}\\ &amp; \text{(con $j=0,...,i$)} \\ \\
-    1 &amp; \text{else (if no existe DP[j] tal que...)}\\
-\end{cases}
-\end{equation}</p>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">LIS</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dp</span><span class="p">)):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-
-
-<span class="n">LIS</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[1, 1, 2, 3, 2, 1]
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[22]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Complejidad: $O(n^2)$</strong></p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problema-2b:-Longest-Contiguous-Increasing-Subsequence">Problema 2b: Longest Contiguous Increasing Subsequence<a class="anchor-link" href="#Problema-2b:-Longest-Contiguous-Increasing-Subsequence">&#182;</a></h2><blockquote><p>Dado un arreglo, encontrar la longitud del mayor subarreglo incremental contiguo.</p>
+<h2 id="Problema-2:-Longest-Contiguous-Increasing-Subsequence">Problema 2: Longest Contiguous Increasing Subsequence<a class="anchor-link" href="#Problema-2:-Longest-Contiguous-Increasing-Subsequence">&#182;</a></h2><blockquote><p>Dado un arreglo, encontrar la longitud del mayor subarreglo incremental contiguo.</p>
 </blockquote>
 <p>Por ejemplo: <code>LCIS([1, 8, 4, 2, 1])</code> --&gt; Devuelve 2, que es la longitud del subarreglo <code>[1,8]</code></p>
 
@@ -12516,13 +12389,13 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">LCIS</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dp</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> 
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> 
             <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
@@ -12551,7 +12424,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[23]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -12579,9 +12452,9 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problema-3:-Mayor-suma-de-subarreglo-contiguo-incremental">Problema 3: Mayor suma de subarreglo contiguo incremental<a class="anchor-link" href="#Problema-3:-Mayor-suma-de-subarreglo-contiguo-incremental">&#182;</a></h2><blockquote><p>Dado un arreglo, encontrar el valor maximo posible para la suma de un subarreglo contiguo (ventana) incremental</p>
+<h2 id="Problema-3:-Mayor-suma-de-subarreglo-contiguo">Problema 3: Mayor suma de subarreglo contiguo<a class="anchor-link" href="#Problema-3:-Mayor-suma-de-subarreglo-contiguo">&#182;</a></h2><blockquote><p>Dado un arreglo, encontrar el valor máximo posible para la suma de un subarreglo contiguo</p>
 </blockquote>
-<p>Ej: <code>sumatoria_ventana_incremental([3,-1,-5,6,7,3,-9])</code> --&gt; Devuelve 13, de sumar <code>[6,7]</code></p>
+<p>Ej: <code>sumatoria_ventana([−2, 1, −3, 4, −1, 2, 1, −5, 4])</code> --&gt; Devuelve 6, de sumar <code>[4, −1, 2, 1]</code></p>
 
 </div>
 </div>
@@ -12593,7 +12466,7 @@ a.anchor-link {
 <p>$$DP[0] = arr[0]$$</p>
 <p>\begin{equation}
   DP[i]=\begin{cases}
-    DP[i-1]+DP[i] &amp; \text{if (arr[i-1] &lt; arr[i])} \\ &amp; \text{&amp;&amp; (DP[i-1]+DP[i] &gt; DP[i])} \\ \\
+    DP[i-1]+arr[i] &amp; \text{if (DP[i-1]+arr[i] &gt; arr[i])} \\ \\
     arr[i] &amp; \text{else}
 \end{cases}
 \end{equation}</p>
@@ -12603,18 +12476,17 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sumatoria_ventana_incremental</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sumatoria_ventana</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dp</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
 
-<span class="n">sumatoria_ventana_incremental</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">])</span>
+<span class="n">sumatoria_ventana</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -12631,20 +12503,20 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[3, -1, -5, 6, 13, 3, -9]
+<pre>[-2, 1, -2, 4, 3, 5, 6, 1, 5]
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[31]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>13</pre>
+<pre>6</pre>
 </div>
 
 </div>
@@ -12668,7 +12540,7 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Problema-4:-Cortando-una-Soga">Problema 4: Cortando una Soga<a class="anchor-link" href="#Problema-4:-Cortando-una-Soga">&#182;</a></h2><blockquote><p>Dada una soga de n centimetros y un arreglo de a cuanto se puede vender cada soga mas chica que ella, encontrar la mayor ganancia que puedo obtener de vender la soga, teniendo en cuenta que puedo cortarla todas las veces que quiero.</p>
 </blockquote>
-<p>Ej: Para una soga de 4 centimetros con precios <code>[1,5,8,9,10,17,17,20]</code>, el valor máximo que puedo obtener es 10, cortandola en 2 y vendiendo dos sogas de 2cm cada una.</p>
+<p>Ej: Para una soga de 4 centimetros con precios <code>[0,1,5,8,9]</code> (es decir, una soga de 1cm se vende a 1 peso, una de 2cm a 5 pesos, etc), el valor máximo que puedo obtener es 10, cortandola en 2 y vendiendo dos sogas de 2cm cada una.</p>
 
 </div>
 </div>
@@ -12677,10 +12549,11 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$DP[0] = arr[0] \\ \text{(ya que toda soga la puedo vender por su precio original)}$$ <br></p>
+<p>$$DP[0] = arr[0]$$ 
+$$\text{(ya que toda soga la puedo vender por su precio original)}$$</p>
 <p>\begin{equation}
   DP[i]=\begin{cases}
-    DP[i-j-1]+precios[j] &amp; \text{if \(DP[i-j-1]+precios[j] &gt; arr[i]\)} \\ &amp; \text{(con $j=0,...,i$)} \\ \\
+    max(DP[i-j]+precios[j]) &amp; \forall j \in [0, i) \\ \\
     arr[i] &amp; \text{else}
 \end{cases}
 \end{equation}</p>
@@ -12690,18 +12563,18 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cortar_soga</span><span class="p">(</span><span class="n">precios</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">precios</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">precios</span><span class="p">[:</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">precios</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">precios</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">cortar_soga</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">20</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cortar_soga</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12718,14 +12591,14 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[1, 5, 8, 10]
+<pre>[0, 1, 5, 8, 10]
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[30]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -12755,7 +12628,7 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Problema-5:-El-problema-del-cambio">Problema 5: El problema del cambio<a class="anchor-link" href="#Problema-5:-El-problema-del-cambio">&#182;</a></h2><blockquote><p>Dado un arreglo de valores de monedas, y un valor N, encontrar la menor cantidad de monedas necesarias para representar N.</p>
 </blockquote>
-<p>Ej: Para 4 pesos y monedas de 1, 2 y 3, la solucion es 2: dar dos monedas de 2. Para 3 pesos, la solucion es 1, solo dar la moneda de 3 .</p>
+<p>Ej: Para 4 pesos y monedas de 1, 2 y 3, la solucion es 2: dar dos monedas de 2. Para 3 pesos, la solucion es 1, solo dar la moneda de 3.</p>
 
 </div>
 </div>
@@ -12766,9 +12639,8 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>\begin{equation}
   DP[i]=\begin{cases}
-    1 &amp; \text{if moneda de i existe}. \\ \\
-    \infty &amp; \text{if i mayor a todas las monedas}. \\ \\
-    \text{\(min(DP[i-m]+1)\)} &amp; \text{else} \\ \text{con m en lista de monedas}.
+    1 &amp; \text{if moneda de i existe}. \\  \\
+    \text{\(min(DP[i-m]+1)\)} &amp; \forall m \in M \\
 \end{cases}
 \end{equation}</p>
 
@@ -12777,15 +12649,15 @@ a.anchor-link {
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">inf</span>
 
-<span class="k">def</span> <span class="nf">cambio</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cambio</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="n">inf</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">moneda</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">moneda</span> <span class="ow">in</span> <span class="n">M</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">moneda</span><span class="p">:</span>
                 <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">moneda</span><span class="p">:</span>
@@ -12824,7 +12696,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Complejidad: $O(n * len(arreglo))$</strong></p>
+<p><strong>Complejidad: $O(n * K)$ siendo K la cantidad de monedas</strong></p>
 
 </div>
 </div>
@@ -12848,7 +12720,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problema-6:-Subset-Sum">Problema 6: Subset Sum<a class="anchor-link" href="#Problema-6:-Subset-Sum">&#182;</a></h2><blockquote><p>Dada una lista de números y un número n, devolver verdadero si existe un subconjunto que sume exactamente n.</p>
+<h2 id="Problema-6:-Subset-Sum">Problema 6: Subset Sum<a class="anchor-link" href="#Problema-6:-Subset-Sum">&#182;</a></h2><blockquote><p>Dado un arreglo y un número <code>suma</code>, devolver verdadero si existe un subconjunto que sume exactamente <code>suma</code>.</p>
 </blockquote>
 <p>Ej: Puedo sumar 9 con el arreglo <code>[1,3,2,5,7]</code> ? Si, porque puedo sumar 2 + 7 o 1+3+5.</p>
 
@@ -12859,10 +12731,17 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Primero, hago una matriz de n columnas y l filas (l siendo la longitud del arreglo). Esto representara lo siguiente:</p>
+<p>Primero, hago una matriz de <code>suma</code> columnas y n filas (siendo n la longitud del arreglo) donde:</p>
+<ul>
+<li><p>La fila i representa al arreglo desde 0 hasta i.</p>
+</li>
+<li><p>La columna j representa al número j, que es la suma a la que queremos llegar</p>
+</li>
+</ul>
 <table>
 <thead><tr>
 <th>Arreglo</th>
+<th>0</th>
 <th>1</th>
 <th>2</th>
 <th>3</th>
@@ -12875,6 +12754,9 @@ a.anchor-link {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>[ ]</td>
+</tr>
 <tr>
 <td>[1]</td>
 </tr>
@@ -12892,11 +12774,16 @@ a.anchor-link {
 </tr>
 </tbody>
 </table>
-<p>Esta matriz la poblaremos de Verdaderos o Falsos, dependiendo de si el arreglo de la fila puede sumar el número de la columna. Para esto, diseñamos nuestra ecuación de recurrencia. Notemos que hay varios casos.</p>
+<p>Esta matriz la poblaremos de Verdaderos o Falsos, dependiendo de si el arreglo de la fila puede sumar el número de la columna. Para esto, diseñamos nuestra ecuación de recurrencia. Notamos:</p>
 <ul>
-<li>Si la lista actual contiene al número, entonces puedo sumar a el --&gt; Verdadero (<code>[1,3]</code> puede sumar 3)</li>
-<li>Si la lista anterior a mi pudo sumar al número, entonces la lista actual tambien puede --&gt; Verdadero (Como <code>[1,3]</code> puede sumar 3, <code>[1,3,2]</code> también)</li>
-<li>Si le saco el último a la lista y puedo sumar al número menos el sacado --&gt; Verdadero (<code>[1,3,2]</code> puede sumar 5, ya que <code>[1,3]</code> puede sumar 5-2)</li>
+<li><p>Los valores iniciales son los de la primera fila, que es el arreglo vacío. Un arreglo vacío suma 0</p>
+</li>
+<li><p>La ecuación de recurrencia consiste en:</p>
+<ul>
+<li>Si el arreglo anterior podía sumar hasta <code>suma</code> el arreglo actual también puede. (Como <code>[1,3]</code> puede sumar 3, <code>[1,3,2]</code> también)</li>
+<li>Si el arreglo anterior podía sumar hasta <code>suma</code> menos el último valor del arreglo actual, entonces el arreglo actual puede sumar hasta <code>suma</code>. (<code>[1,3,2]</code> puede sumar 5, ya que <code>[1,3]</code> puede sumar 5-2)</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -12906,11 +12793,18 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Valores iniciales</strong></p>
 <p>\begin{equation}
-  DP(i,j)=\begin{cases}
-    True &amp; \text{if j en la fila i}. \\
-    True &amp; \text{if dp[i-1][j] == True (la fila anterior en la misma columna) }. \\
-    True &amp; \text{if la fila anterior en la columna j-arreglo[i] == True }. \\
+  DP[0,j]=\begin{cases}
+    True &amp; \text{if j == 0}. \\
+    False &amp; \text{if j != 0}. \\
+\end{cases}
+\end{equation}</p>
+<p><strong>Relación de recurrencia</strong></p>
+<p>\begin{equation}
+  DP[i,j]=\begin{cases}
+    True &amp; \text{if DP[i-1,j] is True}. \\
+    True &amp; \text{if DP[i-1][j-arr[i-1]] is True}. \\
     False &amp; \text{else}.
 \end{cases}
 \end{equation}</p>
@@ -12926,6 +12820,7 @@ a.anchor-link {
 <table>
 <thead><tr>
 <th>Arreglo</th>
+<th>0</th>
 <th>1</th>
 <th>2</th>
 <th>3</th>
@@ -12939,7 +12834,21 @@ a.anchor-link {
 </thead>
 <tbody>
 <tr>
+<td>[ ]</td>
+<td>T</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
 <td>[1]</td>
+<td>T</td>
 <td>T</td>
 <td>F</td>
 <td>F</td>
@@ -12953,6 +12862,7 @@ a.anchor-link {
 <tr>
 <td>[1,3]</td>
 <td>T</td>
+<td>T</td>
 <td>F</td>
 <td>T</td>
 <td>T</td>
@@ -12964,6 +12874,7 @@ a.anchor-link {
 </tr>
 <tr>
 <td>[1,3,2]</td>
+<td>T</td>
 <td>T</td>
 <td>T</td>
 <td>T</td>
@@ -12985,9 +12896,11 @@ a.anchor-link {
 <td>T</td>
 <td>T</td>
 <td>T</td>
+<td>T</td>
 </tr>
 <tr>
 <td>[1,3,2,5,7]</td>
+<td>T</td>
 <td>T</td>
 <td>T</td>
 <td>T</td>
@@ -13007,24 +12920,32 @@ a.anchor-link {
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">subset_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">columnas</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">filas</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">columnas</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">filas</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">filas</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">columnas</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">arr</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">continue</span>
-            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)][</span><span class="n">n</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="k">def</span> <span class="nf">subset_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">suma</span><span class="p">):</span>
+    <span class="n">cant_columnas</span> <span class="o">=</span> <span class="n">suma</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">cant_filas</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>   
+    <span class="n">dp</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span><span class="n">cant_columnas</span> <span class="p">]</span> <span class="o">*</span> <span class="n">cant_filas</span> <span class="p">)</span>
+    
+    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">dp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndindex</span><span class="p">(</span><span class="n">dp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">]</span> 
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Todo equivale a: dp[i][j] = dp[i-1][j] or dp[i-1][j-arr[i-1]]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     
 <span class="n">subset_sum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
@@ -13042,22 +12963,20 @@ a.anchor-link {
 <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea ">
-<pre>[[False, False, False, False, False, False, False, False, False, False],
- [False, True, False, False, False, False, False, False, False, False],
- [False, True, False, True, True, False, False, False, False, False],
- [False, True, True, True, True, True, True, False, False, False],
- [False, True, True, True, True, True, True, True, True, True],
- [False, True, True, True, True, True, True, True, True, True]]</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[True False False False False False False False False False]
+ [True True False False False False False False False False]
+ [True True False True True False False False False False]
+ [True True True True True True True False False False]
+ [True True True True True True True True True True]
+ [True True True True True True True True True True]]
+</pre>
 </div>
-
 </div>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[28]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -13071,25 +12990,17 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="fragment">
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Complejidad: $O(\text{elementos en matriz})== O(suma * len(arreglo))$</strong></p>
-
-</div>
-</div>
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Complejidad: $O(\text{elementos en matriz})== O(suma * len(arreglo))$</strong></p>
-<p>Cuando una complejidad depende del <em>valor numérico</em> de la entrada, como en este caso de la suma, tiene una complejidad <em>pseudo-polinómica</em> (siempre y cuando sea complejidad polinómica, obviamente).</p>
-<p>Esto es en contraste a cuando se depende de la <em>longitud</em> de la entrada, por ejemplo cuando se recorre un arreglo de n elementos enteros, técnicamente se habla de los <code>n\*sizeof(int)</code> bytes que se usan para representarlo.</p>
-<p>También, este problema es NP-Completo (tanto NP como NP-Hard), ya que su verificación puede hacerse en tiempo polinómico pero no su resolución (NP) y porque se puede demostrar que todos los problema NP pueden ser reducidos a este (NP-Hard).</p>
-<p>Finalmente, y recalcando la importancia de diferenciar entre un <em>problema</em> y un <em>algoritmo</em>, un problema NP-completo con un algoritmo pseudo-polinómico como este se considera un algoritmo <strong>debilmente NP-completo</strong>.</p>
+<p><strong>Complejidad: $O(\text{elementos en matriz})== O(n * suma)$</strong></p>
+<p>Cuando una complejidad polinómica depende del <em>valor</em> de la entrada se dice que tiene una complejidad pseudo-polinómica.</p>
+<p>Esto es en contraste a cuando se depende de la <em>longitud</em> de la entrada, por ejemplo cuando se recibe un arreglo de n elementos y se depende de n, sin importar del valor de esos elementos.</p>
+<p>Así que el <strong>algoritmo</strong> tiene complejidad <strong>pseudo-polinomial</strong>.</p>
+<p>También, este <strong>problema</strong> es <strong>NP-Completo</strong> (tanto NP como NP-Hard), ya que su verificación puede hacerse en tiempo polinómico pero no su resolución (NP) y porque se puede demostrar que todos los problema NP pueden ser reducidos a este (NP-Hard).</p>
+<p>Un problema NP-completo con un algoritmo pseudo-polinómico se considera un problema <strong>debilmente NP-completo</strong>.</p>
 
 </div>
 </div>
